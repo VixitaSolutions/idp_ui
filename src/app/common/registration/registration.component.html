@@ -1,0 +1,54 @@
+<div class="flexy">
+    <div class="flex-container common-font flex-wrap-wrap mx-1">
+        <aside class="flex-item lg-img main sm-w-100">
+            <img style="width: 30em" src="./assets/images/registration.jpg" class="sm-w-100" />
+        </aside>
+        <article class="flex-item main lg-form sm-w-100">
+            <ul class="signup-hdr font-hdr black">
+                <li class="login-hdr font-18 font-bold">First Time Login?</li>
+            </ul>
+            <article class="container">
+                <form [formGroup]="registrationForm" (ngSubmit)="register()">
+                    <ul class="flex-outer">
+                        <li>
+                            <label for="first-name">Enter the email id on which OTP will be sent</label>
+                        </li>
+                        <li>
+                            <i class="icon">
+                                <img src="./assets/icons/Password.png" /> </i>
+                            <input type="text" id="email" placeholder="Enter email" class="input-field" formControlName="email" [ngClass]="{ 'is-invalid': f.email.touched && f.email.errors }">
+                        </li>
+                        <div *ngIf="f.email.touched && f.email.errors" class="invalid-feedback">
+                            <div *ngIf="f.email.errors.required">Email is required</div>
+                            <div *ngIf="f.email.errors.email">Invalid Email</div>
+                        </div>
+                        <li class="button">
+                            <button type="submit">Submit</button>
+                        </li>
+                    </ul>
+                </form>
+            </article>
+            <article class="container">
+                <form [formGroup]="temporaryForm" (ngSubmit)="validate()">
+                    <ul class="flex-outer font-bold">
+                        <li>
+                            Enter the OTP that has been sent to your email id
+                        </li>
+                        <li>
+                            <i class="icon">
+                                <img src="./assets/icons/Password.png" /> </i>
+                            <input type="text" id="otp" placeholder="Enter OTP" class="input-field" formControlName="tempPwd" required [ngClass]="{ 'is-invalid': fr.tempPwd.touched && fr.tempPwd.errors }">
+                        </li>
+                        <div *ngIf="fr.tempPwd.touched && fr.tempPwd.errors" class="invalid-feedback">
+                            <div *ngIf="fr.tempPwd.errors.required">OTP is required</div>
+                            <div *ngIf="fr.tempPwd.errors.minlength || fr.tempPwd.errors.maxlength">Invalid OTP</div>
+                        </div>
+                        <li class="button">
+                            <button type="submit">Validate</button>
+                        </li>
+                    </ul>
+                </form>
+            </article>
+        </article>
+    </div>
+</div>

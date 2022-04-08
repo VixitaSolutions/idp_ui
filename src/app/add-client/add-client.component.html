@@ -1,0 +1,90 @@
+<h2>{{title}}</h2>
+<div *appBusyIndicator="isBusy"></div>
+<div class="d-flex flex-row">
+    <div class="w-50">
+        <img class="add-img" *ngIf="id == undefined" src="./assets/images/add_client_admin.jpeg" />
+        <img class="add-img" *ngIf="id != undefined" src="./assets/images/edit_client.jpeg" />
+    </div>
+    <div class="w-50 forms-grp">
+        <form [formGroup]="addClientForm">
+            <div class="form-group mb-3">
+                <label for="clientName">Client Name</label>
+                <input type="text" id="clientName" placeholder="Client name" class="form-control" formControlName="clientName" [ngClass]="{ 'is-invalid': f.clientName.touched && f.clientName.errors }">
+                <small *ngIf="f.clientName.touched && f.clientName.errors" class="form-text text-muted">
+                    <div *ngIf="f.clientName.errors.required">Client name is required</div>
+                    <div *ngIf="f.clientName.errors.email">Invalid client name</div>
+                </small>
+            </div>
+            <div class="form-group mb-3">
+                <label for="mobile">Mobile Number</label>
+                <input type="text" id="mobile" placeholder="Client number" class="form-control"
+                    formControlName="mobile" [ngClass]="{ 'is-invalid': f.mobile.touched && f.mobile.errors }">
+                <small *ngIf="f.mobile.touched && f.mobile.errors" class="form-text text-muted">
+                    <div *ngIf="f.mobile.errors.required">Mobile number is required</div>
+                </small>
+            </div>
+            <div class="form-group mb-3">
+                <label for="email">Email Address</label>
+                <input type="text" id="email" placeholder="Client email" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': f.email.touched && f.mobile.errors }">
+                <small *ngIf="f.email.touched && f.email.errors" class="form-text text-muted">
+                    <div *ngIf="f.email.errors.required">Client email is required</div>
+                    <div *ngIf="f.email.errors.email">Invalid client name</div>
+                </small>
+            </div>
+            <div class="form-group mb-3">
+                <label for="subscriptionStartDate">Subscription Start Date</label>
+                <div class="input-group">
+                <input id="subscriptionStartDate" placeholder="yyyy-mm-dd" class="form-control"
+                    (keydown)="$event.preventDefault()"
+                    formControlName="subscriptionStartDate" ngbDatepicker #d1="ngbDatepicker"
+                    [ngClass]="{ 'is-invalid': f.subscriptionStartDate.touched && f.subscriptionStartDate.errors }">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary calendar" (click)="d1.toggle()" type="button"></button>
+                </div>
+                </div>
+                <small *ngIf="f.subscriptionStartDate.touched && f.subscriptionStartDate.errors" class="form-text text-muted">
+                    <div *ngIf="f.subscriptionStartDate.errors.required">Subscription start date is required</div>
+                </small>
+            </div>
+            <div class="form-group mb-3">
+                <label for="subscriptionEndDate">Subscription End Date</label>
+                <div class="input-group">
+                    <input id="subscriptionEndDate" placeholder="yyyy-mm-dd" class="form-control"
+                        (keydown)="$event.preventDefault()"
+                        formControlName="subscriptionEndDate" ngbDatepicker #d2="ngbDatepicker"
+                        [ngClass]="{ 'is-invalid': f.subscriptionEndDate.touched && f.subscriptionEndDate.errors }">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary calendar" (click)="d2.toggle()" type="button"></button>
+                    </div>
+                </div>
+                <!-- <input type="date" id="subscriptionEndDate" placeholder="Subscription end date" class="form-control"
+                    formControlName="subscriptionEndDate"
+                    [ngClass]="{ 'is-invalid': f.subscriptionEndDate.touched && f.subscriptionEndDate.errors }"> -->
+                <small *ngIf="f.subscriptionEndDate.touched && f.subscriptionEndDate.errors" class="form-text text-muted">
+                    <div *ngIf="f.subscriptionEndDate.errors.required">Subscription end date is required</div>
+                </small>
+            </div>
+            <div class="form-group mb-3">
+                <div class="form-check form-switch p-0">
+                    <label for="status">Status</label>
+                    <span class="float-end" *ngIf="status">Active</span><span class="float-end" *ngIf="!status">Inactive</span>
+                    <input type="checkbox" class="form-check-input float-end" id="status"
+                    formControlName="status" (change)="status=!status"
+                    [ngClass]="{ 'is-invalid': f.status.touched && f.status.errors }">
+                </div>
+                <!-- <label for="status">Status</label>
+                <select id="status" placeholder="Status" class="form-control" formControlName="status" [ngClass]="{ 'is-invalid': f.status.touched && f.status.errors }">
+                    <option>Active</option>
+                    <option>Inactive</option>
+                </select> -->
+                <small *ngIf="f.status.touched && f.status.errors" class="form-text text-muted">
+                    <div *ngIf="f.status.errors.required">Status is required</div>
+                </small>
+            </div>
+            <div class="button button-flex">
+                <button type="button" class="btn" (click)="addClientForm.reset()">Clear</button>
+                <button type="submit" class="btn" (click)="save()">Save</button>
+            </div>
+        </form>
+    </div>
+</div>

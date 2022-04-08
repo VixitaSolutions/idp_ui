@@ -1,0 +1,84 @@
+<div *ngIf="manage">
+    <h4>Overview</h4>
+    <div *appBusyIndicator="isBusy"></div>
+    <div class="column">
+        <div class="col overlap">
+            <div class="overlap-txt">
+                <h4>Our Esteemed Clients</h4>
+                We believe in creating long-term relationship with our valued global customers.
+            </div>
+            <i class="">
+                <img class="overlay-img" src="./assets/images/manage_clients.jpeg" />
+            </i>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <nav class="navbar navbar-light bg-light">
+            <div class="container-fluid">
+                <button class="btn btn-outline-custom" (click)="addClient()">Add</button>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" [formControl]="filter">
+                    <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
+                </form>
+            </div>
+        </nav>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <!-- <th scope="col">#</th> -->
+                        <th scope="col" class="text-center">Client Name</th>
+                        <th scope="col" class="text-center">Mobile</th>
+                        <th scope="col" class="text-center">Email</th>
+                        <th scope="col" class="text-center">Subscription Start Date</th>
+                        <th scope="col" class="text-center">Subscription End Date</th>
+                        <th scope="col" class="text-center">Status</th>
+                        <th scope="col" class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let row of rows | async">
+                        <!-- <th scope="row">{{ row.id }}</th> -->
+                        <td class="text-center">
+                            <ngb-highlight [result]="row.clientName" [ngbTooltip]="row.clientName"></ngb-highlight>
+                        </td>
+                        <td class="text-center">
+                            <ngb-highlight [result]="row.mobile" [ngbTooltip]="row.mobile"></ngb-highlight>
+                        </td>
+                        <td class="text-center">
+                            <ngb-highlight [result]="row.email" [ngbTooltip]="row.email"></ngb-highlight>
+                        </td>
+                        <td class="text-center">
+                            <ngb-highlight [result]="row.subscriptionStartDate|date: 'dd/MM/yyyy'"
+                            [ngbTooltip]="row.subscriptionStartDate|date: 'dd/MM/yyyy'"></ngb-highlight>
+                        </td>
+                        <td class="text-center">
+                            <ngb-highlight [result]="row.subscriptionEndDate|date: 'dd/MM/yyyy'"
+                            [ngbTooltip]="row.subscriptionEndDate|date: 'dd/MM/yyyy'"></ngb-highlight>
+                        </td>
+                        <td class="text-center">
+                            <ngb-highlight [result]="row.status ? 'Active' : 'Inactive'"
+                            [ngbTooltip]="row.status ? 'Active' : 'Inactive'"></ngb-highlight>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-outline-custom"
+                            (click)="edit(row.id)">Edit</button>
+                            <!-- <button type="button" class="btn btn-outline-custom"
+                            (click)="delete(row.id)">Delete</button>    -->
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- <div class="d-flex justify-content-center p-2"> -->
+                <ngb-pagination class="d-flex justify-content-center" [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refresh()">
+                </ngb-pagination>
+                <!-- <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refresh()" [ngModelOptions]="{standalone: true}">
+                    <option [ngValue]="2">2 items per page</option>
+                    <option [ngValue]="4">4 items per page</option>
+                    <option [ngValue]="6">6 items per page</option>
+                </select> -->
+            <!-- </div> -->
+    </div>
+</div>
+<div *ngIf="!manage">
+    <app-add-client [clientDetails]="clientDetails" (closeEvent)="getClients($event)"></app-add-client>
+</div>

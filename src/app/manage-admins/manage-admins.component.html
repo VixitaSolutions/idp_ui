@@ -1,0 +1,78 @@
+<div *ngIf="manage">
+    <h4>Overview</h4>
+    <div *appBusyIndicator="isBusy"></div>
+    <div class="column">
+        <div class="col overlap">
+            <div class="overlap-txt">
+                <h4>Manage Admins</h4>
+                We believe in creating long-term relationship with our valued global customers.
+            </div>
+            <i class="">
+                <img class="overlay-img" src="./assets/images/manage_admins.jpeg" />
+            </i>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <nav class="navbar navbar-light bg-light">
+            <div class="container-fluid">
+                <button class="btn btn-outline-custom" (click)="addAdmin()">Add</button>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" [formControl]="filter">
+                    <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
+                </form>
+            </div>
+        </nav>
+        <!-- <form>
+            <div class="w-100 mb-3 row">
+                <button class="btn btn-outline-custom" (click)="addAdmin()">Add</button>
+                <label class="text-end col-lg col-form-label">Search:</label>
+                <div class="col-sm-3">
+                    <input class="form-control ml-2" type="text" [formControl]="filter" />
+                </div>
+            </div>
+        </form> -->
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col" class="text-center">Admin Name</th>
+                    <th scope="col" class="text-center">Admin Mobile</th>
+                    <th scope="col" class="text-center">Email Address</th>
+                    <th scope="col" class="text-center">Company Name</th>
+                    <th scope="col" class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let row of rows | async">
+                    <td class="text-center">
+                        <ngb-highlight [result]="row.firstName +' '+ row.lastName" [ngbTooltip]="row.firstName +' '+ row.lastName"></ngb-highlight>
+                    </td>
+                    <td class="text-center">
+                        <ngb-highlight [result]="row.mobile" [ngbTooltip]="row.mobile"></ngb-highlight>
+                    </td>
+                    <td class="text-center">
+                        <ngb-highlight [result]="row.email" [ngbTooltip]="row.email"></ngb-highlight>
+                    </td>
+                    <td class="text-center">
+                        <ngb-highlight [result]="row.tenantName" [ngbTooltip]="row.tenantName"></ngb-highlight>
+                    </td>
+                    <td class="text-center">
+                        <button type="button" class="btn btn-outline-custom" (click)="edit(row.id)">Edit</button>
+                        <!-- <button type="button" class="btn btn-outline-custom" (click)="delete(row.id)">Delete</button> -->
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-center p-2">
+            <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refresh()">
+            </ngb-pagination>
+            <!-- <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refresh()" [ngModelOptions]="{standalone: true}">
+                    <option [ngValue]="2">2 items per page</option>
+                    <option [ngValue]="4">4 items per page</option>
+                    <option [ngValue]="6">6 items per page</option>
+                </select> -->
+        </div>
+    </div>
+</div>
+<div *ngIf="!manage">
+    <app-add-admin [adminDetails]="adminDetails" (closeEvent)="getAdmins($event)"></app-add-admin>
+</div>

@@ -1,0 +1,17 @@
+.card-deck {
+    display: flex;
+    flex-wrap: wrap;
+    font-weight: bold !important;
+}
+.menu-icon {
+    width: 35%;
+    height: 100%;
+}
+.card {
+    cursor: pointer;
+}
+.btn-custom {
+    background-color: #550e9b;
+    border-color: #550e9b;
+    color: white;
+}

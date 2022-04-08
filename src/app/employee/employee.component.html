@@ -1,0 +1,112 @@
+<nav class="navbar navbar-dark sticky-top flex-md-nowrap p-3 home-hdr">
+    <a class="navbar-brand home-hdr-txt col-sm-3m-sm-3" href="#">Learning Management System</a>
+    <ul class="flex-lg-row flexy justify-content-end navbar-nav">
+        <li class="nav-item text-nowrap">
+            <img src="assets/icons/notification.jpeg" alt="notifications" style="width: 50px" />
+        </li>
+        <li class="nav-item text-nowrap" ngbDropdown display="dynamic" placement="bottom-end">
+            <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown3" role="button">
+                <img src="assets/icons/profile.jpeg" alt="profile" style="width: 30px" class="rounded-circle" />
+            </a>
+
+            <div ngbDropdownMenu aria-labelledby="navbarDropdown3" class="dropdown-menu custom-drp">
+                <span class="border-bottom">
+                    Welcome, {{loggedInUser?.firstName | titlecase}} {{loggedInUser?.lastName | titlecase}} {{loggedInUser?.roleIds}}
+                </span>
+                <a ngbDropdownItem href="#" (click)="$event.preventDefault();logout()" class="border-bottom">
+                    <img src="assets/icons/profile.jpeg" alt="profile" style="width: 30px" class="rounded-circle" /> Profile
+                </a>
+                <a ngbDropdownItem href="#" (click)="$event.preventDefault();logout()" class="border-bottom">
+                    <img src="assets/icons/Password.png" alt="profile" style="width: 30px" class="rounded-circle" /> Change Password</a>
+                <a ngbDropdownItem href="#" (click)="$event.preventDefault();logout()">
+                    <img src="assets/icons/Logout.png" alt="profile" style="width: 30px" class="rounded-circle" /> Logout
+                </a>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+            <div class="sidebar-sticky">
+                <div class="align-items-center border-bottom d-flex flex-md-nowrap flex-wrap justify-content-center mb-3 pb-2">
+                    <img style="width: 120px" src="./assets/images/company-logo.jpeg" />
+                </div>
+                <ul class="nav flex-column">
+                    <ng-container *ngFor="let menu of menus;let i = index">
+                        <li class="nav-item" *ngIf="!(menu?.children)">
+                            <a class="nav-link" href="#" [routerLink]="menu?.url" routerLinkActive="active">
+                                <i>
+                                    <img class="menu-icon" *ngIf="menu?.name == 'Home'" src="./assets/icons/home.jpeg" />
+                                    <img class="menu-icon" *ngIf="menu?.name == 'Manage Clients'" src="./assets/icons/manage_clients.jpeg" />
+                                    <img class="menu-icon" *ngIf="menu?.name == 'Manage Admins'" src="./assets/icons/manage_admins.jpeg" />
+                                    <img class="menu-icon" *ngIf="menu?.name == 'Competency Mapping'" src="./assets/icons/competency_mapping.jpeg" />
+                                    <img class="menu-icon" *ngIf="menu?.name == 'All Employees Data'" src="./assets/icons/manage_clients.jpeg" />
+                                </i>
+                                <span data-feather="home"></span>
+                                {{menu.name}}
+                            </a>
+                        </li>
+                        <ngb-accordion [closeOthers]="true" #acc="ngbAccordion">
+                            <ngb-panel *ngIf="menu?.children">
+                                <ng-template ngbPanelHeader let-opened="opened">
+                                    <button ngbPanelToggle class="accordion-button custom-header justify-content-between" [class.collapsed]="!opened">
+                                        <i>
+                                            <img class="menu-icon" *ngIf="menu?.name == 'My Courses'" src="./assets/icons/courses_menu.jpeg" />
+                                        </i>
+                                        {{menu.name}}
+                                    </button>
+                                </ng-template>
+                                <ng-template ngbPanelContent>
+                                    <ng-container *ngFor="let m of menu.children">
+                                        <button ngbDropdownItem (click)="goTo(menu, m)">{{m.name}}</button>
+                                    </ng-container>
+                                </ng-template>
+                            </ngb-panel>
+                        </ngb-accordion>
+                        <!-- <li ngbDropdown class="nav-item" *ngIf="menu?.children">
+                                <a href (click)="false" class="nav-link" ngbDropdownToggle>
+                                    <i>
+                                        <img class="menu-icon" *ngIf="menu?.name == 'My Employees'" src="./assets/icons/manage_clients.jpeg" />
+                                        <img class="menu-icon" *ngIf="menu?.name == 'My Courses'" src="./assets/icons/courses_menu.jpeg" />
+                                    </i>
+                                    {{menu.name}}
+                                </a>
+                                <div ngbDropdownMenu>
+                                    <ng-container *ngFor="let m of menu.children">
+                                        <button ngbDropdownItem>{{m.name}}</button>
+                                        <div class="dropdown-divider"></div>
+                                    </ng-container>
+                                </div>
+                            </li> -->
+                        <!-- <li class="nav-item dropdown" *ngIf="menu?.children">
+                                <ul class="dropdown-menu">
+                                    <li *ngFor="let m of menu.children">
+                                        <a class="dropdown-item" href="#" [routerLink]="m?.url" routerLinkActive="active">
+                                            {{m.name}}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li> -->
+                    </ng-container>
+                </ul>
+            </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                <h3>My Dashboard</h3>
+            </div>
+            <div class="container-home m-xl-5 p-5">
+                <router-outlet></router-outlet>
+                <!-- <app-admin-home *ngIf="isAdminHome" [menus]="menus" (component)="goTo($event)"></app-admin-home>
+                    <app-manage-clients *ngIf="isManageClient"></app-manage-clients>
+                    <app-manage-admins *ngIf="isManageAdmin"></app-manage-admins>
+                    <app-competency-mapping *ngIf="isCompetencyMapping"></app-competency-mapping>
+                    <app-manage-employees *ngIf="isManageEmployees"></app-manage-employees>
+                    <app-upload-data *ngIf="isUpload"></app-upload-data> -->
+            </div>
+        </main>
+    </div>
+</div>

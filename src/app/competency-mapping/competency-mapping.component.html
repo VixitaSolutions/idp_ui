@@ -1,0 +1,55 @@
+<h2>Competency Mapping</h2>
+<div class="forms-grp">
+        <div class="form-group row mb-3">
+            <label for="clientName" class="col-sm-2 col-form-label">Client Name</label>
+            <div class="col-sm-5">
+                <select type="text" id="clientName" placeholder="Client Name" class="form-control">
+                    <option>ABC</option>
+                    <option>XYZ</option>
+                </select>
+            </div>
+        </div>
+    <button class="btn btn-outline-custom" (click)="addMapping()">Add</button>
+    <div class="table-responsive">
+        <form>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Client Competency Name</th>
+                        <th scope="col">Global Competency Name</th>
+                        <th scope="col">Keywords</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let row of rows">
+                        <th scope="row">{{ row.id }}</th>
+                        <td>
+                            <ngb-highlight [result]="row.clientCompetency"></ngb-highlight>
+                        </td>
+                        <td>
+                            <ngb-highlight [result]="row.globalCompetency"></ngb-highlight>
+                        </td>
+                        <td>
+                            <ngb-highlight [result]="row.keywords"></ngb-highlight>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-outline-custom" (click)="edit(row.id)">Edit</button>
+                            <button type="button" class="btn btn-outline-custom" (click)="delete(row.id)">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="d-flex justify-content-center p-2">
+                <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refresh()">
+                </ngb-pagination>
+                <!-- <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refresh()" [ngModelOptions]="{standalone: true}">
+                    <option [ngValue]="2">2 items per page</option>
+                    <option [ngValue]="4">4 items per page</option>
+                    <option [ngValue]="6">6 items per page</option>
+                </select> -->
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+.column {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    padding: 1%;
+}
+.col {
+    width: 80%;
+    margin: 1%;
+    align-items: center;
+    display: flex;
+    box-shadow: 0px 0px 15px 10px #e2e8e8b2;
+}
+.overlay-img {
+    width: 20%;
+    position: absolute;
+    right: 0;
+    bottom: -15px;
+}
+.overlap {
+    position: relative;
+    div {
+        display: flex;
+        flex-flow: column;
+        width: 70%;
+        height: 15vh;
+        margin-left: 20px;
+    }
+}

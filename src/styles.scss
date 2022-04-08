@@ -1,0 +1,232 @@
+/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/scss/bootstrap";
+@font-face {
+    font-family: avenir-bold;
+    src: url(/assets/font/avenir_ff/AvenirLTStd-Black.otf);
+  }
+  @font-face {
+    font-family: avenir-lite;
+    src: url(/assets/font/avenir_ff/AvenirLTStd-Book.otf);
+  }
+  @font-face {
+    font-family: Proxima Nova;
+    src: url(/assets/font/Proxima_Nova_Font.otf);
+  }
+$app-color: #8015e8;
+  body {
+    height: 100vh;
+    margin: 0;
+    font-family: avenir-lite;
+  }
+  .idp-body {
+    background-image: url("/assets/images/background.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+  .flexy {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .w-100 {
+    width: 100%;
+  }
+  .w-98 {
+    width: 98%;
+  }
+  .w-90 {
+    width: 90%;
+  }
+  .w-50 {
+    width: 50%;
+  }
+  .w-40 {
+    width: 40%;
+  }
+  .w-20 {
+    width: 20%;
+  }
+  .h-100 {
+    height: 100%;
+  }
+  .h-65 {
+    height: 65%;
+  }
+  .font-10 {
+    font-size: 10px;
+  }
+  .font-12 {
+    font-size: 12px;
+  }
+  .font-14 {
+    font-size: 14px;
+  }
+  .font-16 {
+    font-size: 16px;
+  }
+  .font-18 {
+    font-size: 18px;
+  }
+  .font-30 {
+    font-size: 30px;
+  }
+  .white {
+    color: #ffffff;
+  }
+  .black {
+    color: #000000;
+  }
+  .app-color {
+    color: #8015e8;
+  }
+  .m-t-1 {
+    margin-top: 1em;
+  }
+  .m-t-2 {
+    margin-top: 2em;
+  }
+  .font-bold {
+    font-weight: bold;
+  }
+  
+  .is-invalid {
+    border: 2px solid #dc3545 !important;
+  }
+  .is-invalid ~ .invalid-feedback {
+    display: block;
+  }
+  .invalid-feedback {
+    // display: block;
+    // width: 100%;
+    // margin-top: 0.25rem;
+    // font-size: 80%;
+    color: #dc3545;
+    font-weight: bold;
+    // margin-left: -9em;
+  }
+  // ************************** common styles *************************//
+  .flex-container {
+    display: flex;
+    justify-content: space-around;
+  }
+  .flex-item {
+    padding: 1px;
+    width: 50%;
+  }
+  .main {
+    justify-content: center;
+    box-shadow: 0px 0px 4px #8015e8;
+  }
+  .img-container {
+    height: 25em;
+    width: 25em;
+    margin: auto;
+  }
+  .sm-block{
+      display: none;
+  }
+  // ************************** media queries max-wdth == 430px *************************//
+  @media screen and (max-width: 430px) {
+    .flex-wrap-wrap {
+      flex-wrap: wrap;
+    }
+    .sm-w-100 {
+      width: 100% !important;
+    }
+    .mx-1 {
+      margin: 0rem 0.5rem;
+    }
+    .img-container {
+      height: 24em;
+    }
+    .sm-block{
+        display: block;
+    }
+    .md-block{
+        display: none;
+    }
+    .sm-m-auto{
+        margin: auto;
+    }
+  }
+  .modal-dialog {
+    //margin: 15% auto !important;
+  }
+  
+  table, th, td {
+    border: 1px solid #e2e8e8b2;
+    border-collapse: collapse;
+}
+
+  td {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 150px;
+    vertical-align: middle;
+}
+.btn-outline-custom {
+    color: #8015e8;
+    border-color: #8015e8;
+    line-height: 1rem;
+    margin: 5px;
+}
+select {
+  -webkit-appearance: menulist !important;
+}
+.form-check-input:checked {
+  background-color: #8015e8;
+  border-color: #8015e8;
+}
+
+button.calendar, button.calendar:active {
+  height: 2.4rem;
+  width: 3rem;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAcCAYAAAAEN20fAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAEUSURBVEiJ7ZQxToVAEIY/YCHGxN6XGOIpnpaEsBSeQC9ArZbm9TZ6ADyBNzAhQGGl8Riv4BLAWAgmkpBYkH1b8FWT2WK/zJ8ZJ4qiI6XUI3ANnGKWBnht2/ZBDRK3hgVGNsCd7/ui+JkEIrKtqurLpEWaphd933+IyI3LEIdpCYCiKD6HcuOa/nwOa0ScJEnk0BJg0UTUWJRl6RxCYEzEmomsIlPU3IPW+grIAbquy+q6fluy/28RIBeRMwDXdXMgXLj/B2uimRXpui4D9sBeRLKl+1N+L+t6RwbWrZliTTTr1oxYtzVWiTQAcRxvTX+eJMnlUDaO1vpZRO5NS0x48sIwfPc87xg4B04MCzQi8hIEwe4bl1DnFMCN2zsAAAAASUVORK5CYII=') !important;
+  background-repeat: no-repeat;
+  background-size: 23px;
+  background-position: center;
+}
+/* Sortable table demo */
+
+th[sortable] {
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+th[sortable].desc:before, th[sortable].asc:before {
+  content: '';
+  display: block;
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAmxJREFUeAHtmksrRVEUx72fH8CIGQNJkpGUUmakDEiZSJRIZsRQmCkTJRmZmJgQE0kpX0D5DJKJgff7v+ru2u3O3vvc67TOvsdatdrnnP1Y///v7HvvubdbUiIhBISAEBACQkAICAEhIAQ4CXSh2DnyDfmCPEG2Iv9F9MPlM/LHyAecdyMzHYNwR3fdNK/OH9HXl1UCozD24TCvILxizEDWIEzA0FcM8woCgRrJCoS5PIwrANQSMAJX1LEI9bqpQo4JYNFFKRSvIgsxHDVnqZgIkPnNBM0rIGtYk9YOOsqgbgepRCfdbmFtqhFkVEDVPjJp0+Z6e6hRHhqBKgg6ZDCvYBygVmUoEGoh5JTRvIJwhJo1aUOoh4CLPMyvxxi7EWOMgnCGsXXI1GIXlZUYX7ucU+kbR8NW8lh3O7cue0Pk32MKndfUxQFAwxdirk3fHappAnc0oqDPzDfGTBrCfHP04dM4oTV8cxr0SVzH9FF07xD3ib6xCDE+M+aUcVygtWzzbtGX2rPBrEUYfecfQkaFzYi6HjVnGBdtL7epqAlc1+jRdAap74RrnPc4BCijttY2tRcdN0g17w7HqZrXhdJTYAuS3hd8z+vKgK3V1zWPae0mZDMykadBn1hTQBLnZNwVrJpSe/NwEeDsEwCctEOsJTsgxLvCqUl2ACftEGvJDgjxrnBqkh3ASTvEWrIDQrwrnJpkB3DSDrGW7IAQ7wqnJtkBnLRztejXXVu4+mxz/nQ9jR1w5VB86ejLTFcnnDwhzV+F6T+CHZlx6THSjn76eyyBIOPHyDakhBAQAkJACAgBISAEhIAQYCLwC8JxpAmsEGt6AAAAAElFTkSuQmCC') no-repeat;
+  background-size: 22px;
+  width: 22px;
+  height: 22px;
+  float: right;
+  margin-left: -22px;
+}
+
+th[sortable].desc:before {
+  transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+}
+
+/* Filtering table demo */
+ngbd-table-filtering span.ngb-highlight {
+  background-color: yellow;
+}
+
+/* Complete table demo */
+ngbd-table-complete span.ngb-highlight {
+  background-color: yellow;
+}
+
+.form-group.required .control-label:after {
+  content:"*";
+  color:red;
+}

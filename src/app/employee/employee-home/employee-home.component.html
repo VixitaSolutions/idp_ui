@@ -1,0 +1,23 @@
+<div>
+    <h2>Overview</h2>
+    <div class="card-deck">
+        <ng-container *ngFor="let menu of menus">
+        <div class="card m-4 align-items-center flex-sm-row justify-content-center" 
+            style="width: 28%" (click)="goTo(menu?.url)">
+            <div *ngIf="menu.name !== 'Courses'; else elseBlock">
+                <div class="card-body">
+                    <h5 class="card-title">{{menu.name}}</h5>
+                </div>
+            </div>
+            <ng-template #elseBlock>
+                <div class="card-body">
+                    <h5 class="card-title border-bottom">{{menu.name}}: {{courses?.length}}</h5>
+                    <p class="card-text">
+                        <tr *ngFor="let c of groupByStatus | keyvalue">{{c.key | titlecase}}: {{c.value}}</tr>
+                    </p>
+                </div>
+            </ng-template>
+        </div>
+        </ng-container>
+    </div>
+</div>

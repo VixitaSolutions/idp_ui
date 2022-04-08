@@ -1,0 +1,31 @@
+<div>
+    <h2>Overview</h2>
+    <div class="card-deck">
+        <ng-container *ngFor="let menu of menus">
+        <div class="card m-4 align-items-center flex-sm-row justify-content-center" 
+            style="width: 28%" (click)="goTo(menu?.url)">
+            <img class="menu-icon" *ngIf="menu?.name == 'Pending Request Approvals'" src="./assets/icons/pendingRequestApprovals.jpeg" />
+            <img class="menu-icon" *ngIf="menu?.name == 'Courses Assigned'" src="./assets/icons/coursesAssigned.jpeg" />
+            <img class="menu-icon" *ngIf="menu?.name == 'Employee Courses in Progress'" src="./assets/icons/coursesProgress.jpeg" />
+            <img class="menu-icon" *ngIf="menu?.name == 'Courses Terminated'" src="./assets/icons/courseTerminated.jpeg" />
+            <img class="menu-icon" *ngIf="menu?.name == 'Upload Employees'" src="./assets/icons/upload.jpeg" />
+            <div *ngIf="menu?.name == 'Create Task'; else elseBlock">
+                <button class="btn btn-custom btn-lg" type="submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                    </svg>
+                    {{menu.name}}</button>
+            </div>
+            <ng-template #elseBlock>
+                <div class="card-body">
+                    <h5 class="card-title border-bottom">{{menu.name}}: {{courses?.length}}</h5>
+                    <p class="card-text">
+                        <tr *ngFor="let c of groupByStatus | keyvalue">{{c.key | titlecase}}: {{c.value}}</tr>
+                    </p>
+                </div>
+            </ng-template>
+        </div>
+        </ng-container>
+    </div>
+</div>

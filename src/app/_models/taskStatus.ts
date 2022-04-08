@@ -1,0 +1,11 @@
+export enum TaskStatus {
+    OPEN = 'OPEN',
+    ACCEPTED = 'ACCEPTED',
+    REJECTED = 'REJECTED',
+    INPROGRESS = 'IN_PROGRESS',
+    COMPLETED = 'COMPLETED',
+    SUBMITTED = 'SUBMITTED',
+    NONE = 'ALL',
+    APPROVED = 'APPROVED',
+    DECLINED = 'DECLINED'
+}

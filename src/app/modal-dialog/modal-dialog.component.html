@@ -1,0 +1,24 @@
+<div class="modal-header" *ngIf="title">
+    <h4 class="modal-title">{{ title }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="dismiss()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    {{ message }}
+    <div class="forms-grp">
+    <form *ngIf="hasComments" [formGroup]="commentsForm">
+        <div class="form-group mb-3">
+            <label for="comments">Comments:</label>
+            <textarea class="w-100" name="comments" formControlName="comments"></textarea>
+            <small *ngIf="f.comments.touched && f.comments.errors" class="form-text text-muted">
+                <div *ngIf="f.comments.errors.required">Please provide comments</div>
+            </small>
+        </div>
+    </form>
+    </div>
+</div>
+<div class="modal-footer custom">
+    <button type="button" class="btn" (click)="decline()">{{ btnCancelText }}</button>
+    <button type="button" class="btn" [disabled]="(hasComments && !commentsForm.valid)" (click)="accept()">{{ btnOkText }}</button>
+</div>

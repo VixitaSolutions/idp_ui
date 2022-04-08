@@ -1,0 +1,75 @@
+<h2>{{title}}</h2>
+<div *appBusyIndicator="isBusy"></div>
+<div class="d-flex flex-row">
+    <div class="w-50">
+        <img class="add-img" *ngIf="id == undefined" src="./assets/images/add_client_admin.jpeg" />
+        <img class="add-img" *ngIf="id != undefined" src="./assets/images/edit_client.jpeg" />
+    </div>
+    <div class="w-50 forms-grp">
+        <form [formGroup]="addAdminForm" (ngSubmit)="save()">
+            <div class="form-group mb-3">
+                <label for="companyName">Company Name</label>
+                <select id="companyName" placeholder="Status" class="form-control" 
+                    (change)="setUsers()"
+                    formControlName="tenantId" [ngClass]="{ 'is-invalid': f.tenantId.touched && f.tenantId.errors }">
+                    <option [value]="client.id" *ngFor="let client of clients">{{client.clientName}}</option>
+                </select>
+                <small *ngIf="f.tenantId.touched && f.tenantId.errors" class="invalid-feedback">
+                    <div *ngIf="f.tenantId.errors.required">Company is required</div>
+                </small>
+            </div>
+            <div class="form-group mb-3">
+                <label for="firstName">Employee Name</label>
+                <!-- <input type="text" id="firstName" placeholder="First name" class="form-control" formControlName="firstName"
+                    [ngClass]="{ 'is-invalid': f.firstName.touched && f.firstName.errors }"> -->
+                <select id="userId" placeholder="Status" class="form-control"
+                    (change)="setEmail()"
+                    formControlName="userId" [ngClass]="{ 'is-invalid': f.userId.touched && f.userId.errors }">
+                    <option [value]="user.id" *ngFor="let user of userList">{{user.firstName}} {{user.lastName}}</option>
+                </select>
+                <small *ngIf="f.userId.touched && f.userId.errors" class="form-text text-muted">
+                    <div *ngIf="f.userId.errors.required">User name is required</div>
+                </small>
+            </div>
+            <!-- <div class="form-group mb-3">
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" placeholder="Last name" class="form-control" formControlName="lastName"
+                    [ngClass]="{ 'is-invalid': f.lastName.touched && f.lastName.errors }">
+                <small *ngIf="f.lastName.touched && f.lastName.errors" class="form-text text-muted">
+                    <div *ngIf="f.lastName.errors.required">Last name is required</div>
+                    <div *ngIf="f.lastName.errors.email">Invalid last name</div>
+                </small>
+            </div> -->
+            <div class="form-group mb-3">
+                <label for="email">Email</label>
+                <input type="text" id="email" placeholder="Email" 
+                    class="form-control" formControlName="email" 
+                    [ngClass]="{ 'is-invalid': f.email.touched && f.mobile.errors }">
+                <small *ngIf="f.email.touched && f.email.errors" class="invalid-feedback">
+                    <div *ngIf="f.email.errors.required">Email is required</div>
+                    <div *ngIf="f.email.errors.email">Invalid email</div>
+                </small>
+            </div>
+            <div class="form-group mb-3">
+                <label for="mobile">Mobile</label>
+                <input type="text" id="mobile" placeholder="Mobile number" class="form-control" formControlName="mobile" [ngClass]="{ 'is-invalid': f.mobile.touched && f.mobile.errors }">
+                <small *ngIf="f.mobile.touched && f.mobile.errors" class="invalid-feedback">
+                    <div *ngIf="f.mobile.errors.required">Mobile is required</div>
+                </small>
+            </div>
+            <div class="form-group mb-3">
+                <div class="form-check form-switch p-0">
+                    <label for="status">Status</label>
+                    <span class="float-end" *ngIf="status">Active</span><span class="float-end" *ngIf="!status">Inactive</span>
+                    <input type="checkbox" class="form-check-input float-end" id="status"
+                    formControlName="status" (change)="status=!status"
+                    [ngClass]="{ 'is-invalid': f.status.touched && f.status.errors }">
+                </div>
+            </div>
+            <div class="button button-flex">
+                <button type="button" class="btn" (click)="reset()">Clear</button>
+                <button type="submit" class="btn" [disabled]="addAdminForm.invalid">Save</button>
+            </div>
+        </form>
+    </div>
+</div>

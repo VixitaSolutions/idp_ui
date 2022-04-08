@@ -1,0 +1,35 @@
+.button-flex {
+    display: flex;
+    justify-content: space-evenly;
+    button {
+        letter-spacing: .09em;
+        border-radius: 20px;
+        width: 20%;
+        border-color: #8015e8;
+        background-color: #8015e8;
+        color: white;
+        padding: 8px;
+        text-transform: uppercase;
+    }
+}
+.text-muted {
+    color: #dc3545 !important;
+}
+.forms-grp {
+    padding: 1.5rem;
+    margin-right: 0;
+    margin-left: 0;
+    border-width: 0.2rem;
+}
+.add-img {
+    width: 75%;
+}
+.g-search {
+    cursor: pointer;
+}
+.search-icon {
+    width: 30px;
+}
+.default-cursor {
+    pointer-events: none;
+}

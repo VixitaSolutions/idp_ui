@@ -1,0 +1,41 @@
+<div>
+    <h2>Overview</h2>
+    <div class="card-deck">
+        <ng-container *ngFor="let menu of menus">
+            <div class="card m-4 align-items-center flex-sm-row justify-content-center" 
+                *ngIf="menu?.children?.length > 0; else elseBlock">
+                {{menu.name}}
+                <ng-container *ngFor="let m of menu.children">
+                    <ng-container  
+                        [ngTemplateOutlet]="menuView" [ngTemplateOutletContext]="{ $implicit : m}"></ng-container>
+                </ng-container>
+            </div>
+            <ng-template #elseBlock>
+                <ng-container [ngTemplateOutlet]="menuView" [ngTemplateOutletContext]="{ $implicit: menu}"></ng-container>
+            </ng-template>
+            <!-- <div *ngIf="menu?.children.length > 0; else elseBlock">
+                
+            </div>
+            <ng-template #elseBlock>
+                <div class="card-body">
+                    <h5 class="card-title">{{menu.name}}</h5>
+                    <p class="card-text">20</p>
+                </div>
+            </ng-template> -->
+        <!-- </div> -->
+        </ng-container>
+    </div>
+</div>
+<ng-template #menuView let-menu>
+        <div class="card m-4 align-items-center flex-sm-row justify-content-center" 
+        style="width: 28%" (click)="goTo(menu?.url)">
+        <img class="menu-icon" *ngIf="menu?.url == 'overall'" src="./assets/icons/tick.jpeg" />
+        <img class="menu-icon" *ngIf="menu?.url == 'cwise'" src="./assets/icons/tick.jpeg" />
+        <img class="menu-icon" *ngIf="menu?.url == 'cpwise'" src="./assets/icons/tick.jpeg" />
+        <img class="menu-icon" *ngIf="menu?.url == 'pwise'" src="./assets/icons/tick.jpeg" />
+        <img class="menu-icon" *ngIf="menu?.url == 'manage-coach'" src="./assets/icons/upload.jpeg" />
+        <img class="menu-icon" *ngIf="menu?.url == 'manage-participant'" src="./assets/icons/upload.jpeg" />
+        <h5 class="card-title">{{menu.name}}</h5>
+        <!-- <p class="card-text">20</p> -->
+        </div>
+</ng-template>

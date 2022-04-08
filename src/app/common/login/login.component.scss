@@ -1,0 +1,124 @@
+
+.flex-item {
+  text-align: center;
+}
+
+.footer {
+  border-top: 1px solid #9551d2;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+}
+.login-form {
+  padding: 40px 0px 0px 0px;
+}
+.input-container {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  margin-bottom: 15px;
+}
+.icon {
+  // padding: 10px;
+  color: black;
+  min-width: 50px;
+  text-align: center;
+  img {
+      width: 30px;
+      filter: grayscale(1);
+  }
+}
+
+.input-field {
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  height: 30px;
+  box-shadow: 0px 2px 7px 0px #8C84FA;
+  font-family: avenir-lite;
+}
+
+.input-field:focus {
+  border: 2px solid #8015E8;
+}
+.navigation {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  padding-inline-start: 0;
+  list-style: none;
+  margin: 0;
+}
+.navigation li, a {
+  text-decoration: none;
+  padding: 1em;
+}
+ .login-hdr {
+  font-family: 'avenir-bold';
+  font-weight: bold; 
+ }
+ .login-hdr-text {
+  color: #757575 !important;
+ }
+ .login-sign-up {
+  font-family: 'avenir-bold'; 
+  color:#8015E8;
+ }
+.proxima {
+  font-family: Proxima Nova;
+}
+.avenir-lte {
+    font-family: 'avenir-lite';
+}
+.login-rem-pwd {
+    display: flex;
+    justify-content: space-around;
+}
+.login-submit{
+    padding: 10%;
+    button {
+        border-radius: 30px;
+        background: #8015E8;
+        height: 40px;
+        border: none;
+        cursor: pointer;
+    }
+    button:hover{
+      color: #000000 !important;
+      cursor: pointer;
+  }
+}
+
+.no-padding {
+  padding: 0 !important;
+}
+
+@media all and (max-width: 800px) {
+  .navigation {
+    justify-content: space-around;
+  }
+}
+
+@media all and (max-width: 600px) {
+  .navigation {
+    flex-flow: column wrap;
+    padding: 0;
+  }
+  .navigation a { 
+    text-align: center; 
+    padding: 10px;
+    border-top: 1px solid rgba(255, 255, 255,0.3); 
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1); 
+  }
+  .navigation li:last-of-type a {
+    border-bottom: none;
+  }
+}
+@media all and (min-width: 600px) {
+  .lg-img { flex: 1 0 0; }
+}
+
+@media all and (min-width: 800px) {
+  .main    { flex: 1 0px; }
+  .lg-img { order: 1; } 
+  .lg-form    { order: 2; }
+}

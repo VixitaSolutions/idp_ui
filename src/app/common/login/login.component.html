@@ -1,0 +1,55 @@
+<div class="idp-body flexy">
+    <div class="flex-container flex-wrap-wrap mx-1">
+        <aside class="flex-item lg-img main sm-w-100">
+            <img class="w-100 h-100" src="./assets/images/idp.jpg" />
+        </aside>
+        <article class="flex-item main lg-form sm-w-100">
+            <ul class="navigation">
+                <li class="login-hdr font-18">Login</li>
+                <li class="login-hdr-text font-12 proxima">Don't have an account?
+                    <a class="login-sign-up no-padding font-14" routerLinkActive="active-link" routerLink="/security/register">Sign Up</a>
+                </li>
+            </ul>
+            <article class="login-form">
+                <form id="login-form" [formGroup]="loginForm">
+                    <div class="input-container w-90">
+                        <i class="icon">
+                            <img src="./assets/icons/email.png" />
+                        </i>
+                        <input class="input-field w-100" type="text" [ngClass]="{ 'is-invalid': f.userName.touched && f.userName.errors }" placeholder="Emai ID"
+                            name="userName" formControlName="userName">
+                    </div>
+                    <div *ngIf="f.userName.touched && f.userName.errors" class="invalid-feedback">
+                        <div *ngIf="f.userName.errors.required">User Name is required</div>
+                    </div>
+
+                    <div class="input-container w-90">
+                        <i class="icon">
+                            <img src="./assets/icons/Password.png" />
+                        </i>
+                        <input class="input-field w-100" type="password" [ngClass]="{ 'is-invalid': f.password.touched && f.password.errors }" placeholder="Password"
+                            name="password" formControlName="password">
+                    </div>
+                    <div *ngIf="f.password.touched && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">Password is required</div>
+                    </div>
+                    <div class="login-rem-pwd">
+                        <span class="proxima">
+                            <input type="checkbox" class="login-hdr-text">Remember Me</span>
+                        <a class="login-sign-up no-padding" routerLinkActive="active-link" routerLink="/security/forgot">Forgot Password?</a>
+                    </div>
+                    <div class="login-submit">
+                        <button class="avenir-lte w-50 font-18 white" type="submit" (click)="login()">Login</button>
+                        <div *ngIf="showError" style="color: red" class="font-18">
+                            <span> {{showError}}</span>
+                        </div>
+                    </div>
+                </form>
+            </article>
+            <footer class="footer proxima login-hdr-text">
+                <span class="m-t-1">App Version 1.0</span>
+                <a href="" color="Grey">Privacy Policy</a>
+            </footer>
+        </article>
+    </div>
+</div>

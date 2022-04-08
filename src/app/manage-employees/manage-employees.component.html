@@ -1,0 +1,74 @@
+<div *ngIf="manage">
+    <h2>Overview</h2>
+    <div *appBusyIndicator="isBusy"></div>
+    <div class="column">
+        <div class="col overlap">
+            <div class="overlap-txt">
+                <h2>Employee Data</h2>
+                We believe in creating long-term relationship with our valued global customers.
+            </div>
+            <i class="">
+                <img class="overlay-img" src="./assets/images/employee.jpeg" />
+            </i>
+        </div>
+    </div>
+    <!-- <button class="btn btn-outline-custom" (click)="addClient()">Add</button> -->
+    <div class="table-responsive">
+        <nav class="navbar navbar-light bg-light">
+            <div class="container-fluid">
+                <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
+                    Filter:
+                    <button class="btn btn-outline-primary mr-2" id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()">Client Name</button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownManual">
+                        <button ngbDropdownItem (click)="applyFilter(undefined, undefined)">Clear</button>
+                        <button ngbDropdownItem *ngFor="let client of clients" (click)="applyFilter(client.id, client.clientName)">{{client.clientName}}</button>
+                    </div>
+                    <span class="badge-primary">{{selectedFilter}}</span>
+                </div>
+
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" [formControl]="filter">
+                    <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
+                </form>
+            </div>
+        </nav>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col" class="text-center" sortable="firstName" (sort)="onSort($event)">Employee name</th>
+                    <th scope="col" class="text-center" sortable="tenantName" (sort)="onSort($event)">Client name</th>
+                    <th scope="col" class="text-center" sortable="email" (sort)="onSort($event)">Email</th>
+                    <th scope="col" class="text-center" sortable="mobile" (sort)="onSort($event)">Mobile</th>
+                    <!-- <th scope="col">Actions</th> -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let row of rows | async">
+                    <td class="text-center">
+                        <ngb-highlight [result]="row.firstName +' '+row.lastName" [ngbTooltip]="row.firstName +' '+ row.lastName"></ngb-highlight>
+                    </td>
+                    <td class="text-center">
+                        <ngb-highlight [result]="row.tenantName" [ngbTooltip]="row.tenantName"></ngb-highlight>
+                    </td>
+                    <td class="text-center">
+                        <ngb-highlight [result]="row.email" [ngbTooltip]="row.email"></ngb-highlight>
+                    </td>
+                    <td class="text-center">
+                        <ngb-highlight [result]="row.mobile" [ngbTooltip]="row.mobile"></ngb-highlight>
+                    </td>
+                    <!-- <td>
+                            <button type="button" class="btn btn-outline-custom" (click)="edit(row.id)">Edit</button>
+                            <button type="button" class="btn btn-outline-custom" (click)="delete(row.id)">Delete</button>
+                        </td> -->
+                </tr>
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-center p-2">
+            <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refresh()">
+            </ngb-pagination>
+        </div>
+    </div>
+</div>
+<div *ngIf="!manage">
+    <app-add-employee [employeeDetails]="employeeDetails"></app-add-employee>
+</div>

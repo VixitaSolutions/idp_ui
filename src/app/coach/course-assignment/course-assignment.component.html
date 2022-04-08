@@ -1,0 +1,69 @@
+<h2>{{title}}</h2>
+<div *appBusyIndicator="isBusy"></div>
+<div class="d-flex flex-row">
+    <div class="w-50">
+        <img class="add-img" src="./assets/images/assignCourse.jpeg" />
+    </div>
+    <div class="w-50 forms-grp">
+        <form [formGroup]="taskForm">
+            <div class="form-group mb-3">
+                <label for="employeeId">Employee Name</label>
+                <select id="employeeId" placeholder="Status" class="form-control"
+                    formControlName="employeeId" [ngClass]="{ 'is-invalid': f.employeeId.touched && f.employeeId.errors }">
+                    <option [value]="user.id" *ngFor="let user of userList">{{user.firstName}} {{user.lastName}}</option>
+                </select>
+                <small *ngIf="f.employeeId.touched && f.employeeId.errors" class="form-text text-muted">
+                    <div *ngIf="f.employeeId.errors.required">Employee name is required</div>
+                </small>
+            </div>
+            <div class="form-group mb-3">
+                <label for="Competency">Competency</label>
+                <select id="competency" class="form-control" #competency
+                    (change)="setLevels(competency.value)">
+                    <option selected disabled>select</option>
+                    <option [value]="competency" *ngFor="let competency of Object.keys(competencyList)">{{competency}}</option>
+                </select>
+                <label for="level">Level</label>
+                <select id="level" class="form-control" #level
+                    formControlName="competencyId" [ngClass]="{ 'is-invalid': f.competencyId.touched && f.competencyId.errors }"
+                    (change)="setKeywords(level.value)">
+                    <option [value]="competency.id" *ngFor="let competency of competencyLevels">{{competency.level}}</option>
+                </select>
+                <small *ngIf="f.competencyId.touched && f.competencyId.errors" class="form-text text-muted">
+                    <div *ngIf="f.competencyId.errors.required">Competency is required</div>
+                </small>
+            </div>
+            <div class="form-group mb-3">
+                <label for="firstName">Search On </label>
+                <a (click)="gotoGoogle()" [ngClass]="{'default-cursor': !keywords, 'g-search': keywords}"><img class="search-icon" src="./assets/icons/google.png" alt="google search"/></a>
+            </div>
+            <div class="form-group mb-3">
+                <label for="taskName">Task Name</label>
+                <input type="text" id="taskName" placeholder="Task name" class="form-control"
+                    formControlName="taskName" [ngClass]="{ 'is-invalid': f.taskName.touched && f.taskName.errors }">
+                <small *ngIf="f.taskName.touched && f.taskName.errors" class="form-text text-muted">
+                    <div *ngIf="f.taskName.errors.required">Task name is required</div>
+                </small>
+            </div>
+            <div class="form-group mb-3">
+                <label for="description">Description</label>
+                <textarea type="text" id="description" placeholder="Description" class="form-control"
+                    formControlName="taskDescription">
+                </textarea>
+            </div>
+            <div class="form-group mb-3">
+                <label for="duration">Duration</label>
+                <input type="text" id="duration" placeholder="Days to be allotted" class="form-control"
+                    formControlName="duration" [ngClass]="{ 'is-invalid': f.duration.touched && f.duration.errors }">
+                <small *ngIf="f.duration.touched && f.duration.errors" class="form-text text-muted">
+                    <div *ngIf="f.duration.errors.required">Duration is required</div>
+                    <div *ngIf="f.duration.errors?.pattern">Duration shoulb be in digits</div>
+                </small>
+            </div>
+            <div class="button button-flex">
+                <button type="button" class="btn" (click)="taskForm.reset()">Clear</button>
+                <button type="submit" class="btn" (click)="save()">Save</button>
+            </div>
+        </form>
+    </div>
+</div>

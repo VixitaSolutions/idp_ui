@@ -1,0 +1,19 @@
+<div class="p-3">
+    <p class="text-center text-white bg-dark bg-color text-uppercase font-30">Task Details</p>
+    <p class="text-left"><span class="text-info txt-color">Task Name:</span> {{task.taskName}}</p>
+    <p class="text-left text-wrap" style="word-break: break-word">
+        <span class="text-info txt-color">Description:</span> {{task.taskDescription}}</p>
+    <p class="text-left"><span class="text-info txt-color">Status:</span> {{task.taskStatus}}</p>
+    <p class="text-left"><span class="text-info txt-color">Status:</span> {{task.duration}} (days)</p>
+    <p class="text-left"><span class="text-info txt-color">Coach Comments:</span> {{task.coachComments}}</p>
+    <p class="text-left"><span class="text-info txt-color">Employee Comments:</span> {{task.empComments}}</p>
+    
+    <p class="text-center text-white bg-dark bg-color text-uppercase font-18">Competency Details</p>
+    <p class="text-left"><span class="text-info txt-color">Name:</span> {{task.competency.name}}</p>
+    <p class="text-left"><span class="text-info txt-color">Description:</span> {{task.competency.description}}</p>
+    <div class="d-flex justify-content-center">
+        <button type="button" class="btn bg-color text-white btn-lg btn-block" (click)="closeModal()">OK</button>
+    </div>
+</div>
+
+

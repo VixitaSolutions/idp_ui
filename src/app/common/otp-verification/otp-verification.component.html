@@ -1,0 +1,39 @@
+<div class="flexy">
+<div class="flex-container common-font mx-1">
+    <article class="main lg-form">
+        <ul class="signup-hdr font-hdr black">
+            <li class="login-hdr font-18 font-bold">Verification</li>
+        </ul>
+        <img style="width: 15em" src="./assets/images/verify.jpg" />
+        <ul class="flex-outer">
+            <form [formGroup]="verificationForm" (ngSubmit)="verify()">
+                <li>
+                    <label for="first-name">An OTP has been sent to your Registered 'Email Id /or Phone number'
+                    </label>
+                </li>
+                <li>
+                    <input type="text" id="first-name" class="input-field" maxlength="1" formControlName="digit1">
+                    <input type="text" id="first-name" class="input-field" maxlength="1" formControlName="digit2">
+                    <input type="text" id="first-name" class="input-field" maxlength="1" formControlName="digit3">
+                    <input type="text" id="first-name" class="input-field" maxlength="1" formControlName="digit4">
+                    <input type="text" id="first-name" class="input-field" maxlength="1" formControlName="digit5">
+                    <input type="text" id="first-name" class="input-field" maxlength="1" formControlName="digit6">
+                </li>
+                <div class="invalid-feedback" *ngIf="error" >
+                    <div *ngIf="error.required">OTP is required</div>
+                    <div *ngIf="error.otp">Please enter valid OTP</div>
+                </div>
+                <li>
+                    <label for="first-name" class="font-bold">
+                        Did not receive Code?
+                        <a href=""> Resend now</a>
+                    </label>
+                </li>
+                <li class="button">
+                    <button type="submit">Verify</button>
+                </li>
+            </form>
+        </ul>
+    </article>
+</div>
+</div>

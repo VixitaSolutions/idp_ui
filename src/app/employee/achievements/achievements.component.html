@@ -1,0 +1,59 @@
+<div *ngIf="manage">
+    <div *appBusyIndicator="isBusy"></div>
+    <div class="column">
+        <div class="col overlap">
+            <div class="overlap-txt">
+                <h4>Kudos! You did it</h4>
+                Acknowledging the dedication you've shown for the successful completion of the courses, Check your achievement here.
+            </div>
+            <i class="">
+                <img class="overlay-img" src="./assets/images/achievements.jpeg" />
+            </i>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <nav class="navbar navbar-light bg-light">
+            <div class="container-fluid">
+                <h4>Achievements</h4>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" [formControl]="filter">
+                </form>
+            </div>
+        </nav>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col" class="text-center">Course Name</th>
+                    <th scope="col" class="text-center">Assigned By</th>
+                    <th scope="col" class="text-center">Start Date</th>
+                    <th scope="col" class="text-center">Approved On</th>
+                    <th scope="col" class="text-center">Duration (in days)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let row of rows | async">
+                    <th scope="row">{{ row.id }}</th>
+                    <td class="text-center">
+                        <ngb-highlight [result]="row.courseName" [ngbTooltip]="row.courseName"></ngb-highlight>
+                    </td>
+                    <td class="text-center">
+                        <ngb-highlight [result]="row.assignedBy" [ngbTooltip]="row.assignedBy"></ngb-highlight>
+                    </td>
+                    <td class="text-center">
+                        <ngb-highlight [result]="row.startDate|date: 'dd/MM/yyyy'" [ngbTooltip]="row.startDate|date: 'dd/MM/yyyy'"></ngb-highlight>
+                    </td>
+                    <td class="text-center">
+                        <ngb-highlight [result]="row.approvedOn|data: 'dd/MM/yyyy'" [ngbTooltip]="row.approvedOn|data: 'dd/MM/yyyy'"></ngb-highlight>
+                    </td>
+                    <td class="text-center">
+                        <ngb-highlight [result]="row.duration" [ngbTooltip]="row.duration"></ngb-highlight>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <ngb-pagination class="d-flex justify-content-center" [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
+            (pageChange)="refresh()">
+        </ngb-pagination>
+    </div>
+</div>

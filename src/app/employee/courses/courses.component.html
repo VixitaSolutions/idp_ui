@@ -1,0 +1,87 @@
+<div>
+    <div *appBusyIndicator="isBusy"></div>
+    <div class="column">
+        <div class="col overlap">
+            <div class="overlap-txt">
+                <h4>Let's get started</h4>
+                Since your employees have accepted your request and took up the courses. Check the 'Courses Assigned' here.
+            </div>
+            <i class="">
+                <img class="overlay-img" src="./assets/images/employee.jpeg" />
+            </i>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <nav class="navbar navbar-light bg-light">
+            <div class="container-fluid">
+                <div>
+                    Status: 
+                    <select [formControl]="selectedStatus">
+                        <option [value]="status.value" *ngFor="let status of statuses | keyvalue">{{status.value}}</option>
+                    </select>
+                </div>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" [formControl]="filter">
+                </form>
+            </div>
+        </nav>
+        <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <!-- <th scope="col" class="text-center">Employee Name</th> -->
+                        <th scope="col" class="text-center">Task Name</th>
+                        <th scope="col" class="text-center">Description</th>
+                        <th scope="col" class="text-center">Duration</th>
+                        <th scope="col" class="text-center">Created On</th>
+                        <th scope="col" class="text-center">View</th>
+                        <th scope="col" class="text-center">Status</th>
+                        <th scope="col" class="text-center" style="width: 200px">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let row of rows | async">
+                        <!-- <td class="text-center">
+                            <ngb-highlight [result]="row.employee.firstName + ' ' + row.employee.lastName" [ngbTooltip]="row.employee.firstName + ' ' + row.employee.lastName"></ngb-highlight>
+                        </td> -->
+                        <td class="text-center">
+                            <ngb-highlight [result]="row.taskName" [ngbTooltip]="row.taskName"></ngb-highlight>
+                        </td>
+                        <td class="text-center">
+                            <ngb-highlight [result]="row.taskDescription" [ngbTooltip]="row.taskDescription"></ngb-highlight>
+                        </td>
+                        <td class="text-center">
+                            <ngb-highlight [result]="row.duration" [ngbTooltip]="row.duration"></ngb-highlight>
+                        </td>
+                        <td class="text-center">
+                            <ngb-highlight [result]="row.createdOn|date: 'dd/MM/yyyy'" [ngbTooltip]="row.createdOn|date: 'dd/MM/yyyy'"></ngb-highlight>
+                        </td>
+                        <td class="text-center"><a href="#" (click)="$event.preventDefault();viewCourseDetail(row)">View</a></td>
+                        <td class="text-center"> <!-- *ngIf="selectedStatus?.value === 'NONE'" -->
+                            {{row.taskStatus}}
+                        </td>
+                        <td class="text-center" *ngIf="row.taskStatus === 'OPEN'">
+                            <button type="button" class="btn btn-outline-custom"
+                                (click)="acceptCourse(row)">Accept</button>
+                            <button type="button" class="btn btn-outline-custom"
+                                (click)="rejectCourse(row)">Reject</button>   
+                        </td>
+                        <td class="text-center" *ngIf="row.taskStatus === 'ACCEPTED'">
+                            <button type="button" class="btn btn-outline-custom"
+                                (click)="startProgress(row)">Start</button>
+                        </td>
+                        <td class="text-center" *ngIf="row.taskStatus === 'IN_PROGRESS'">
+                            <button type="button" class="btn btn-outline-custom"
+                                (click)="completeCourse(row)">Complete</button>
+                        </td>
+                        <td class="text-center" *ngIf="row.taskStatus === 'COMPLETED'">
+                            <button type="button" class="btn btn-outline-custom"
+                                (click)="submitCourse(row)">Submit</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        <ngb-pagination class="d-flex justify-content-center" [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
+            (pageChange)="refresh()">
+        </ngb-pagination>
+    </div>
+</div>
