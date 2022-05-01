@@ -15,6 +15,7 @@ export class RegistrationComponent implements OnInit {
   userMail: string;
   registrationForm: FormGroup;
   temporaryForm: FormGroup;
+  showError: string = undefined;
   constructor(
     private authService: AuthenticationService,
     private router: Router,
@@ -32,10 +33,12 @@ export class RegistrationComponent implements OnInit {
   get fr(): { [key: string]: AbstractControl } { return this.temporaryForm.controls; }
   register(): void {
     if (this.registrationForm.valid) {
-      console.log(this.registrationForm.value);
+      this.showError = undefined;
+      this.temporaryForm.reset();
       this.userMail = this.registrationForm.value.email;
       this.authService.sendTemporaryPwd(this.registrationForm.value).subscribe(data => {
         if (data.status === 'SUCCESS') {
+          this.registrationForm.reset();
           this.toastrService.success('OTP sent successfully', 'Success');
         } else {
           this.toastrService.error(`OTP sending failed, Error: ${data.message}`, 'Failure');
@@ -50,16 +53,21 @@ export class RegistrationComponent implements OnInit {
     }
   }
   validate(): void {
+    if (!this.userMail) {
+      this.showError = 'Please Request for OTP';
+      return;
+    }
     if (this.temporaryForm.valid && this.userMail) {
+      this.showError = undefined;
       this.authService.verifyTemporaryPwd(this.userMail, this.temporaryForm.value.tempPwd).subscribe((data: any) => {
         if (data.status === 'SUCCESS') {
           this.toastrService.success('OTP verified successfully', 'Success');
           if (this.userMail) {
             localStorage.setItem('femail', this.userMail);
-          }
+          } 
           this.router.navigate(['/security/reset'], {state: {email: this.userMail}});
         } else {
-          this.toastrService.error(`OTP verification failed, Error: ${data.message}`, 'Failure');
+          this.toastrService.error(`OTP verification failed, Error: Invalid OTP`, 'Failure');
         }
       }, error => {
         this.toastrService.error(`OTP verification failed, Error: ${error}`, 'Failure');

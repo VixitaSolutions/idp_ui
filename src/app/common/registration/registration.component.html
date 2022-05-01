@@ -43,6 +43,9 @@
                             <div *ngIf="fr.tempPwd.errors.required">OTP is required</div>
                             <div *ngIf="fr.tempPwd.errors.minlength || fr.tempPwd.errors.maxlength">Invalid OTP</div>
                         </div>
+                        <div *ngIf="showError" class="invalid-feedback d-block">
+                            {{showError}}
+                        </div>
                         <li class="button">
                             <button type="submit">Validate</button>
                         </li>
