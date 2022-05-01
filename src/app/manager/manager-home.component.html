@@ -5,19 +5,18 @@
             <img src="assets/icons/notification.jpeg" alt="notifications" style="width: 50px"/>
         </li>
         <li class="nav-item text-nowrap" ngbDropdown display="dynamic" placement="bottom-end">
-            <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown3" role="button">
+            <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown3" role="button" (click)="getUserInfo();">
                 <img src="assets/icons/profile.jpeg" alt="profile" style="width: 30px" class="rounded-circle" />
             </a>
             
             <div ngbDropdownMenu aria-labelledby="navbarDropdown3" class="dropdown-menu custom-drp">
                 <span class="border-bottom">
                     Welcome, {{loggedInUser?.firstName | titlecase}} {{loggedInUser?.lastName | titlecase}}
-                    {{loggedInUser?.roleIds}}
                 </span>
-                <a ngbDropdownItem href="#" (click)="$event.preventDefault();logout()" class="border-bottom">
+                <a ngbDropdownItem href="#" (click)="$event.preventDefault();setPage('profile')" class="border-bottom">
                     <img src="assets/icons/profile.jpeg" alt="profile" style="width: 30px" class="rounded-circle" />
                     Profile</a>
-                <a ngbDropdownItem href="#" (click)="$event.preventDefault();logout()" class="border-bottom">
+                <a ngbDropdownItem href="#" (click)="$event.preventDefault();setPage('resetPwd');" class="border-bottom">
                     <img src="assets/icons/Password.png" alt="profile" style="width: 30px" class="rounded-circle" />
                     Change Password</a>
                 <a ngbDropdownItem href="#" (click)="$event.preventDefault();logout()">
@@ -29,7 +28,7 @@
 </nav>
 
 <div class="container-fluid">
-    <div class="row">
+    <div class="row" *ngIf="defaultPage">
         <nav class="col-md-2 d-none d-md-block bg-light sidebar">
             <div class="sidebar-sticky">
                 <div class="align-items-center border-bottom d-flex flex-md-nowrap flex-wrap justify-content-center mb-3 pb-2">
@@ -78,9 +77,14 @@
                 <h3>{{header}}</h3>
             </div>
             <div class="container-home m-xl-5 p-5">
-                <!-- <div [ngbNavOutlet]="nav" class="mt-2"></div> -->
                 <router-outlet [ngbNavOutlet]="nav"></router-outlet>
             </div>
         </main>
+    </div>
+    <div class="row p-5" *ngIf="showPwdResetPage">
+        <app-password-reset [emitValue]="true" (exitEmit)="setPage('default')"></app-password-reset>
+    </div>
+    <div class="row p-5" *ngIf="showProfilePage">
+        <app-user-profile [user]="loggedInUser" (exitProfile)="setPage('default')"></app-user-profile>
     </div>
 </div>

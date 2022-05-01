@@ -23,6 +23,9 @@ export class AuthenticationService {
     public get currentUserValue(): SessionUser {
         return this.currentUserSubject.value;
     }
+    public get currentTenantValue(): string {
+        return localStorage.getItem('tenant-id');
+    }
     public getById(): Observable<User> {
         return this.http.get<User>(`${environment.apiUrl}/api/v1/user/profile`)
         .pipe(map((data: any) => {
@@ -55,6 +58,7 @@ export class AuthenticationService {
     logout(): void {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
+        localStorage.removeItem('tenant-id');
         this.currentUserSubject.next(null);
     }
 

@@ -7,18 +7,17 @@ import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { OtpVerificationComponent } from './otp-verification/otp-verification.component';
-import { PasswordResetComponent } from './password-reset/password-reset.component';
-
-
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
-  declarations: [LoginComponent, RegistrationComponent, ForgotPasswordComponent, OtpVerificationComponent, PasswordResetComponent],
+  declarations: [LoginComponent, RegistrationComponent, ForgotPasswordComponent, OtpVerificationComponent],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    SecurityRoutingModule
+    SecurityRoutingModule,
+    SharedModule
   ]
 })
 export class SecurityModule { }

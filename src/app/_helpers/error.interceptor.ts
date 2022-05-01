@@ -4,7 +4,6 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { AuthenticationService } from '../_services/authentication.service';
-import { Constants } from './Constants';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
@@ -12,8 +11,10 @@ export class ErrorInterceptor implements HttpInterceptor {
         private authenticationService: AuthenticationService) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        if (this.authenticationService.currentUserValue && this.authenticationService.currentUserValue.tenantId) {
-            request = request.clone({headers: request.headers.set('tenant-id', this.authenticationService.currentUserValue.tenantId)});
+        if ((this.authenticationService.currentUserValue && this.authenticationService.currentUserValue.tenantId)
+            || this.authenticationService.currentTenantValue) {
+            const tenantId = this.authenticationService.currentUserValue?.tenantId || this.authenticationService.currentTenantValue;
+            request = request.clone({headers: request.headers.set('tenant-id', tenantId.toString())});
         }
         // request = request.clone({headers: request.headers.set('tenant-id', Constants.TENANT_ID)});
         return next.handle(request).pipe(catchError(err => {

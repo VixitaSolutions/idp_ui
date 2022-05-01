@@ -26,6 +26,9 @@ export class EmployeeComponent implements OnInit {
   isUpload: boolean;
   loggedInUser: any;
   header = 'Employee Dashboard';
+  defaultPage = true;
+  showPwdResetPage = false;
+  showProfilePage = false;
 
   constructor(
       private userService: UserService,
@@ -38,7 +41,7 @@ export class EmployeeComponent implements OnInit {
 
   ngOnInit(): void {
       this.loading = true;
-      this.loggedInUser = JSON.parse(localStorage.getItem('currentUser'));
+      // this.loggedInUser = JSON.parse(localStorage.getItem('currentUser'));
       this.menus = [{ name: 'Home', url: 'home' },
                     {
                     name: 'My Courses', url: '',
@@ -47,13 +50,14 @@ export class EmployeeComponent implements OnInit {
                       { name: 'Achievements', url: 'achievements' }
                     ]
                   }];
-    //   this.clientService.getEmployeeMenus().subscribe(data => {
-    //       this.menus = data;
-    //   });
       this.userService.getById().pipe(first()).subscribe(user => {
           this.loading = false;
           this.userFromApi = user;
       });
+  }
+
+  getUserInfo(): void {
+    this.loggedInUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
   goTo(parent, menu): void {
@@ -67,5 +71,17 @@ export class EmployeeComponent implements OnInit {
   logout(): void {
     this.authenticationService.logout();
     this.router.navigateByUrl('/security/login');
+  }
+
+  setPage(title: string): void {
+    this.defaultPage = title === 'default';
+    this.showProfilePage = title === 'profile';
+    this.showPwdResetPage = title === 'resetPwd';
+    if (this.showPwdResetPage) {
+      localStorage.setItem('femail', this.userFromApi.userName);
+    }
+    if (this.defaultPage) {
+      localStorage.removeItem('femail');
+    }
   }
 }

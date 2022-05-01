@@ -26,6 +26,9 @@ export class HomeComponent implements OnInit {
     isManageEmployees: boolean;
     isUpload: boolean;
     loggedInUser: any;
+    defaultPage = true;
+    showPwdResetPage = false;
+    showProfilePage = false;
 
     constructor(
         private userService: UserService,
@@ -38,7 +41,7 @@ export class HomeComponent implements OnInit {
 
     ngOnInit(): void {
         this.loading = true;
-        this.loggedInUser = JSON.parse(localStorage.getItem('currentUser'));
+        // this.loggedInUser = JSON.parse(localStorage.getItem('currentUser'));
         this.clientService.getMenus().subscribe(data => {
             this.menus = data;
         });
@@ -46,6 +49,10 @@ export class HomeComponent implements OnInit {
             this.loading = false;
             this.userFromApi = user;
         });
+    }
+
+    getUserInfo(): void {
+        this.loggedInUser = JSON.parse(localStorage.getItem('currentUser'));
     }
 
     goTo(name): void {
@@ -60,6 +67,17 @@ export class HomeComponent implements OnInit {
     logout(): void {
       this.authenticationService.logout();
       this.router.navigateByUrl('/security/login');
+    }
+    setPage(title: string): void {
+        this.defaultPage = title === 'default';
+        this.showProfilePage = title === 'profile';
+        this.showPwdResetPage = title === 'resetPwd';
+        if (this.showPwdResetPage) {
+          localStorage.setItem('femail', this.userFromApi.userName);
+        }
+        if (this.defaultPage) {
+          localStorage.removeItem('femail');
+        }
     }
 
 }

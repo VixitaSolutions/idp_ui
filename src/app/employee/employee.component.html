@@ -5,18 +5,18 @@
             <img src="assets/icons/notification.jpeg" alt="notifications" style="width: 50px" />
         </li>
         <li class="nav-item text-nowrap" ngbDropdown display="dynamic" placement="bottom-end">
-            <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown3" role="button">
+            <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown3" role="button" (click)="getUserInfo();">
                 <img src="assets/icons/profile.jpeg" alt="profile" style="width: 30px" class="rounded-circle" />
             </a>
 
             <div ngbDropdownMenu aria-labelledby="navbarDropdown3" class="dropdown-menu custom-drp">
                 <span class="border-bottom">
-                    Welcome, {{loggedInUser?.firstName | titlecase}} {{loggedInUser?.lastName | titlecase}} {{loggedInUser?.roleIds}}
+                    Welcome, {{loggedInUser?.firstName | titlecase}} {{loggedInUser?.lastName | titlecase}}
                 </span>
-                <a ngbDropdownItem href="#" (click)="$event.preventDefault();logout()" class="border-bottom">
+                <a ngbDropdownItem href="#" (click)="$event.preventDefault();setPage('profile');" class="border-bottom">
                     <img src="assets/icons/profile.jpeg" alt="profile" style="width: 30px" class="rounded-circle" /> Profile
                 </a>
-                <a ngbDropdownItem href="#" (click)="$event.preventDefault();logout()" class="border-bottom">
+                <a ngbDropdownItem href="#" (click)="$event.preventDefault();setPage('resetPwd');" class="border-bottom">
                     <img src="assets/icons/Password.png" alt="profile" style="width: 30px" class="rounded-circle" /> Change Password</a>
                 <a ngbDropdownItem href="#" (click)="$event.preventDefault();logout()">
                     <img src="assets/icons/Logout.png" alt="profile" style="width: 30px" class="rounded-circle" /> Logout
@@ -27,7 +27,7 @@
 </nav>
 
 <div class="container-fluid">
-    <div class="row">
+    <div class="row" *ngIf="defaultPage">
         <nav class="col-md-2 d-none d-md-block bg-light sidebar">
             <div class="sidebar-sticky">
                 <div class="align-items-center border-bottom d-flex flex-md-nowrap flex-wrap justify-content-center mb-3 pb-2">
@@ -65,30 +65,6 @@
                                 </ng-template>
                             </ngb-panel>
                         </ngb-accordion>
-                        <!-- <li ngbDropdown class="nav-item" *ngIf="menu?.children">
-                                <a href (click)="false" class="nav-link" ngbDropdownToggle>
-                                    <i>
-                                        <img class="menu-icon" *ngIf="menu?.name == 'My Employees'" src="./assets/icons/manage_clients.jpeg" />
-                                        <img class="menu-icon" *ngIf="menu?.name == 'My Courses'" src="./assets/icons/courses_menu.jpeg" />
-                                    </i>
-                                    {{menu.name}}
-                                </a>
-                                <div ngbDropdownMenu>
-                                    <ng-container *ngFor="let m of menu.children">
-                                        <button ngbDropdownItem>{{m.name}}</button>
-                                        <div class="dropdown-divider"></div>
-                                    </ng-container>
-                                </div>
-                            </li> -->
-                        <!-- <li class="nav-item dropdown" *ngIf="menu?.children">
-                                <ul class="dropdown-menu">
-                                    <li *ngFor="let m of menu.children">
-                                        <a class="dropdown-item" href="#" [routerLink]="m?.url" routerLinkActive="active">
-                                            {{m.name}}
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li> -->
                     </ng-container>
                 </ul>
             </div>
@@ -100,13 +76,13 @@
             </div>
             <div class="container-home m-xl-5 p-5">
                 <router-outlet></router-outlet>
-                <!-- <app-admin-home *ngIf="isAdminHome" [menus]="menus" (component)="goTo($event)"></app-admin-home>
-                    <app-manage-clients *ngIf="isManageClient"></app-manage-clients>
-                    <app-manage-admins *ngIf="isManageAdmin"></app-manage-admins>
-                    <app-competency-mapping *ngIf="isCompetencyMapping"></app-competency-mapping>
-                    <app-manage-employees *ngIf="isManageEmployees"></app-manage-employees>
-                    <app-upload-data *ngIf="isUpload"></app-upload-data> -->
             </div>
         </main>
+    </div>
+    <div class="row p-5" *ngIf="showPwdResetPage">
+        <app-password-reset [emitValue]="true" (exitEmit)="setPage('default')"></app-password-reset>
+    </div>
+    <div class="row p-5" *ngIf="showProfilePage">
+        <app-user-profile [user]="loggedInUser" (exitProfile)="setPage('default')"></app-user-profile>
     </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -14,6 +14,8 @@ const passwordRegex = new RegExp(/^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?
 })
 export class PasswordResetComponent implements OnInit {
 
+  @Input() emitValue: boolean;
+  @Output() exitEmit = new EventEmitter<boolean>();
   default: boolean;
   header: string;
   userMail: string;
@@ -44,13 +46,17 @@ export class PasswordResetComponent implements OnInit {
   isPasswordMatch(): boolean {
     return this.pwdResetForm.get('newPassword').value === this.pwdResetForm.get('confirmPassword').value;
   }
-  reset(): void {
+  save(): void {
     if (this.pwdResetForm.valid && this.userMail && this.isPasswordMatch()) {
       console.log(this.pwdResetForm.value);
       this.authService.createPassword(this.userMail, this.pwdResetForm.get('confirmPassword').value).subscribe(data => {
         if (data.status === 'SUCCESS') {
           this.toastrService.success('Password reset successfully !! Please Login!!!', 'Success');
-          this.router.navigateByUrl('/security/login');
+          if (!this.emitValue) {
+            this.router.navigateByUrl('/security/login');
+          } else {
+            this.exitEmit.emit(true);
+          }
         } else {
           this.toastrService.error(`Unable to reset the password, Error: ${data?.message}`, 'Failure');
         }
@@ -62,6 +68,13 @@ export class PasswordResetComponent implements OnInit {
         this.pwdResetForm.get(key).markAsTouched();
       });
       return;
+    }
+  }
+  reset(): void {
+    if (!this.emitValue) {
+      this.router.navigateByUrl('/security/login');
+    } else {
+      this.exitEmit.emit(true);
     }
   }
 }

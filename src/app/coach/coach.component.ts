@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { merge } from 'rxjs';
-import { first, last } from 'rxjs/operators';
+import { first } from 'rxjs/operators';
 import { Menu } from '../home/home.component';
 import { SessionUser, User } from '../_models/user';
 import { AuthenticationService } from '../_services/authentication.service';
@@ -28,6 +28,10 @@ export class CoachComponent implements OnInit {
     header = 'Coach Dashboard';
     loggedInUser: any;
     currentMenu: string = undefined;
+    defaultPage = true;
+    showPwdResetPage = false;
+    showProfilePage = false;
+
     constructor(
         private userService: UserService,
         private authenticationService: AuthenticationService,
@@ -40,8 +44,7 @@ export class CoachComponent implements OnInit {
     ngOnInit(): void {
         const paths = this.router?.url && this.router.url?.split('/');
         this.currentMenu = paths && paths[paths.length - 1];
-        console.log(this.currentMenu);
-        this.loggedInUser = JSON.parse(localStorage.getItem('currentUser'));
+        // this.loggedInUser = JSON.parse(localStorage.getItem('currentUser'));
         this.loading = true;
         const mgrmenu$ = this.clientService.getCoachMenus();
         const empmenu$ = this.clientService.getEmployeeMenus();
@@ -49,21 +52,19 @@ export class CoachComponent implements OnInit {
         merge(mgrmenu$, empmenu$).subscribe((data: Menu[]) => {
             this.menus.push(...data);
         });
-        //   this.menus.forEach(m => {
-        //     if (m.name === 'My Courses') {
-        //         m.children.forEach(x => x.url = `employee/${x.url}`);
-        //     }
-        // });
         const index = this.menus.reverse().findIndex(x => x.name.toLowerCase() === 'home');
         const count = this.menus.length - 1;
         const lastIndex = index >= 0 ? count - index : index;
-        console.log(lastIndex);
         this.menus.reverse();
         this.menus.splice(lastIndex, 1);
         this.userService.getById().pipe(first()).subscribe(user => {
             this.loading = false;
             this.userFromApi = user;
         });
+    }
+
+    getUserInfo(): void {
+        this.loggedInUser = JSON.parse(localStorage.getItem('currentUser'));
     }
 
     goTo(parent, menu): void {
@@ -79,5 +80,16 @@ export class CoachComponent implements OnInit {
     logout(): void {
         this.authenticationService.logout();
         this.router.navigateByUrl('/security/login');
+    }
+    setPage(title: string): void {
+        this.defaultPage = title === 'default';
+        this.showProfilePage = title === 'profile';
+        this.showPwdResetPage = title === 'resetPwd';
+        if (this.showPwdResetPage) {
+          localStorage.setItem('femail', this.userFromApi.userName);
+        }
+        if (this.defaultPage) {
+          localStorage.removeItem('femail');
+        }
     }
 }

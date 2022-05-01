@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
-import { merge } from 'rxjs';
+import { merge, Observable, of} from 'rxjs';
 import { first } from 'rxjs/operators';
 import { Menu } from '../home/home.component';
 import { SessionUser, User } from '../_models/user';
@@ -30,6 +30,9 @@ export class ManagerHomeComponent implements OnInit {
   active;
   loggedInUser: any;
   collapsed = true;
+  defaultPage = true;
+  showPwdResetPage = false;
+  showProfilePage = false;
 
   constructor(
       private userService: UserService,
@@ -42,29 +45,21 @@ export class ManagerHomeComponent implements OnInit {
 
   get getCurrent(): boolean { return true; }
   ngOnInit(): void {
-      this.loggedInUser = JSON.parse(localStorage.getItem('currentUser'));
+      // this.loggedInUser = JSON.parse(localStorage.getItem('currentUser'));
       this.active = this.router?.url?.substring(this.router?.url?.lastIndexOf('/') + 1);
       this.loading = true;
       this.clientService.getManagerMenus().subscribe(data => {
         this.menus = data;
       });
-    //   this.menus.forEach(m => {
-    //     if (m.name === 'My Courses') {
-    //         m.children.forEach(x => x.url = `employee/${x.url}`);
-    //     }
-    // });
-      // const index = this.menus.reverse().findIndex(x => x.name.toLowerCase() === 'home');
-      // const count = this.menus.length - 1;
-      // const lastIndex = index >= 0 ? count - index : index;
-      // console.log(lastIndex);
-      // this.menus.reverse();
-      // this.menus.splice(lastIndex, 1);
       this.userService.getById().pipe(first()).subscribe(user => {
           this.loading = false;
           this.userFromApi = user;
       });
   }
 
+  getUserInfo(): void {
+    this.loggedInUser = JSON.parse(localStorage.getItem('currentUser'));
+  }
   goTo(menu): void {
       this.header = menu?.name;
       this.router.navigateByUrl(`manager/${menu?.url}`);
@@ -73,6 +68,18 @@ export class ManagerHomeComponent implements OnInit {
   logout(): void {
     this.authenticationService.logout();
     this.router.navigateByUrl('/security/login');
+  }
+
+  setPage(title: string): void {
+    this.defaultPage = title === 'default';
+    this.showProfilePage = title === 'profile';
+    this.showPwdResetPage = title === 'resetPwd';
+    if (this.showPwdResetPage) {
+      localStorage.setItem('femail', this.userFromApi.userName);
+    }
+    if (this.defaultPage) {
+      localStorage.removeItem('femail');
+    }
   }
 
 }
