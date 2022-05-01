@@ -54,6 +54,9 @@ export class RegistrationComponent implements OnInit {
       this.authService.verifyTemporaryPwd(this.userMail, this.temporaryForm.value.tempPwd).subscribe((data: any) => {
         if (data.status === 'SUCCESS') {
           this.toastrService.success('OTP verified successfully', 'Success');
+          if (this.userMail) {
+            localStorage.setItem('femail', this.userMail);
+          }
           this.router.navigate(['/security/reset'], {state: {email: this.userMail}});
         } else {
           this.toastrService.error(`OTP verification failed, Error: ${data.message}`, 'Failure');

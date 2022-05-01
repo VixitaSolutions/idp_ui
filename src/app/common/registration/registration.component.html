@@ -18,7 +18,7 @@
                                 <img src="./assets/icons/email.png" /> </i>
                             <input type="text" id="email" placeholder="Enter email" class="input-field" formControlName="email" [ngClass]="{ 'is-invalid': f.email.touched && f.email.errors }">
                         </li>
-                        <div *ngIf="f.email.touched && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.touched && f.email.errors" class="invalid-feedback d-block">
                             <div *ngIf="f.email.errors.required">Email is required</div>
                             <div *ngIf="f.email.errors.email">Invalid Email</div>
                         </div>
@@ -39,7 +39,7 @@
                                 <img src="./assets/icons/Password.png" /> </i>
                             <input type="text" id="otp" placeholder="Enter OTP" class="input-field" formControlName="tempPwd" required [ngClass]="{ 'is-invalid': fr.tempPwd.touched && fr.tempPwd.errors }">
                         </li>
-                        <div *ngIf="fr.tempPwd.touched && fr.tempPwd.errors" class="invalid-feedback">
+                        <div *ngIf="fr.tempPwd.touched && fr.tempPwd.errors" class="invalid-feedback d-block">
                             <div *ngIf="fr.tempPwd.errors.required">OTP is required</div>
                             <div *ngIf="fr.tempPwd.errors.minlength || fr.tempPwd.errors.maxlength">Invalid OTP</div>
                         </div>

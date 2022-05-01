@@ -19,9 +19,9 @@
                         <input class="input-field w-100" type="text" [ngClass]="{ 'is-invalid': f.userName.touched && f.userName.errors }" placeholder="Emai ID"
                             name="userName" formControlName="userName">
                     </div>
-                    <div *ngIf="f.userName.touched && f.userName.errors" class="invalid-feedback">
+                    <div *ngIf="f.userName.touched && f.userName.errors" class="invalid-feedback d-block">
                         <div *ngIf="f.userName.errors.required">User Name is required</div>
-                    </div>
+                    </div>  
 
                     <div class="input-container w-90">
                         <i class="icon">
@@ -30,7 +30,7 @@
                         <input class="input-field w-100" type="password" [ngClass]="{ 'is-invalid': f.password.touched && f.password.errors }" placeholder="Password"
                             name="password" formControlName="password">
                     </div>
-                    <div *ngIf="f.password.touched && f.password.errors" class="invalid-feedback">
+                    <div *ngIf="f.password.touched && f.password.errors" class="invalid-feedback d-block">
                         <div *ngIf="f.password.errors.required">Password is required</div>
                     </div>
                     <div class="login-rem-pwd">
