@@ -10,7 +10,6 @@ import { TaskStatus } from 'src/app/_models/taskStatus';
 import { User } from 'src/app/_models/user';
 import { ClientService } from 'src/app/_services/client.service';
 import { UserService } from 'src/app/_services/user.service';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-course-assignment',
@@ -39,15 +38,12 @@ export class CourseAssignmentComponent implements OnInit {
   keywords: string;
   competencyLevels: Competency[];
   Object = Object;
-  gcsesearch: SafeHtml;
-  ss: boolean;
 
   constructor(
     private clientService: ClientService,
     private toastrService: ToastrService,
     private userService: UserService,
-    private router: Router,
-    private sanitizer: DomSanitizer) { }
+    private router: Router) { }
 
   ngOnInit(): void {
     const obj = JSON.parse(sessionStorage.getItem('currentUser'));
@@ -66,20 +62,6 @@ export class CourseAssignmentComponent implements OnInit {
       duration: new FormControl('', [Validators.required, Validators.pattern('^[0-9]+$')]),
       taskStatus: new FormControl(TaskStatus.OPEN, [Validators.required])
     });
-    this.gSearch();
-  }
-  gSearch(): void {
-    this.gcsesearch = this.sanitizer.bypassSecurityTrustHtml('<gcse:search></gcse:search>');
-
-    const cx = '87e78356c6a4c4a69';
-    const gcse = document.createElement('script');
-    gcse.type = 'text/javascript';
-    gcse.async = true;
-    gcse.src = `https://cse.google.com/cse.js?cx=${cx}`;
-    // gcse.src = 
-    // 'https://cse.google.com/cse/element/v1?rsz=filtered_cse&num=10&hl=en&source=gcsc&gss=.com&cselibv=3e1664f444e6eb06&cx=87e78356c6a4c4a69&q=java%20oops%20concepts&safe=active&cse_tok=AJvRUv2Wn-FQiUJqsYJsWhBI3Mm8:1649593220674&sort=&exp=csqr,cc,4618906&oq=java%20oops&gs_l=partner-web.12.0.0i512i433j0i512l9.1540.3617.13.6778.9.9.0.0.0.0.240.1060.5j2j2.9.0.csems%2Cnrl%3D13...0.3474j3045104j10...1.34.partner-web..4.9.883.EhNMKwm1FhA&callback=google.search.cse.api17813';
-    const s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(gcse, s);
   }
 
   get f(): { [key: string]: AbstractControl } { return this.taskForm.controls; }
@@ -128,10 +110,7 @@ export class CourseAssignmentComponent implements OnInit {
     });
   }
   gotoGoogle(): void {
-    this.ss = true;
-    window.open('./search-results.html');
-   // window.open(`https://www.google.com/search?q=${this.keywords}`, '_blank');
-  //  this.gSearch();
+   window.open(`https://www.google.com/search?q=${this.keywords}`, '_blank');
   }
   setLevels(competency): void {
     this.keywords = undefined;
