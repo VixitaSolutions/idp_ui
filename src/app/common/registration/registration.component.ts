@@ -63,7 +63,7 @@ export class RegistrationComponent implements OnInit {
         if (data.status === 'SUCCESS') {
           this.toastrService.success('OTP verified successfully', 'Success');
           if (this.userMail) {
-            localStorage.setItem('femail', this.userMail);
+            sessionStorage.setItem('femail', this.userMail);
           } 
           this.router.navigate(['/security/reset'], {state: {email: this.userMail}});
         } else {

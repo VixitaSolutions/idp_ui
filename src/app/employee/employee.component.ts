@@ -41,7 +41,7 @@ export class EmployeeComponent implements OnInit {
 
   ngOnInit(): void {
       this.loading = true;
-      // this.loggedInUser = JSON.parse(localStorage.getItem('currentUser'));
+      // this.loggedInUser = JSON.parse(sessionStorage.getItem('currentUser'));
       this.menus = [{ name: 'Home', url: 'home' },
                     {
                     name: 'My Courses', url: '',
@@ -57,7 +57,7 @@ export class EmployeeComponent implements OnInit {
   }
 
   getUserInfo(): void {
-    this.loggedInUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.loggedInUser = JSON.parse(sessionStorage.getItem('currentUser'));
   }
 
   goTo(parent, menu): void {
@@ -78,10 +78,10 @@ export class EmployeeComponent implements OnInit {
     this.showProfilePage = title === 'profile';
     this.showPwdResetPage = title === 'resetPwd';
     if (this.showPwdResetPage) {
-      localStorage.setItem('femail', this.userFromApi.userName);
+      sessionStorage.setItem('femail', this.userFromApi.userName);
     }
     if (this.defaultPage) {
-      localStorage.removeItem('femail');
+      sessionStorage.removeItem('femail');
     }
   }
 }

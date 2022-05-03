@@ -34,7 +34,7 @@ export class AddEmployeeComponent implements OnInit {
     private toastrService: ToastrService) { }
 
   ngOnInit(): void {
-    const obj = JSON.parse(localStorage.getItem('currentUser'));
+    const obj = JSON.parse(sessionStorage.getItem('currentUser'));
     if (obj?.tenantId) {
       this.tenantId = obj.tenantId;
       // this.getUserList(obj.tenantId);
@@ -131,7 +131,7 @@ export class AddEmployeeComponent implements OnInit {
   }
   // getCoaches(): void {
   //   this.isBusy = true;
-  //   const obj = JSON.parse(localStorage.getItem('currentUser'));
+  //   const obj = JSON.parse(sessionStorage.getItem('currentUser'));
   //   const loggedInUserId = obj?.userId;
   //   this.userService.getCoaches(Role.Coach, loggedInUserId).subscribe((data) => {
   //     if (data.status === 'SUCCESS') {

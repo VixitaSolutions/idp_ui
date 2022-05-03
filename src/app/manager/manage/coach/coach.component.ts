@@ -37,7 +37,7 @@ export class CoachComponent implements OnInit {
     private toastrService: ToastrService) { }
 
   ngOnInit(): void {
-    const obj = JSON.parse(localStorage.getItem('currentUser'));
+    const obj = JSON.parse(sessionStorage.getItem('currentUser'));
     this.userId = obj?.userId;
     // this.loggedInUserId = Number.parseInt(obj.userId, 10);
     if (obj?.tenantId) {

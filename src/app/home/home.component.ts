@@ -41,7 +41,7 @@ export class HomeComponent implements OnInit {
 
     ngOnInit(): void {
         this.loading = true;
-        // this.loggedInUser = JSON.parse(localStorage.getItem('currentUser'));
+        // this.loggedInUser = JSON.parse(sessionStorage.getItem('currentUser'));
         this.clientService.getMenus().subscribe(data => {
             this.menus = data;
         });
@@ -52,7 +52,7 @@ export class HomeComponent implements OnInit {
     }
 
     getUserInfo(): void {
-        this.loggedInUser = JSON.parse(localStorage.getItem('currentUser'));
+        this.loggedInUser = JSON.parse(sessionStorage.getItem('currentUser'));
     }
 
     goTo(name): void {
@@ -73,10 +73,10 @@ export class HomeComponent implements OnInit {
         this.showProfilePage = title === 'profile';
         this.showPwdResetPage = title === 'resetPwd';
         if (this.showPwdResetPage) {
-          localStorage.setItem('femail', this.userFromApi.userName);
+          sessionStorage.setItem('femail', this.userFromApi.userName);
         }
         if (this.defaultPage) {
-          localStorage.removeItem('femail');
+          sessionStorage.removeItem('femail');
         }
     }
 

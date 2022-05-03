@@ -56,7 +56,7 @@ export class ForgotPasswordComponent implements OnInit {
 
   next(value: string): void {
     if (value.toLocaleUpperCase() === 'SUCCESS') {
-      localStorage.setItem('femail', this.userMail);
+      sessionStorage.setItem('femail', this.userMail);
       this.router.navigate(['/security/reset'], {state: {email: this.userMail}});
     } else {
 

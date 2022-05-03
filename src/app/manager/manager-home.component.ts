@@ -45,7 +45,7 @@ export class ManagerHomeComponent implements OnInit {
 
   get getCurrent(): boolean { return true; }
   ngOnInit(): void {
-      // this.loggedInUser = JSON.parse(localStorage.getItem('currentUser'));
+      // this.loggedInUser = JSON.parse(sessionStorage.getItem('currentUser'));
       this.active = this.router?.url?.substring(this.router?.url?.lastIndexOf('/') + 1);
       this.loading = true;
       this.clientService.getManagerMenus().subscribe(data => {
@@ -58,7 +58,7 @@ export class ManagerHomeComponent implements OnInit {
   }
 
   getUserInfo(): void {
-    this.loggedInUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.loggedInUser = JSON.parse(sessionStorage.getItem('currentUser'));
   }
   goTo(menu): void {
       this.header = menu?.name;
@@ -75,10 +75,10 @@ export class ManagerHomeComponent implements OnInit {
     this.showProfilePage = title === 'profile';
     this.showPwdResetPage = title === 'resetPwd';
     if (this.showPwdResetPage) {
-      localStorage.setItem('femail', this.userFromApi.userName);
+      sessionStorage.setItem('femail', this.userFromApi.userName);
     }
     if (this.defaultPage) {
-      localStorage.removeItem('femail');
+      sessionStorage.removeItem('femail');
     }
   }
 

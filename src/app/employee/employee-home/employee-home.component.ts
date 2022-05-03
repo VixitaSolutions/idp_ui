@@ -23,7 +23,7 @@ export class EmployeeHomeComponent implements OnInit {
     private userService: UserService) { }
 
   ngOnInit(): void {
-    const obj = JSON.parse(localStorage.getItem('currentUser'));
+    const obj = JSON.parse(sessionStorage.getItem('currentUser'));
     this.loggedInUserId = obj?.userId;
     this.clientService.getEmployeeMenus().subscribe((data: Menu[]) => {
       this.menus = data.filter(i => i.name === 'My Courses')[0]?.children;

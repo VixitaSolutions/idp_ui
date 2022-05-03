@@ -44,7 +44,7 @@ export class CoachComponent implements OnInit {
     ngOnInit(): void {
         const paths = this.router?.url && this.router.url?.split('/');
         this.currentMenu = paths && paths[paths.length - 1];
-        // this.loggedInUser = JSON.parse(localStorage.getItem('currentUser'));
+        // this.loggedInUser = JSON.parse(sessionStorage.getItem('currentUser'));
         this.loading = true;
         const mgrmenu$ = this.clientService.getCoachMenus();
         const empmenu$ = this.clientService.getEmployeeMenus();
@@ -64,7 +64,7 @@ export class CoachComponent implements OnInit {
     }
 
     getUserInfo(): void {
-        this.loggedInUser = JSON.parse(localStorage.getItem('currentUser'));
+        this.loggedInUser = JSON.parse(sessionStorage.getItem('currentUser'));
     }
 
     goTo(parent, menu): void {
@@ -86,10 +86,10 @@ export class CoachComponent implements OnInit {
         this.showProfilePage = title === 'profile';
         this.showPwdResetPage = title === 'resetPwd';
         if (this.showPwdResetPage) {
-          localStorage.setItem('femail', this.userFromApi.userName);
+          sessionStorage.setItem('femail', this.userFromApi.userName);
         }
         if (this.defaultPage) {
-          localStorage.removeItem('femail');
+          sessionStorage.removeItem('femail');
         }
     }
 }

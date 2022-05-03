@@ -42,7 +42,7 @@ export class CoursesAssignedComponent implements OnInit {
     private modalService: NgbModal) { }
 
   ngOnInit(): void {
-    const obj = JSON.parse(localStorage.getItem('currentUser'));
+    const obj = JSON.parse(sessionStorage.getItem('currentUser'));
     this.loggedInUserId = obj?.userId;
     this.selectedStatus.setValue(TaskStatus.NONE);
     this.selectedEmployee.setValue('ALL');

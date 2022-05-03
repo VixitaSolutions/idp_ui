@@ -38,7 +38,7 @@ export class EmployeeComponent implements OnInit {
     private toastrService: ToastrService) { }
 
   ngOnInit(): void {
-    const obj = JSON.parse(localStorage.getItem('currentUser'));
+    const obj = JSON.parse(sessionStorage.getItem('currentUser'));
     this.loggedInUserId = obj?.userId;
     if (obj?.tenantId) {
       this.tenantId = obj.tenantId;

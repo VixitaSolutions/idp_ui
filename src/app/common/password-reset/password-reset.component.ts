@@ -28,8 +28,8 @@ export class PasswordResetComponent implements OnInit {
     this.header = 'Create Password';
     this.userMail = this.router.getCurrentNavigation()?.extras?.state?.email;
     if (!this.userMail) {
-      this.userMail = localStorage.getItem('femail');
-      localStorage.removeItem('femail');
+      this.userMail = sessionStorage.getItem('femail');
+      sessionStorage.removeItem('femail');
     }
   }
 

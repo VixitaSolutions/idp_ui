@@ -12,7 +12,7 @@ export class AuthenticationService {
     public currentUser: Observable<SessionUser>;
 
     constructor(private http: HttpClient) {
-        this.currentUserSubject = new BehaviorSubject<SessionUser>(JSON.parse(localStorage.getItem('currentUser')));
+        this.currentUserSubject = new BehaviorSubject<SessionUser>(JSON.parse(sessionStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
     }
 
@@ -24,7 +24,7 @@ export class AuthenticationService {
         return this.currentUserSubject.value;
     }
     public get currentTenantValue(): string {
-        return localStorage.getItem('tenant-id');
+        return sessionStorage.getItem('tenant-id');
     }
     public getById(): Observable<User> {
         return this.http.get<User>(`${environment.apiUrl}/api/v1/user/profile`)
@@ -41,14 +41,14 @@ export class AuthenticationService {
                 // login successful if there's a jwt token in the response
                 if (result && result.token) {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
-                    // localStorage.setItem('currentUser', JSON.stringify(user.data));
+                    // sessionStorage.setItem('currentUser', JSON.stringify(user.data));
                     this.currentUserSubject.next(result);
                     this.getById().subscribe((data: any) => {
-                        // localStorage.setItem('id', data.userId);
+                        // sessionStorage.setItem('id', data.userId);
                         result.firstName = data.firstName;
                         result.lastName = data.lastName;
                         result.userId = data.userId;
-                        localStorage.setItem('currentUser', JSON.stringify(user.data));
+                        sessionStorage.setItem('currentUser', JSON.stringify(user.data));
                     });
                 }
                 return user.data;
@@ -57,8 +57,8 @@ export class AuthenticationService {
 
     logout(): void {
         // remove user from local storage to log user out
-        localStorage.removeItem('currentUser');
-        localStorage.removeItem('tenant-id');
+        sessionStorage.removeItem('currentUser');
+        sessionStorage.removeItem('tenant-id');
         this.currentUserSubject.next(null);
     }
 

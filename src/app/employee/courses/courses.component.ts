@@ -38,7 +38,7 @@ export class CoursesComponent implements OnInit {
     private toastrService: ToastrService) { }
 
   ngOnInit(): void {
-    const obj = JSON.parse(localStorage.getItem('currentUser'));
+    const obj = JSON.parse(sessionStorage.getItem('currentUser'));
     this.loggedInUserId = obj?.userId;
     this.selectedStatus.setValue(TaskStatus.NONE);
     this.getSelfCoursesByStatus(null);
