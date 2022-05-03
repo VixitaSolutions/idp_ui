@@ -58,12 +58,13 @@ export class AppComponent implements OnInit {
         const firstPathPart = pathMap[1];
 
         // a known tenant is in the url path (in case of a direct page load)
-        if (this.tenants.findIndex(tenant => tenant.clientName === firstPathPart) !== -1
+        if (this.tenants.findIndex(tenant => tenant.clientName.toLowerCase() === firstPathPart.toLowerCase()) !== -1
             || firstPathPart === Constants.DEFAULT_TENANT) {
             // if tenant has changed, store it
             if (firstPathPart !== this.activeTenant) {
               this.activeTenant = firstPathPart;
             }
+            sessionStorage.setItem('tenant-id', this.tenants.find(t => t.clientName.toLowerCase() === firstPathPart.toLowerCase()).id);
         } else {
           // no tenant in the path, so add the stored activeTenant or default
           let prefix;
