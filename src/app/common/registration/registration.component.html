@@ -14,7 +14,7 @@
                             <label for="first-name">Enter the email id on which OTP will be sent</label>
                         </li>
                         <li>
-                            <i class="icon">
+                            <i class="icon m-1">
                                 <img src="./assets/icons/email.png" /> </i>
                             <input type="text" id="email" placeholder="Enter email" class="input-field" formControlName="email" [ngClass]="{ 'is-invalid': f.email.touched && f.email.errors }">
                         </li>
@@ -35,7 +35,7 @@
                             Enter the OTP that has been sent to your email id
                         </li>
                         <li>
-                            <i class="icon">
+                            <i class="icon m-1">
                                 <img src="./assets/icons/Password.png" /> </i>
                             <input type="text" id="otp" placeholder="Enter OTP" class="input-field" formControlName="tempPwd" required [ngClass]="{ 'is-invalid': fr.tempPwd.touched && fr.tempPwd.errors }">
                         </li>

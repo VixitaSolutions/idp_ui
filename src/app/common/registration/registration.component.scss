@@ -35,6 +35,7 @@
 .flex-outer li{
   display: flex;
   height: 39px;
+  align-items: center;
 }
 
 .flex-outer > li:last-child {
