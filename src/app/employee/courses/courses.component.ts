@@ -114,6 +114,7 @@ export class CoursesComponent implements OnInit {
   completeCourse(row: Task): void {
     if (row !== undefined) {
       row.taskStatus = TaskStatus.COMPLETED;
+      row.progress = 100;
       this.updateTaskStatus(row, TaskStatus.COMPLETED);
     }
   }
@@ -131,6 +132,7 @@ export class CoursesComponent implements OnInit {
         this.courseList.forEach(c => {
           if (c.id === row.id) {
             c.taskStatus = status;
+            c.progress = row.progress;
           }
         });
         this.refresh();
@@ -150,5 +152,22 @@ export class CoursesComponent implements OnInit {
     this.rows = of(this.courseList
       .map((country, i) => ({id: i + 1, ...country}))
       .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize));
+  }
+  updateProgress(task: Task): void {
+    if (task !== undefined) {
+      this.modalDialogService.updateProgress('', '', 'Yes', 'Cancel', 'lg', task.progress )
+      .then((confirmed: any) => {
+        if (confirmed) {
+          this.isBusy = true;
+          task.progress = confirmed?.progress;
+          this.updateTaskStatus(task, task.taskStatus);
+          return;
+        }
+      })
+      .catch(() => {
+        this.isBusy = false;
+        this.toastrService.error(`Update failed`, 'Failure');
+      });
+    }
   }
 }

@@ -14,6 +14,9 @@ export class ModalDialogComponent implements OnInit {
   @Input() btnOkText: string;
   @Input() btnCancelText: string;
   commentsForm: FormGroup;
+  progressForm: FormGroup;
+  @Input() hasProgress: boolean;
+  @Input() progress = 0;
 
   constructor(private fb: FormBuilder, private activeModal: NgbActiveModal) { }
 
@@ -23,9 +26,16 @@ export class ModalDialogComponent implements OnInit {
         comments: new FormControl('', [Validators.required])
       });
     }
+    if (this.hasProgress) {
+      this.progressForm = this.fb.group({
+        progress: new FormControl(this.progress, [Validators.required, Validators.min(1), Validators.max(100),
+          Validators.pattern(/^[1-9][0-9]?$|^100$/)])
+      });
+    }
   }
 
   get f(): { [key: string]: AbstractControl } { return this.commentsForm.controls; }
+  get p(): { [key: string]: AbstractControl } { return this.progressForm.controls; }
 
   public decline(): void {
     this.activeModal.close(false);
@@ -34,6 +44,9 @@ export class ModalDialogComponent implements OnInit {
   public accept(): void {
     if (this.hasComments) {
       return this.activeModal.close(this.commentsForm.getRawValue());
+    }
+    if (this.hasProgress) {
+      return this.activeModal.close(this.progressForm.getRawValue());
     }
     this.activeModal.close(true);
   }

@@ -84,6 +84,6 @@
         <app-password-reset [emitValue]="true" (exitEmit)="setPage('default')"></app-password-reset>
     </div>
     <div class="row p-5" *ngIf="showProfilePage">
-        <app-user-profile [user]="loggedInUser" (exitProfile)="setPage('default')"></app-user-profile>
+        <app-user-profile [user]="userFromApi" (exitProfile)="setPage('default')"></app-user-profile>
     </div>
 </div>

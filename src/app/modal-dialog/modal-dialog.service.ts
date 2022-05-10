@@ -24,4 +24,22 @@ export class ModalDialogService {
 
     return modalRef.result;
   }
+
+  public updateProgress(
+    title: string,
+    message: string,
+    btnOkText: string = 'OK',
+    btnCancelText: string = 'Cancel',
+    dialogSize: 'sm'|'lg' = 'sm',
+    progress: number = 0): Promise<boolean> {
+    const modalRef = this.modalService.open(ModalDialogComponent, { size: dialogSize });
+    modalRef.componentInstance.title = title;
+    modalRef.componentInstance.message = message;
+    modalRef.componentInstance.btnOkText = btnOkText;
+    modalRef.componentInstance.btnCancelText = btnCancelText;
+    modalRef.componentInstance.progress = progress;
+    modalRef.componentInstance.hasProgress = true;
+
+    return modalRef.result;
+  }
 }

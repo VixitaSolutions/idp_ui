@@ -16,9 +16,23 @@
             </small>
         </div>
     </form>
+    <form *ngIf="hasProgress" [formGroup]="progressForm">
+        <div class="form-group mb-3">
+            <label for="progress">Progress:</label>
+            <p><ngb-progressbar *ngIf="progresser.value >= 0" [value]="progresser.value"></ngb-progressbar></p>
+            <input type="number" #progresser class="w-100" name="progress" formControlName="progress" />
+            <small *ngIf="p.progress.touched && p.progress.errors" class="form-text text-muted">
+                <div *ngIf="p.progress.errors.required">Please provide progress</div>
+                <div *ngIf="p.progress.errors.pattern">Progress should be 0 - 100</div>
+            </small>
+        </div>
+    </form>
     </div>
 </div>
 <div class="modal-footer custom">
     <button type="button" class="btn" (click)="decline()">{{ btnCancelText }}</button>
-    <button type="button" class="btn" [disabled]="(hasComments && !commentsForm.valid)" (click)="accept()">{{ btnOkText }}</button>
+    <button type="button" class="btn" 
+        [disabled]="(hasComments && !commentsForm.valid) || (hasProgress && !progressForm.valid)" (click)="accept()">
+        {{ btnOkText }}
+    </button>
 </div>

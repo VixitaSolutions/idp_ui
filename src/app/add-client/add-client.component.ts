@@ -45,8 +45,8 @@ export class AddClientComponent implements OnInit {
       id: new FormControl(this.id),
       clientName: new FormControl({value: this.clientName, disabled: this.isDisable}, [Validators.required]),
       clientDescription: new FormControl(this.clientDescription),
-      mobile: new FormControl(this.mobile, [Validators.required]),
-      email: new FormControl(this.email, [Validators.required]),
+      mobile: new FormControl(this.mobile, [Validators.required, Validators.pattern(/^(\+\d{1,3}[- ]?)?\d{10}$/)]),
+      email: new FormControl(this.email, [Validators.required, Validators.pattern(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z]{2,3}/)]),
       subscriptionStartDate: new FormControl(this.formatToNgbDate(this.subscriptionStartDate), [Validators.required]),
       subscriptionEndDate: new FormControl(this.formatToNgbDate(this.subscriptionEndDate)),
       status: new FormControl(this.status, [Validators.required])

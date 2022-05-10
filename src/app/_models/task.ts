@@ -15,4 +15,5 @@ export interface Task {
     competency: Competency;
     empComments: string;
     coachComments: string;
+    progress: number;
 }

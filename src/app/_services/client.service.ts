@@ -69,8 +69,8 @@ export class ClientService {
   getEmployeeMenus(): Observable<Menu[]> {
     return of(this.employeeMenus);
   }
-  getClients(status): Observable<Client[]> {
-    if (this.clients.length === 0) {
+  getClients(status, isForce: boolean = false): Observable<Client[]> {
+    if (isForce || this.clients.length === 0) {
       return this.httpClient.post(`${environment.apiUrl}/api/v1/tenant/get`, status)
       .pipe(map((data: any) => {
         this.clients = data?.data;

@@ -53,7 +53,7 @@ export class ManageClientsComponent implements OnInit {
   getClients(): void {
     this.manage = true;
     this.isBusy = true;
-    this.clientService.getClients({status: true}).subscribe((data) => {
+    this.clientService.getClients({status: null}, true).subscribe((data) => {
       if (data) {
         this.rowsActual = data;
         this.collectionSize = this.rowsActual.length;
