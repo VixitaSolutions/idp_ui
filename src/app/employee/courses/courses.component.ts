@@ -82,8 +82,8 @@ export class CoursesComponent implements OnInit {
   }
   acceptCourse(row: Task): void {
     if (row !== undefined) {
-      row.taskStatus = TaskStatus.ACCEPTED;
-      this.updateTaskStatus(row, TaskStatus.ACCEPTED);
+      row.taskStatus = TaskStatus.INPROGRESS;
+      this.updateTaskStatus(row, TaskStatus.INPROGRESS);
     }
   }
   rejectCourse(row: Task): void {

@@ -39,6 +39,7 @@
                         <th scope="col" class="text-center">Task Name</th>
                         <th scope="col" class="text-center">Description</th>
                         <th scope="col" class="text-center">Duration</th>
+                        <th scope="col" class="text-center">Progress</th>
                         <th scope="col" class="text-center">Created On</th>
                         <th scope="col" class="text-center">View</th>
                         <th scope="col" class="text-center">Status</th>
@@ -58,6 +59,9 @@
                         </td>
                         <td class="text-center">
                             <ngb-highlight [result]="row.duration" [ngbTooltip]="row.duration"></ngb-highlight>
+                        </td>
+                        <td class="text-center">
+                            <ngb-highlight [result]="row.progress" [ngbTooltip]="row.progress"></ngb-highlight>
                         </td>
                         <td class="text-center">
                             <ngb-highlight [result]="row.createdOn|date: 'dd/MM/yyyy'" [ngbTooltip]="row.createdOn|date: 'dd/MM/yyyy'"></ngb-highlight>

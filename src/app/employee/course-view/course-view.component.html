@@ -4,7 +4,8 @@
     <p class="text-left text-wrap" style="word-break: break-word">
         <span class="text-info txt-color">Description:</span> {{task.taskDescription}}</p>
     <p class="text-left"><span class="text-info txt-color">Status:</span> {{task.taskStatus}}</p>
-    <p class="text-left"><span class="text-info txt-color">Status:</span> {{task.duration}} (days)</p>
+    <p class="text-left"><span class="text-info txt-color">Duration:</span> {{task.duration}} (days)</p>
+    <p class="text-left"><span class="text-info txt-color">Progress:</span> {{task.progress}} (%)</p>
     <p class="text-left"><span class="text-info txt-color">Coach Comments:</span> {{task.coachComments}}</p>
     <p class="text-left"><span class="text-info txt-color">Employee Comments:</span> {{task.empComments}}</p>
     
@@ -15,5 +16,3 @@
         <button type="button" class="btn bg-color text-white btn-lg btn-block" (click)="closeModal()">OK</button>
     </div>
 </div>
-
-
