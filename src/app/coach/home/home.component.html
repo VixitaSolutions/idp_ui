@@ -1,8 +1,8 @@
 <div>
     <h2>Overview</h2>
     <div class="card-deck">
-        <ng-container *ngFor="let menu of menus">
-        <div class="card m-4 align-items-center flex-sm-row justify-content-center" 
+        <ng-container>
+        <!-- <div class="card m-4 align-items-center flex-sm-row justify-content-center" 
             style="width: 28%" (click)="goTo(menu?.url)">
             <img class="menu-icon" *ngIf="menu?.name == 'Pending Request Approvals'" src="./assets/icons/pendingRequestApprovals.jpeg" />
             <img class="menu-icon" *ngIf="menu?.name == 'Courses Assigned'" src="./assets/icons/coursesAssigned.jpeg" />
@@ -25,6 +25,74 @@
                     </p>
                 </div>
             </ng-template>
+        </div> -->
+        <div class="card m-4 align-items-center flex-sm-row justify-content-center" 
+                    style="width: 28%" *ngFor="let c of groupByStatus | keyvalue"
+                    [ngSwitch]="true">
+                <div class="card-body flexy" *ngSwitchCase="c.key === 'OPEN'">
+                    <div class="card-text" style="width: 40%">
+                        <img src="assets/icons/coursesAssigned.jpeg" width="75%">
+                    </div>
+                    <div class="card-text"  style="width: 60%">
+                        <tr>Assigned: {{c.value}}</tr>
+                    </div>
+                </div>
+                <div class="card-body flexy" *ngSwitchCase="c.key === 'SUBMITTED'">
+                    <div class="card-text" style="width: 40%">
+                        <img src="assets/icons/pendingRequestApprovals.jpeg" width="75%">
+                    </div>
+                    <div class="card-text"  style="width: 60%">
+                        <tr>Pending Requests: {{c.value}}</tr>
+                    </div>
+                </div>
+                <div class="card-body flexy" *ngSwitchCase="c.key === 'IN_PROGRESS'">
+                    <div class="card-text" style="width: 40%">
+                        <img src="assets/icons/coursesProgress.jpeg" width="75%">
+                    </div>
+                    <div class="card-text"  style="width: 60%">
+                        <tr>InProgess: {{c.value}}</tr>
+                    </div>
+                </div>
+                <div class="card-body flexy" *ngSwitchCase="c.key === 'COMPLETED'">
+                    <div class="card-text" style="width: 40%">
+                        <img src="assets/icons/tick.jpeg" width="75%">
+                    </div>
+                    <div class="card-text"  style="width: 60%">
+                        <tr>COMPLETED: {{c.value}}</tr>
+                    </div>
+                </div>
+                <div class="card-body flexy" *ngSwitchCase="c.key === 'REJECTED'">
+                    <div class="card-text" style="width: 40%">
+                        <img src="assets/icons/courseTerminated.jpeg" width="75%">
+                    </div>
+                    <div class="card-text"  style="width: 60%">
+                        <tr>Terminated: {{c.value}}</tr>
+                    </div>
+                </div>
+                <div class="card-body flexy" *ngSwitchCase="c.key === 'APPROVED'">
+                    <div class="card-text" style="width: 40%">
+                        <img src="assets/icons/Achivements.png" width="75%">
+                    </div>
+                    <div class="card-text"  style="width: 60%">
+                        <tr>Finished: {{c.value}}</tr>
+                    </div>
+                </div>
+        </div>
+        <div class="card m-4 align-items-center flex-sm-row justify-content-center border-0"
+            (click)="goTo('assign-course')">
+            <button class="btn btn-custom btn-lg" type="submit">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                </svg>
+                Create Task</button>
+        </div>
+        <div class="chart-wrapper">
+            <canvas baseChart 
+            [data]="doughnutChartData"
+            [labels]="doughnutChartLabels"
+            [chartType]="doughnutChartType">
+            </canvas>
         </div>
         </ng-container>
     </div>

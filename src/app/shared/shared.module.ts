@@ -7,19 +7,18 @@ import { NgbAccordionModule, NgbDropdownModule, NgbModalModule, NgbModule } from
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserProfileComponent } from '../user-profile/user-profile.component';
 import { PasswordResetComponent } from '../common/password-reset/password-reset.component';
-
-
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [BusyIndicatorDirective, LoadingComponent, NgbdSortableHeaderDirective, UserProfileComponent, PasswordResetComponent],
   imports: [
     CommonModule, FormsModule, ReactiveFormsModule,
     NgbModalModule, NgbDropdownModule,
-    NgbAccordionModule, NgbModule
+    NgbAccordionModule, NgbModule, ChartsModule
   ],
   exports: [BusyIndicatorDirective, NgbdSortableHeaderDirective,
     CommonModule, FormsModule, ReactiveFormsModule, NgbModalModule, NgbDropdownModule,
-    NgbAccordionModule, NgbModule, DatePipe, UserProfileComponent, PasswordResetComponent],
+    NgbAccordionModule, NgbModule, DatePipe, UserProfileComponent, PasswordResetComponent, ChartsModule],
   entryComponents: [LoadingComponent],
   providers: [DatePipe]
 })
