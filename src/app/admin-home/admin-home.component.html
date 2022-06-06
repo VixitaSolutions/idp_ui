@@ -14,21 +14,51 @@
 <div>
     <h2>Overview</h2>
     <div class="card-deck">
-        <ng-container *ngFor="let menu of menus">
         <div class="card m-4 align-items-center flex-sm-row justify-content-center" 
-            style="width: 25%" (click)="goTo(menu?.url)">
-            <img class="menu-icon" *ngIf="menu?.name == 'Home'" src="./assets/icons/home.jpeg" />
-            <img class="menu-icon" *ngIf="menu?.name == 'Manage Clients'" src="./assets/icons/manage_clients.jpeg" />
-            <img class="menu-icon" *ngIf="menu?.name == 'Manage Admins'" src="./assets/icons/manage_admins.jpeg" />
-            <img class="menu-icon" *ngIf="menu?.name == 'Competency Mapping'" src="./assets/icons/competency_mapping.jpeg" />
-            <img class="menu-icon" *ngIf="menu?.name == 'All Employees Data'" src="./assets/icons/manage_clients.jpeg" />
-            <img class="menu-icon" *ngIf="menu?.name == 'Upload Competency'" src="./assets/icons/upload.jpeg" />
-            <img class="menu-icon" *ngIf="menu?.name == 'Upload Employees'" src="./assets/icons/upload.jpeg" />
+            (click)="goTo('manage-clients')">
+            <img class="menu-icon" src="./assets/icons/manage_clients.jpeg" />
             <div class="card-body">
-            <h5 class="card-title">{{menu.name}}</h5>
-            <!-- <p class="card-text">{{menu.name}}</p> -->
+                <h5 class="card-title">Manage Clients</h5>
             </div>
         </div>
-        </ng-container>
-    </div>
+        <div class="card m-4 align-items-center flex-sm-row justify-content-center" 
+            (click)="goTo('manage-admins')">
+            <img class="menu-icon" src="./assets/icons/manage_admins.jpeg" />
+            <div class="card-body">
+                <h5 class="card-title">Manage Admins</h5>
+            </div>
+        </div>
+        </div>
+        <div class="card-deck">
+            <div class="card m-4 align-items-center flex-sm-row justify-content-center" 
+                (click)="goTo('competency-mapping')">
+                <img class="menu-icon" src="./assets/icons/competency_mapping.jpeg" />
+                <div class="card-body">
+                    <h5 class="card-title">Competency Mapping</h5>
+                </div>
+            </div>
+            <div class="card m-4 align-items-center flex-sm-row justify-content-center" 
+                (click)="goTo('manage-employees')">
+                <img class="menu-icon" src="./assets/icons/manage_clients.jpeg" />
+                <div class="card-body">
+                    <h5 class="card-title">All Employees Data</h5>
+                </div>
+            </div>
+        </div>
+        <div class="card-deck">
+            <div class="card m-4 align-items-center justify-content-center card-spl" 
+                (click)="goTo('upload-competency')">
+                <img class="menu-icon" src="./assets/icons/upload.jpeg" />
+                <div class="card-body hdr">
+                    <h5 class="card-title">Upload Competency Framework</h5>
+                </div>
+            </div>
+            <div class="card m-4 align-items-center justify-content-center card-spl" 
+                (click)="goTo('upload-employees')">
+                <img class="menu-icon" src="./assets/icons/upload.jpeg" />
+                <div class="card-body hdr">
+                    <h5 class="card-title">Upload Employees data</h5>
+                </div>
+            </div>
+        </div>
 </div>

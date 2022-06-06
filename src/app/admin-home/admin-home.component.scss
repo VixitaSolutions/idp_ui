@@ -1,11 +1,21 @@
 .card-deck {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 .menu-icon {
-    width: 30%;
-    height: 100%;
+    width: 20%;
 }
 .card {
     cursor: pointer;
+    width: 40%;
+}
+
+.card-spl {
+    width: 35% !important;
+    .hdr {
+        background: lightgrey;
+        width: 100%;
+        text-align: center
+    }
 }
