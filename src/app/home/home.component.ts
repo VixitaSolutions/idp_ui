@@ -6,6 +6,7 @@ import { AuthenticationService } from '../_services/authentication.service';
 import { UserService } from '../_services/user.service';
 import { Router } from '../../../node_modules/@angular/router';
 import { ClientService } from '../_services/client.service';
+import { Role } from '../_models/role';
 
 
 @Component({
@@ -29,6 +30,7 @@ export class HomeComponent implements OnInit {
     defaultPage = true;
     showPwdResetPage = false;
     showProfilePage = false;
+    role: string;
 
     constructor(
         private userService: UserService,
@@ -53,6 +55,7 @@ export class HomeComponent implements OnInit {
 
     getUserInfo(): void {
         this.loggedInUser = JSON.parse(sessionStorage.getItem('currentUser'));
+        this.role = Role.Admin === this.loggedInUser?.roleIds ? 'Super Admin' : undefined;
     }
 
     goTo(name): void {

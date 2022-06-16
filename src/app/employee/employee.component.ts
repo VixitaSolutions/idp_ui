@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { Menu } from '../home/home.component';
+import { Role } from '../_models/role';
 import { SessionUser, User } from '../_models/user';
 import { AuthenticationService } from '../_services/authentication.service';
 import { ClientService } from '../_services/client.service';
@@ -29,6 +30,7 @@ export class EmployeeComponent implements OnInit {
   defaultPage = true;
   showPwdResetPage = false;
   showProfilePage = false;
+  role: string;
 
   constructor(
       private userService: UserService,
@@ -58,6 +60,7 @@ export class EmployeeComponent implements OnInit {
 
   getUserInfo(): void {
     this.loggedInUser = JSON.parse(sessionStorage.getItem('currentUser'));
+    this.role = Role.EMPLOYEE === this.loggedInUser?.roleIds ? 'Employee' : undefined;
   }
 
   goTo(parent, menu): void {

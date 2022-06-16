@@ -21,7 +21,7 @@
                     </div>
                     <div *ngIf="f.userName.touched && f.userName.errors" class="invalid-feedback d-block">
                         <div *ngIf="f.userName.errors.required">User Name is required</div>
-                    </div>  
+                    </div>
 
                     <div class="input-container w-90">
                         <i class="icon">
@@ -48,8 +48,20 @@
             </article>
             <footer class="footer proxima login-hdr-text">
                 <span class="m-t-1">App Version 1.0</span>
-                <a href="" color="Grey">Privacy Policy</a>
+                <a href="" (click)="$event.preventDefault();isViewPrivacyDoc = !isViewPrivacyDoc" color="Grey">Privacy Policy</a>
             </footer>
         </article>
     </div>
+</div>
+<div *ngIf="isViewPrivacyDoc" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+    <div class="modal-body">
+        <button type="button" class="btn close" aria-label="Close" (click)="isViewPrivacyDoc = false">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <img class="w-100" src="./assets/images/privacy_policy.png" />
+    </div>
+</div>
+</div>
 </div>

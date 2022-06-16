@@ -25,7 +25,7 @@ export class PasswordResetComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private toastrService: ToastrService) {
-    this.header = 'Create Password';
+    this.header = 'Create New Password';
     this.userMail = this.router.getCurrentNavigation()?.extras?.state?.email;
     if (!this.userMail) {
       this.userMail = sessionStorage.getItem('femail');

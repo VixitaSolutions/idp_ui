@@ -10,9 +10,23 @@
             </a>
             
             <div ngbDropdownMenu aria-labelledby="navbarDropdown3" class="dropdown-menu custom-drp">
-                <span class="border-bottom">
-                    Welcome, {{loggedInUser?.firstName | titlecase}} {{loggedInUser?.lastName | titlecase}}
-                </span>
+                <div class="container">
+                    <div class="row">
+                        <div class="col pp-mw">
+                            <span class="profileImage">{{loggedInUser?.firstName[0]|uppercase}}{{loggedInUser?.lastName[0]|uppercase}}</span>
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <div class="col font-bold">
+                                    Mr. {{loggedInUser?.firstName | titlecase}} {{loggedInUser?.lastName | titlecase}}
+                                </div>
+                                <div class="col text-muted">
+                                    {{role}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <a ngbDropdownItem href="#" (click)="$event.preventDefault();setPage('profile')" class="border-bottom">
                     <img src="assets/icons/profile.jpeg" alt="profile" style="width: 30px" class="rounded-circle" />
                     Profile</a>

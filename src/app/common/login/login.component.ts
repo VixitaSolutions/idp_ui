@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   submitted: boolean;
   showError: string;
   tenant: string;
+  isViewPrivacyDoc: boolean;
 
   constructor(
       private authService: AuthenticationService,
@@ -81,5 +82,4 @@ export class LoginComponent implements OnInit {
       return;
     }
   }
-
 }

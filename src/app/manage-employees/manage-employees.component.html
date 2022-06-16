@@ -23,7 +23,7 @@
                         <button ngbDropdownItem (click)="applyFilter(undefined, undefined)">Clear</button>
                         <button ngbDropdownItem *ngFor="let client of clients" (click)="applyFilter(client.id, client.clientName)">{{client.clientName}}</button>
                     </div>
-                    <span class="badge-primary">{{selectedFilter}}</span>
+                    <span [ngClass]="selectedFilter ? 'badge-primary' : ''">{{selectedFilter}}</span>
                 </div>
 
                 <form class="d-flex">
