@@ -12,25 +12,25 @@
             </ul>
             <article class="login-form">
                 <form id="login-form" [formGroup]="loginForm">
-                    <div class="input-container w-90">
+                    <div class="input-container w-90" [ngClass]="{ 'mb-0': f.userName.touched && f.userName.errors }">
                         <i class="icon">
                             <img src="./assets/icons/email.png" />
                         </i>
                         <input class="input-field w-100" type="text" [ngClass]="{ 'is-invalid': f.userName.touched && f.userName.errors }" placeholder="Emai ID"
                             name="userName" formControlName="userName">
                     </div>
-                    <div *ngIf="f.userName.touched && f.userName.errors" class="invalid-feedback d-block">
+                    <div *ngIf="f.userName.touched && f.userName.errors" class="invalid-feedback d-block mb-2">
                         <div *ngIf="f.userName.errors.required">User Name is required</div>
                     </div>
 
-                    <div class="input-container w-90">
+                    <div class="input-container w-90" [ngClass]="{ 'mb-0': f.password.touched && f.password.errors }">
                         <i class="icon">
                             <img src="./assets/icons/Password.png" />
                         </i>
                         <input class="input-field w-100" type="password" [ngClass]="{ 'is-invalid': f.password.touched && f.password.errors }" placeholder="Password"
                             name="password" formControlName="password">
                     </div>
-                    <div *ngIf="f.password.touched && f.password.errors" class="invalid-feedback d-block">
+                    <div *ngIf="f.password.touched && f.password.errors" class="invalid-feedback d-block mb-2">
                         <div *ngIf="f.password.errors.required">Password is required</div>
                     </div>
                     <div class="login-rem-pwd">
@@ -40,7 +40,7 @@
                     </div>
                     <div class="login-submit">
                         <button class="avenir-lte w-50 font-18 white" type="submit" (click)="login()">Login</button>
-                        <div *ngIf="showError" style="color: red" class="font-18">
+                        <div *ngIf="showError" style="color: red; margin-top: 15px" class="font-18">
                             <span> {{showError}}</span>
                         </div>
                     </div>
