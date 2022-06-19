@@ -1,23 +1,25 @@
-<div class="row">
-    <h2 class="col-10">{{title}}</h2>
-    <button type="button" class="col-1 close btn custom-color" (click)="exitProfile.emit(true);">Close</button>
+<div class="row justify-content-center">
+    <h2 class="col-6">{{title}}</h2>
+    <button type="button" class="col-1 close btn" (click)="exitProfile.emit(true);">
+        <img class="w-40" src="/assets/icons/courseTerminated.jpeg" alt="close" />
+    </button>
 </div>
 <div *appBusyIndicator="isBusy"></div>
-<div class="container">
-    <div class="row p-2">
-        <div class="col-1 font-bold">First Name: </div>
-        <div class="col-6 col-sm-3">{{user.firstName}}</div>
+<div class="container w-50 pt-5">
+    <div class="row p-2 justify-content-center border">
+        <div class="col-2 font-bold">First Name: </div>
+        <div class="col-6 col-sm-3">{{user.firstName | uppercase}}</div>
     </div>
-    <div class="row p-2">
-        <div class="col-1 font-bold">Last Name: </div>
-        <div class="col-6 col-sm-3">{{user.lastName}}</div>
+    <div class="row p-2 justify-content-center border" style="background: #e3e4ea">
+        <div class="col-2 font-bold">Last Name: </div>
+        <div class="col-6 col-sm-3">{{user.lastName | uppercase}}</div>
     </div>
-    <div class="row p-2">
-        <div class="col-1 font-bold">Email: </div>
+    <div class="row p-2 justify-content-center border">
+        <div class="col-2 font-bold">Email: </div>
         <div class="col-6 col-sm-3">{{user.userName}}</div>
     </div>
-    <div class="row p-2">
-        <div class="col-1 font-bold">Mobile: </div>
-        <div class="col-6 col-sm-3">{{user.mobile}}</div>
+    <div class="row p-2 justify-content-center border" style="background: #e3e4ea">
+        <div class="col-2 font-bold">Mobile: </div>
+        <div class="col-6 col-sm-3">{{user.mobile ? user.mobile : '---'}}</div>
     </div>
 </div>
