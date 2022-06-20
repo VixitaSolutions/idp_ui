@@ -1,12 +1,5 @@
-First Name,Last Name,Email,Mobile
-test12,user12,,
-,,,
-,,,
-,,,
-,,,
-,,,
-,,,
-,,,
-,,,
-,,,
-,,,
+First Name,Last Name,Email,Mobile,Role
+firstname1,lastname1,abc@gmail.com,9999999912,ADMIN
+firstname1,lastname1,abc@gmail.com,9999999912,MANAGER
+firstname1,lastname1,abc@gmail.com,9999999912,COACH
+firstname1,lastname1,abc@gmail.com,9999999912,EMPLOYEE
