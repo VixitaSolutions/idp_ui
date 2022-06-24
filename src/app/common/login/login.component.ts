@@ -82,4 +82,12 @@ export class LoginComponent implements OnInit {
       return;
     }
   }
+  showPwd(e: any): void {
+    console.log(e);
+    if (e && e.getAttribute('type') === 'password') {
+      e.setAttribute('type', 'text');
+    } else {
+      e.setAttribute('type', 'password');
+    }
+  }
 }

@@ -21,7 +21,7 @@
                     <div *ngIf="tenantId.errors.required">Company is required</div>
                 </small>
             </div>
-            <div class="form-group mb-3">
+            <div class="form-group mb-5">
                 <div class="container" appDnd (fileDropped)="onFileDropped($event)">
                     <input type="file" [formControl]="uploadFile" #fileDropRef id="fileDropRef" accept=".xls,.xlsx,.csv" 
                         onclick="this.value = null" name="uploadFile"

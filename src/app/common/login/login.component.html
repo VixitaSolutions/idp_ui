@@ -11,40 +11,62 @@
                 </li>
             </ul>
             <article class="login-form">
-                <form id="login-form" [formGroup]="loginForm">
-                    <div class="input-container w-90" [ngClass]="{ 'mb-0': f.userName.touched && f.userName.errors }">
-                        <i class="icon">
-                            <img src="./assets/icons/email.png" />
-                        </i>
-                        <input class="input-field w-100" type="text" [ngClass]="{ 'is-invalid': f.userName.touched && f.userName.errors }" placeholder="Emai ID"
-                            name="userName" formControlName="userName">
-                    </div>
-                    <div *ngIf="f.userName.touched && f.userName.errors" class="invalid-feedback d-block mb-2">
-                        <div *ngIf="f.userName.errors.required">User Name is required</div>
-                    </div>
-
-                    <div class="input-container w-90" [ngClass]="{ 'mb-0': f.password.touched && f.password.errors }">
-                        <i class="icon">
-                            <img src="./assets/icons/Password.png" />
-                        </i>
-                        <input class="input-field w-100" type="password" [ngClass]="{ 'is-invalid': f.password.touched && f.password.errors }" placeholder="Password"
-                            name="password" formControlName="password">
-                    </div>
-                    <div *ngIf="f.password.touched && f.password.errors" class="invalid-feedback d-block mb-2">
-                        <div *ngIf="f.password.errors.required">Password is required</div>
-                    </div>
-                    <div class="login-rem-pwd">
-                        <span class="rem-content proxima">
-                            <input type="checkbox" class="login-hdr-text m-1">Remember Me</span>
-                        <a class="login-sign-up no-padding" routerLinkActive="active-link" routerLink="/security/forgot">Forgot Password?</a>
-                    </div>
-                    <div class="login-submit">
-                        <button class="avenir-lte w-50 font-18 white" type="submit" (click)="login()">Login</button>
-                        <div *ngIf="showError" style="color: red; margin-top: 15px" class="font-18">
-                            <span> {{showError}}</span>
-                        </div>
-                    </div>
-                </form>
+                <div class="container"><div class="row">
+                        <form id="login-form" [formGroup]="loginForm">
+                                <div class="form-group row mb-2" [ngClass]="{ 'mb-0': f.userName.touched && f.userName.errors }">
+                                    <label class="col-md-2 control-label">
+                                        <i class="icon">
+                                            <img src="./assets/icons/email.png" />
+                                        </i>
+                                    </label>
+                                    <div class="col-md-10">
+                                        <input class="form-control input-field" type="text" [ngClass]="{ 'is-invalid': f.userName.touched && f.userName.errors }" placeholder="Emai ID"
+                                            name="userName" formControlName="userName">
+                                        <div *ngIf="f.userName.touched && f.userName.errors" class="invalid-feedback d-block">
+                                                <div *ngIf="f.userName.errors.required">User Name is required</div>
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row mb-2" [ngClass]="{ 'mb-0': f.password.touched && f.password.errors }">
+                                    <label class="col-md-2 control-label">
+                                        <i class="icon">
+                                            <img src="./assets/icons/Password.png" />
+                                        </i>
+                                    </label>
+                                    <div class="col-md-10">
+                                    <input #pwd class="form-control input-field" type="password" [ngClass]="{ 'is-invalid': f.password.touched && f.password.errors }" placeholder="Password"
+                                        name="password" formControlName="password">
+                                    <svg *ngIf="pwd.type==='password'" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                        class="bi bi-eye-fill pwd-icon" viewBox="0 0 16 16"
+                                        (click)="showPwd(pwd)">
+                                        <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                                        <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                                    </svg>
+                                    <svg *ngIf="pwd.type==='text'" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                        class="bi bi-eye-slash-fill pwd-icon" viewBox="0 0 16 16"
+                                        (click)="showPwd(pwd)">
+                                        <path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7.029 7.029 0 0 0 2.79-.588zM5.21 3.088A7.028 7.028 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474L5.21 3.089z"/>
+                                        <path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829l-2.83-2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12-.708.708z"/>
+                                    </svg>
+                                </div>
+                                <div *ngIf="f.password.touched && f.password.errors" class="invalid-feedback d-block">
+                                    <div *ngIf="f.password.errors.required">Password is required</div>
+                                </div>
+                            </div>
+                                <div class="login-rem-pwd">
+                                    <span class="rem-content proxima">
+                                        <input type="checkbox" class="login-hdr-text m-1">Remember Me</span>
+                                    <a class="login-sign-up no-padding" routerLinkActive="active-link" routerLink="/security/forgot">Forgot Password?</a>
+                                </div>
+                                <div class="login-submit">
+                                    <button class="avenir-lte w-50 font-18 white" type="submit" (click)="login()">Login</button>
+                                    <div *ngIf="showError" style="color: red; margin-top: 15px" class="font-18">
+                                        <span> {{showError}}</span>
+                                    </div>
+                                </div>
+                            </form>
+                </div></div>
+                
             </article>
             <footer class="footer proxima login-hdr-text">
                 <span class="m-t-1">App Version 1.0</span>

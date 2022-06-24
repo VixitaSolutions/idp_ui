@@ -28,13 +28,14 @@ export class ManagerHomeComponent implements OnInit {
   isManageEmployees: boolean;
   isUpload: boolean;
   header = 'Dashboard';
-  active;
+  active = 'home';
   loggedInUser: any;
   collapsed = true;
   defaultPage = true;
   showPwdResetPage = false;
   showProfilePage = false;
   role: string;
+  drpdown = false;
 
   constructor(
       private userService: UserService,
@@ -49,6 +50,7 @@ export class ManagerHomeComponent implements OnInit {
   ngOnInit(): void {
       // this.loggedInUser = JSON.parse(sessionStorage.getItem('currentUser'));
       this.active = this.router?.url?.substring(this.router?.url?.lastIndexOf('/') + 1);
+      this.setHeader();
       this.loading = true;
       this.clientService.getManagerMenus().subscribe(data => {
         this.menus = data;
@@ -63,9 +65,10 @@ export class ManagerHomeComponent implements OnInit {
     this.loggedInUser = JSON.parse(sessionStorage.getItem('currentUser'));
     this.role = Role.Manager === this.loggedInUser?.roleIds ? 'Manager' : undefined;
   }
-  goTo(menu): void {
-      this.header = menu?.name;
-      this.router.navigateByUrl(`manager/${menu?.url}`);
+  goTo(menu, url): void {
+      this.header = menu;
+      this.active = url;
+      this.router.navigateByUrl(`manager/${url}`);
   }
 
   logout(): void {
@@ -82,6 +85,31 @@ export class ManagerHomeComponent implements OnInit {
     }
     if (this.defaultPage) {
       sessionStorage.removeItem('femail');
+    }
+  }
+  setHeader(): void {
+    switch (this.active) {
+      case 'home':
+        this.header = 'Home';
+        break;
+      case 'overall':
+        this.header = 'Overall completion status';
+        break;
+      case 'cwise':
+        this.header = 'Coach-wise summary';
+        break;
+      case 'cpwise':
+        this.header = 'Competency-wise summary';
+        break;
+      case 'ewise':
+        this.header = 'Participant-wise summary';
+        break;
+      case 'manage-coach':
+        this.header = 'Manage Coach';
+        break;
+      case 'manage-participant':
+        this.header = 'Manage Participant';
+        break;
     }
   }
 

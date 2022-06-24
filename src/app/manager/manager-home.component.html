@@ -49,39 +49,61 @@
                     <img style="width: 120px" src="./assets/images/company-logo.jpeg" />
                 </div>
                 <ul class="nav flex-column">
-                    <div class="d-flex">
-                        <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs" orientation="vertical">
-                            <ng-container *ngFor="let menu of menus;let i = index">
-                                <li *ngIf="menu?.children;else temp" ngbDropdown class="nav-item">
-                                    <ngb-accordion [closeOthers]="true" #acc="ngbAccordion">
-                                            <ngb-panel *ngIf="menu?.children">
-                                                <ng-template ngbPanelHeader let-opened="opened">
-                                                    <button ngbPanelToggle class="accordion-button custom-header justify-content-between" [class.collapsed]="!opened">
-                                                        {{menu.name}}
-                                                    </button>
-                                                </ng-template>
-                                                <ng-template ngbPanelContent>
-                                                    <ng-container *ngFor="let m of menu.children">
-                                                        <button ngbDropdownItem (click)="goTo(m)">{{m.name}}</button>
-                                                    </ng-container>
-                                                </ng-template>
-                                            </ngb-panel>
-                                        </ngb-accordion>
-                                </li>
-                                <ng-template #temp>
-                                <li [ngbNavItem]="menu">
-                                    <a ngbNavLink (click)="goTo(menu)" [ngClass]="{'active': getCurrent}">
-                                        <img class="menu-icon" *ngIf="menu?.url == 'home'" src="./assets/icons/home.jpeg" />
-                                        <img class="menu-icon" *ngIf="menu?.url == 'overall'" src="./assets/icons/tick.jpeg" />
-                                        <img class="menu-icon" *ngIf="menu?.url == 'cwise'" src="./assets/icons/tick.jpeg" />
-                                        <img class="menu-icon" *ngIf="menu?.url == 'ewise'" src="./assets/icons/tick.jpeg" />
-                                        <img class="menu-icon" *ngIf="menu?.url == 'cpwise'" src="./assets/icons/competency_mapping.jpeg" /> {{menu.name}}
-                                    <!-- <span class="btn-close ms-2 fw-light" (click)="close($event, id)"></span> -->
-                                </a>
-                                </li></ng-template>
-                            </ng-container>
-                          </ul>
-                        </div>
+                    <li class="nav-item li-item">
+                        <a class="nav-link" [ngClass]="{'active': active === 'home'}" href="" (click)="$event.preventDefault();goTo('Home', 'home')">
+                            <img class="menu-icon" src="./assets/icons/home.jpeg" />
+                            Home
+                        </a>
+                    </li>
+                    <li class="nav-item li-item">
+                        <a class="nav-link" [ngClass]="{'active': active === 'overall'}" href="" (click)="$event.preventDefault();goTo('Overall completion status', 'overall')">
+                            <img class="menu-icon" src="./assets/icons/tick.jpeg" />
+                            Overall completion status
+                        </a>
+                    </li>
+                    <li class="nav-item li-item">
+                        <a class="nav-link" [ngClass]="{'active': active === 'cwise'}" href="" (click)="$event.preventDefault();goTo('Coach-wise summary', 'cwise')">
+                            <img class="menu-icon" src="./assets/icons/tick.jpeg" />
+                            Coach-wise summary
+                        </a>
+                    </li>
+                    <li class="nav-item li-item">
+                        <a class="nav-link" [ngClass]="{'active': active === 'ewise'}" href="" (click)="$event.preventDefault();goTo('Participant-wise summary', 'ewise')">
+                            <img class="menu-icon" src="./assets/icons/tick.jpeg" />
+                            Participant-wise summary
+                        </a>
+                    </li>
+                    <li class="nav-item li-item">
+                        <a class="nav-link" [ngClass]="{'active': active === 'cpwise'}" href="" (click)="$event.preventDefault();goTo('Competency-wise summary', 'cpwise')">
+                            <img class="menu-icon" src="./assets/icons/competency_mapping.jpeg" />
+                            Competency-wise summary
+                        </a>
+                    </li>
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted c-pointer" (click)="$event.preventDefault();drpdown=!drpdown">
+                        <span>Controls</span>
+                        <a class="d-flex align-items-center text-muted" href="#">
+                            <svg *ngIf="!drpdown" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                            </svg>
+                            <svg *ngIf="drpdown" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-up" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>
+                            </svg>
+                        </a>
+                    </h6>
+                    <div *ngIf="drpdown || (active === 'manage-coach' || active === 'manage-participant')">
+                        <li class="nav-item li-item">
+                            <a class="nav-link" [ngClass]="{'active': active === 'manage-coach'}" href="" (click)="$event.preventDefault();goTo('Manage Coach', 'manage-coach')">
+                                <img class="menu-icon" src="./assets/icons/competency_mapping.jpeg" />
+                                Manage Coach
+                            </a>
+                        </li>
+                        <li class="nav-item li-item">
+                            <a class="nav-link" [ngClass]="{'active': active === 'manage-participant'}" href="" (click)="$event.preventDefault();goTo('Manage Participant', 'manage-participant')">
+                                <img class="menu-icon" src="./assets/icons/competency_mapping.jpeg" />
+                                Manage Participant
+                            </a>
+                        </li>
+                    </div>
                 </ul>
             </div>
         </nav>
@@ -91,7 +113,7 @@
                 <h3>{{header}}</h3>
             </div>
             <div class="container-home m-xl-5 p-5">
-                <router-outlet [ngbNavOutlet]="nav"></router-outlet>
+                <router-outlet></router-outlet>
             </div>
         </main>
     </div>

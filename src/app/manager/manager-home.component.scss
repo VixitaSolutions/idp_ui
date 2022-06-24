@@ -120,6 +120,18 @@ app-manager-home {
         background-color: unset !important;
         border-bottom: none !important;
     }
+    .nav-item {
+      height: 4rem;
+    }
+    .li-item {
+      :hover {
+        background: #a3a7d2;
+      }
+    }
+    .active {
+      background: #a3a7d2;
+      color: white !important;
+    }
     }
 .custom-drp  {
   right: 0px !important;

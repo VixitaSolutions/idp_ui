@@ -15,8 +15,8 @@ export class ClientService {
             { name: 'Manage Admins', url: 'manage-admins' },
             { name: 'Competency Mapping', url: 'competency-mapping' },
             { name: 'All Employees Data', url: 'manage-employees' },
-            { name: 'Upload Competency', url: 'upload-competency' },
-            { name: 'Upload Employees', url: 'upload-employees' }];
+            { name: 'Upload Competency Framework', url: 'upload-competency' },
+            { name: 'Upload Employees data', url: 'upload-employees' }];
   managerMenus = [{ name: 'Home', url: 'home' },
                   { name: 'Overall completion status', url: 'overall' },
                   { name: 'Coach-wise summary', url: 'cwise' },

@@ -67,7 +67,7 @@
             <div class="form-group mb-3">
                 <div class="form-check form-switch p-0">
                     <label for="status">Status</label>
-                    <span class="float-end" *ngIf="active">Active</span><span class="float-end" *ngIf="!active">Inactive</span>
+                    <span class="float-end ps-2" *ngIf="active">Active</span><span class="float-end ps-2" *ngIf="!active">Inactive</span>
                     <input type="checkbox" class="form-check-input float-end" id="status"
                     formControlName="active" (change)="active=!active"
                     [ngClass]="{ 'is-invalid': f.active.touched && f.active.errors }">
