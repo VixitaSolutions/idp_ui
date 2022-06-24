@@ -231,7 +231,7 @@ ngbd-table-complete span.ngb-highlight {
   color:red;
 }
 .overlap-txt {
-  padding-top: 5px;
+  justify-content: center;
 }
 .profileImage {
   width: 60px;
@@ -251,4 +251,7 @@ ngbd-table-complete span.ngb-highlight {
 
 .pp-mw {
   max-width: 65px;
+}
+.c-pointer {
+  cursor: pointer;
 }
