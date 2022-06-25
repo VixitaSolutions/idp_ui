@@ -243,15 +243,21 @@ ngbd-table-complete span.ngb-highlight {
   text-align: center;
   line-height: 50px;
   margin: 0 0;
-  padding: 10px;
+  padding: 8px;
 }
 .dropdown-menu {
   min-width: 15rem;
 }
 
 .pp-mw {
-  max-width: 65px;
+  max-width: 60px;
 }
 .c-pointer {
   cursor: pointer;
+}
+.overlay-img {
+  width: 22%;
+  position: absolute;
+  right: 0;
+  bottom: -15px;
 }

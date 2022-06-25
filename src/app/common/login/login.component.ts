@@ -61,15 +61,17 @@ export class LoginComponent implements OnInit {
       const  body = { username: userName, password: pwd, loginType: 'byUserName', tenant: this.tenant };
       this.authService.login(body).subscribe(data => {
         if (data?.tenantId) {
-          if (data?.roleIds === 1) {
-            this.router.navigateByUrl('/admin/dashboard');
-          } else if (data?.roleIds === 2) {
-            this.router.navigateByUrl('/manager/home');
-          } else if (data?.roleIds === 4) {
-            this.router.navigateByUrl('/coach/home');
-          } else {
-            this.router.navigateByUrl('/employee');
-          }
+          this.authService.currentUser.subscribe(d => {
+            if (data?.roleIds === 1) {
+              this.router.navigateByUrl('/admin/dashboard');
+            } else if (data?.roleIds === 2) {
+              this.router.navigateByUrl('/manager/home');
+            } else if (data?.roleIds === 4) {
+              this.router.navigateByUrl('/coach/home');
+            } else {
+                this.router.navigateByUrl('/employee/home');
+            }
+          });
         }
       }, error => {
         console.log(error);

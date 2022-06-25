@@ -11,14 +11,14 @@
 
             <div ngbDropdownMenu aria-labelledby="navbarDropdown3" class="dropdown-menu custom-drp">
                 <div class="container">
-                    <div class="row">
+                    <div class="row flex-nowrap">
                         <div class="col pp-mw">
                             <span class="profileImage">{{loggedInUser?.firstName[0]|uppercase}}{{loggedInUser?.lastName[0]|uppercase}}</span>
                         </div>
                         <div class="col">
                             <div class="row">
                                 <div class="col font-bold">
-                                    Mr. {{loggedInUser?.firstName | titlecase}} {{loggedInUser?.lastName | titlecase}}
+                                    Mr. {{loggedInUsser?.firstName | titlecase}} {{loggedInUser?.lastName | titlecase}}
                                 </div>
                                 <div class="col text-muted">
                                     {{role}}

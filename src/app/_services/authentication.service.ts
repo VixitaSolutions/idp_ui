@@ -49,6 +49,7 @@ export class AuthenticationService {
                         result.lastName = data.lastName;
                         result.userId = data.userId;
                         sessionStorage.setItem('currentUser', JSON.stringify(user.data));
+                        this.currentUserSubject.next(result);
                     });
                 }
                 return user.data;

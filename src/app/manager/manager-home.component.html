@@ -11,7 +11,7 @@
             
             <div ngbDropdownMenu aria-labelledby="navbarDropdown3" class="dropdown-menu custom-drp">
                 <div class="container">
-                    <div class="row">
+                    <div class="row flex-nowrap">
                         <div class="col pp-mw">
                             <span class="profileImage">{{loggedInUser?.firstName[0]|uppercase}}{{loggedInUser?.lastName[0]|uppercase}}</span>
                         </div>
@@ -79,7 +79,7 @@
                             Competency-wise summary
                         </a>
                     </li>
-                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted c-pointer" (click)="$event.preventDefault();drpdown=!drpdown">
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted c-pointer pb-3" (click)="$event.preventDefault();drpdown=!drpdown">
                         <span>Controls</span>
                         <a class="d-flex align-items-center text-muted" href="#">
                             <svg *ngIf="!drpdown" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
