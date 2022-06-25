@@ -23,6 +23,8 @@
                     <option selected disabled>select</option>
                     <option [value]="competency" *ngFor="let competency of Object.keys(competencyList)">{{competency}}</option>
                 </select>
+            </div>
+            <div class="form-group mb-3">
                 <label for="level">Level</label>
                 <select id="level" class="form-control" #level
                     formControlName="competencyId" [ngClass]="{ 'is-invalid': f.competencyId.touched && f.competencyId.errors }"
@@ -30,7 +32,7 @@
                     <option [value]="competency.id" *ngFor="let competency of competencyLevels">{{competency.level}}</option>
                 </select>
                 <small *ngIf="f.competencyId.touched && f.competencyId.errors" class="form-text text-muted">
-                    <div *ngIf="f.competencyId.errors.required">Competency is required</div>
+                    <div *ngIf="f.competencyId.errors.required">Competency/Level is required</div>
                 </small>
             </div>
             <div class="form-group mb-3">
