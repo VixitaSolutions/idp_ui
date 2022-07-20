@@ -35,8 +35,9 @@
             <div class="form-group mb-3">
                 <label for="subscriptionStartDate">Subscription Start Date</label>
                 <div class="input-group">
+                        <!-- (keydown)="$event.preventDefault()" -->
                 <input id="subscriptionStartDate" placeholder="yyyy-mm-dd" class="form-control"
-                    (keydown)="$event.preventDefault()"
+                    
                     formControlName="subscriptionStartDate" ngbDatepicker #d1="ngbDatepicker"
                     [ngClass]="{ 'is-invalid': f.subscriptionStartDate.touched && f.subscriptionStartDate.errors }">
                 <div class="input-group-append">
@@ -45,13 +46,13 @@
                 </div>
                 <small *ngIf="f.subscriptionStartDate.touched && f.subscriptionStartDate.errors" class="form-text text-muted">
                     <div *ngIf="f.subscriptionStartDate.errors.required">Subscription start date is required</div>
+                    <div *ngIf="f.subscriptionStartDate.errors.ngbDate?.invalid">Invalid date format(valid format: yyyy-mm-dd)</div>
                 </small>
             </div>
             <div class="form-group mb-3">
                 <label for="subscriptionEndDate">Subscription End Date</label>
                 <div class="input-group">
                     <input id="subscriptionEndDate" placeholder="yyyy-mm-dd" class="form-control"
-                        (keydown)="$event.preventDefault()"
                         formControlName="subscriptionEndDate" ngbDatepicker #d2="ngbDatepicker"
                         [ngClass]="{ 'is-invalid': f.subscriptionEndDate.touched && f.subscriptionEndDate.errors }">
                     <div class="input-group-append">
@@ -63,6 +64,7 @@
                     [ngClass]="{ 'is-invalid': f.subscriptionEndDate.touched && f.subscriptionEndDate.errors }"> -->
                 <small *ngIf="f.subscriptionEndDate.touched && f.subscriptionEndDate.errors" class="form-text text-muted">
                     <div *ngIf="f.subscriptionEndDate.errors.required">Subscription end date is required</div>
+                    <div *ngIf="f.subscriptionEndDate.errors.ngbDate?.invalid">Invalid date format(valid format: yyyy-mm-dd)</div>
                 </small>
             </div>
             <div class="form-group mb-3">
@@ -83,7 +85,8 @@
                 </small>
             </div>
             <div class="button button-flex">
-                <button type="button" class="btn" (click)="addClientForm.reset()">Clear</button>
+                <button type="button" class="btn" (click)="cancel()">Cancel</button>
+                <button type="button" class="btn" (click)="reset()">Clear</button>
                 <button type="submit" class="btn" (click)="save()">Save</button>
             </div>
         </form>

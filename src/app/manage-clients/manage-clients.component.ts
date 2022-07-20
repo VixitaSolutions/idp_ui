@@ -35,13 +35,15 @@ export class ManageClientsComponent implements OnInit {
   ngOnInit(): void {
     this.getClients();
     this.filter.valueChanges.subscribe(text => {
-      this.rows = of(this.search(text, this.pipe));
+      const filteredRows: Client[] = this.search(text, this.pipe);
+      this.rows = of(filteredRows);
+      this.collectionSize = filteredRows.length;
     });
   }
 
   search(text: string, pipe: PipeTransform): Client[] {
       return this.rowsActual.filter(client => {
-        const term = text.toLowerCase();
+        const term = text?.toLowerCase();
         return client.clientName?.toLowerCase().includes(term)
             || client.mobile?.toLowerCase().includes(term)
             // || (client.status)
@@ -51,6 +53,7 @@ export class ManageClientsComponent implements OnInit {
       });
   }
   getClients(): void {
+    // this.filter = undefined;
     this.manage = true;
     this.isBusy = true;
     this.clientService.getClients({status: null}, true).subscribe((data) => {
@@ -102,5 +105,8 @@ export class ManageClientsComponent implements OnInit {
     this.rows = of(this.rowsActual
       .map((country, i) => ({id: i + 1, ...country}))
       .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize));
+  }
+  clearSearch(): void {
+    this.filter.setValue(undefined);
   }
 }

@@ -35,12 +35,16 @@ export class ManageEmployeesComponent implements OnInit {
   ngOnInit(): void {
     this.getEmployees();
     this.filter.valueChanges.subscribe(text => {
-      this.rows = of(this.search(text));
+      if (this.selectedFilter && this.currentList) {
+        this.rows = of(this.search(text, this.currentList));
+      } else {
+        this.rows = of(this.search(text, this.rowsActual));
+      }
     });
   }
 
-  search(text: string): User[] {
-    return this.rowsActual.filter(user => {
+  search(text: string, list): User[] {
+    return list.filter(user => {
       const term = text.toLowerCase();
       return user.tenantName?.toLowerCase().includes(term)
         || user.mobile?.toLowerCase().includes(term)
@@ -105,10 +109,19 @@ export class ManageEmployeesComponent implements OnInit {
   applyFilter(id: string, name: string): void {
     if (id !== undefined) {
       this.selectedFilter = name;
-      this.currentList = this.rowsActual.filter(user => user.tenantId === id);
+      if (this.filter.value) {
+        const cList: User[] = this.search(this.filter.value, this.rowsActual);
+        this.currentList = cList.filter(user => user.tenantId === id);
+      } else {
+        this.currentList = this.rowsActual.filter(user => user.tenantId === id);
+      }
       this.refresh();
     } else {
-      this.currentList = this.rowsActual;
+      if (this.filter.value) {
+        this.currentList = this.search(this.filter.value, this.rowsActual);
+      } else {
+        this.currentList = this.rowsActual;
+      }
       this.selectedFilter = undefined;
       this.refresh();
     }

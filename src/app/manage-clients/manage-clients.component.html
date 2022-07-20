@@ -80,5 +80,5 @@
     </div>
 </div>
 <div *ngIf="!manage">
-    <app-add-client [clientDetails]="clientDetails" (closeEvent)="getClients($event)"></app-add-client>
+    <app-add-client [clientDetails]="clientDetails" (closeEvent)="getClients($event);clearSearch();"></app-add-client>
 </div>

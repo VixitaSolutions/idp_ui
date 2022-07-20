@@ -122,4 +122,7 @@ export class AddAdminComponent implements OnInit {
     this.addAdminForm.get('status').patchValue(true);
     this.userList = [];
   }
+  cancel(): void {
+    this.closeEvent.emit(true);
+  }
 }

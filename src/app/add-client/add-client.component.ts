@@ -92,4 +92,12 @@ export class AddClientComponent implements OnInit {
     }
     return undefined;
   }
+  cancel(): void {
+    this.closeEvent.emit(true);
+  }
+  reset(): void {
+    this.addClientForm.reset();
+    this.addClientForm.get('id').setValue(this.id);
+    this.addClientForm.get('clientName').setValue(this.clientName, {disabled: this.isDisable});
+  }
 }

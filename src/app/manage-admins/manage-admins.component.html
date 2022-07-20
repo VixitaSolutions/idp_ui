@@ -74,5 +74,5 @@
     </div>
 </div>
 <div *ngIf="!manage">
-    <app-add-admin [adminDetails]="adminDetails" (closeEvent)="getAdmins($event)"></app-add-admin>
+    <app-add-admin [adminDetails]="adminDetails" (closeEvent)="getAdmins($event);clearSearch();"></app-add-admin>
 </div>

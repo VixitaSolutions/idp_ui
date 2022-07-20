@@ -71,8 +71,8 @@ export class AuthenticationService {
         return this.http.post(`${environment.apiUrl}/api/v1/login/verify/otp`, {email, otp, otpType: 'FORGOT_PASSWORD'});
     }
 
-    createPassword(email, password): Observable<any> {
-        return this.http.post(`${environment.apiUrl}/api/v1/login/create/password`, {email, otp: password});
+    createPassword(email, password, currentPassword?): Observable<any> {
+        return this.http.post(`${environment.apiUrl}/api/v1/login/create/password`, {email, otp: password, currentPassword});
     }
 
     sendTemporaryPwd(email): Observable<any> {

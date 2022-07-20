@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { AuthenticationService } from '../../_services/authentication.service';
@@ -40,16 +40,28 @@ export class PasswordResetComponent implements OnInit {
         newPassword: new FormControl('', [Validators.required, Validators.pattern(passwordRegex)]),
         confirmPassword: new FormControl('', [Validators.required, Validators.pattern(passwordRegex)])
       });
+    if (this.emitValue) {
+      this.pwdResetForm.addControl('currentPassword', new FormControl('', [Validators.required]));
+    }
   }
   get f(): { [key: string]: AbstractControl } { return this.pwdResetForm.controls; }
 
   isPasswordMatch(): boolean {
     return this.pwdResetForm.get('newPassword').value === this.pwdResetForm.get('confirmPassword').value;
   }
+  isCurrentPasswordMatch(): boolean {
+    return (this.pwdResetForm.get('newPassword')?.value === this.pwdResetForm.get('currentPassword')?.value);
+  }
   save(): void {
     if (this.pwdResetForm.valid && this.userMail && this.isPasswordMatch()) {
-      console.log(this.pwdResetForm.value);
-      this.authService.createPassword(this.userMail, this.pwdResetForm.get('confirmPassword').value).subscribe(data => {
+      if (this.pwdResetForm.get('currentPassword')?.value) {
+        if (this.isCurrentPasswordMatch()) {
+          this.toastrService.error(`New password must not be the current password`, 'Failure');
+          return;
+        }
+      }
+      this.authService.createPassword(this.userMail, this.pwdResetForm.get('confirmPassword').value,
+      this.pwdResetForm.get('currentPassword')?.value).subscribe(data => {
         if (data.status === 'SUCCESS') {
           this.toastrService.success('Password reset successfully !! Please Login!!!', 'Success');
           if (!this.emitValue) {

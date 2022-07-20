@@ -31,7 +31,9 @@ export class ManageAdminsComponent implements OnInit {
   ngOnInit(): void {
     this.getAdmins();
     this.filter.valueChanges.subscribe(text => {
-      this.rows = of(this.search(text));
+      const filteredRows: User[] = this.search(text);
+      this.rows = of(filteredRows);
+      this.collectionSize = filteredRows.length;
     });
   }
   search(text: string): User[] {
@@ -98,5 +100,8 @@ export class ManageAdminsComponent implements OnInit {
     this.rows = of(this.rowsActual
       .map((country, i) => ({ id: i + 1, ...country }))
       .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize));
+  }
+  clearSearch(): void {
+    this.filter.setValue(undefined);
   }
 }
