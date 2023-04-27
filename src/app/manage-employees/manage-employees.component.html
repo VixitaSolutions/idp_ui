@@ -1,7 +1,18 @@
 <div *ngIf="manage">
     <h2>Overview</h2>
     <div *appBusyIndicator="isBusy"></div>
-    <div class="column">
+
+    <div class="card">
+  
+        <div class="card-content">
+          <h3>Employee Data</h3>
+          <p style="width: 482px;">We believe in creating long-term relationship with our valued global customers.</p>
+        </div>
+          <div class="card-pic-wrap">
+          <img src="./assets/images/employee.jpeg" alt="A leafy plant">
+        </div>
+      </div>
+    <!-- <div class="column">
         <div class="col overlap">
             <div class="overlap-txt">
                 <h2>Employee Data</h2>
@@ -11,7 +22,7 @@
                 <img class="overlay-img" src="./assets/images/employee.jpeg" />
             </i>
         </div>
-    </div>
+    </div> -->
     <!-- <button class="btn btn-outline-custom" (click)="addClient()">Add</button> -->
     <div class="table-responsive">
         <nav class="navbar navbar-light bg-light">

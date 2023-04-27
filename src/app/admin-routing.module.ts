@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { ManageAdminsComponent } from './manage-admins/manage-admins.component';
 import { ManageClientsComponent } from './manage-clients/manage-clients.component';
 import { ManageEmployeesComponent } from './manage-employees/manage-employees.component';
+import { UploadCompetancyComponent } from './upload-competancy/upload-competancy.component';
 import { UploadDataComponent } from './upload-data/upload-data.component';
 
 const routes: Routes = [
@@ -24,7 +25,7 @@ const routes: Routes = [
   {path: 'manage-employees', component: ManageEmployeesComponent},
   {path: 'competency-mapping', component: CompetencyMappingComponent},
   {path: 'upload-employees', component: UploadDataComponent},
-  {path: 'upload-competency', component: UploadDataComponent}]
+  {path: 'upload-competency', component: UploadCompetancyComponent}]
 },
 // { path: '', redirectTo: 'admin', pathMatch: 'full' }
 // { path: '', component: CommonComponent }

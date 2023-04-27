@@ -1,0 +1,38 @@
+<div class="modal-header">
+    <h4 class="modal-title">Search Details</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+  
+    <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-8 col-lg-5">
+            <!-- <h6 class="text-muted">List Group with Images</h6>  -->
+          
+            <ul class="list-group" *ngFor="let info of gInfo['value'];let i = index">
+           
+                  <a  class="my-1 list-group-item list-group-item-action d-flex justify-content-between align-items-center" style="width: 45em;"> 
+                    <div class="flex-column" >
+                      <a [href]="info.url" target="_blank">{{info.title}}</a> 
+                      <p style="font-size: 12px; color: black;">
+                        {{info.description }}
+                        </p>
+                      <!-- <span class="badge badge-info badge-pill"> 2 Copies in Stock</span> -->
+                    </div>
+                    <div class="image-parent" style="margin-left: 15em;">
+                     
+                        <img  [src]="info.image?.url == ''? 'assets/images/noimg.jpg' : info.image?.url" class="img-fluid" alt="quixote">
+                    </div>
+                    <button class="btn btn-primary btn-sm" style="float: right;margin-right: -3em;width: 2em;margin-left: 1em;height: 1.9em;" [disabled]="isButtonDisable" (click)="addItem(info)">+</button>
+                    <!-- <button class="btn btn-primary btn-sm" style="float: right;margin-right: -3em;width: 2em;margin-left: 1em;height: 1.9em;" [disabled]="isButtonDisable" (click)="addItem(info)">-</button> -->
+                  </a>
+             
+            </ul>
+            
+          </div>
+        </div>
+      </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="closeModal('dismiss')">Close</button>
+</div>

@@ -8,7 +8,7 @@
         <form [formGroup]="taskForm">
             <div class="form-group mb-3">
                 <label for="employeeId">Employee Name</label>
-                <select id="employeeId" placeholder="Status" class="form-control"
+                <select id="employeeId" placeholder="Status" class="form-control input-field"
                     formControlName="employeeId" [ngClass]="{ 'is-invalid': f.employeeId.touched && f.employeeId.errors }">
                     <option [value]="user.id" *ngFor="let user of userList">{{user.firstName}} {{user.lastName}}</option>
                 </select>
@@ -18,18 +18,18 @@
             </div>
             <div class="form-group mb-3">
                 <label for="Competency">Competency</label>
-                <select id="competency" class="form-control" #competency
+                <select id="competency" class="form-control input-field" #competency
                     (change)="setLevels(competency.value)">
                     <option selected disabled>select</option>
-                    <option [value]="competency" *ngFor="let competency of Object.keys(competencyList)">{{competency}}</option>
+                    <option [value]="competency" *ngFor="let competency of competencyDropdown">{{competency}}</option>
                 </select>
             </div>
             <div class="form-group mb-3">
                 <label for="level">Level</label>
-                <select id="level" class="form-control" #level
+                <select id="level" class="form-control input-field" #level
                     formControlName="competencyId" [ngClass]="{ 'is-invalid': f.competencyId.touched && f.competencyId.errors }"
-                    (change)="setKeywords(level.value)">
-                    <option [value]="competency.id" *ngFor="let competency of competencyLevels">{{competency.level}}</option>
+                    [(ngModel)]="selectedcomptny" (change)="setKeywords(selectedcomptny)">
+                    <option [value]="competency.cLevel" *ngFor="let competency of competencyLevels">{{competency.cLevel}}</option>
                 </select>
                 <small *ngIf="f.competencyId.touched && f.competencyId.errors" class="form-text text-muted">
                     <div *ngIf="f.competencyId.errors.required">Competency/Level is required</div>
@@ -37,11 +37,13 @@
             </div>
             <div class="form-group mb-3">
                 <label for="firstName">Search On </label>
-                <a (click)="gotoGoogle()" [ngClass]="{'default-cursor': !keywords, 'g-search': keywords}"><img class="search-icon" src="./assets/icons/google.png" alt="google search"/></a>
+                <!-- <a target="_blank" routerLink="/searchInfo"><img class="search-icon" src="./assets/icons/google.png" alt="google search"/></a> -->
+
+                <a (click)="gotoGoogle()" title="Click here to search" [ngClass]="{'default-cursor': !keywords, 'g-search': keywords}"><img class="search-icon" src="./assets/icons/google.png" alt="google search"/></a>
             </div>
             <div class="form-group mb-3">
                 <label for="taskName">Task Name</label>
-                <input type="text" id="taskName" placeholder="Task name" class="form-control"
+                <input type="text" id="taskName" placeholder="Task name" class="form-control input-field"
                     formControlName="taskName" [ngClass]="{ 'is-invalid': f.taskName.touched && f.taskName.errors }">
                 <small *ngIf="f.taskName.touched && f.taskName.errors" class="form-text text-muted">
                     <div *ngIf="f.taskName.errors.required">Task name is required</div>
@@ -49,13 +51,18 @@
             </div>
             <div class="form-group mb-3">
                 <label for="description">Description</label>
-                <textarea type="text" id="description" placeholder="Description" class="form-control"
+                <textarea type="text" id="description" placeholder="Description" class="form-control input-field"
                     formControlName="taskDescription">
                 </textarea>
             </div>
             <div class="form-group mb-3">
+                <label for="refUrl">Referance URL</label>
+                <input type="text" id="refUrl" class="form-control input-field" readonly
+                    formControlName="referanceUrl"/>
+            </div>
+            <div class="form-group mb-3">
                 <label for="duration">Duration</label>
-                <input type="text" id="duration" placeholder="Days to be allotted" class="form-control"
+                <input type="text" id="duration" placeholder="Days to be allotted" class="form-control input-field"
                     formControlName="duration" [ngClass]="{ 'is-invalid': f.duration.touched && f.duration.errors }">
                 <small *ngIf="f.duration.touched && f.duration.errors" class="form-text text-muted">
                     <div *ngIf="f.duration.errors.required">Duration is required</div>

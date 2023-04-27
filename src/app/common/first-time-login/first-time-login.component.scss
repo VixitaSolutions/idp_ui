@@ -1,0 +1,338 @@
+
+.flex-item {
+    text-align: center;
+  }
+  .login-container {
+    max-width: 833px;
+    max-height: 416px;
+  }
+  
+  .footer {
+    border-top: 1px solid #9551d2;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+  }
+  .login-form {
+    padding: 40px 0px 0px 0px;
+  }
+  .input-container {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    margin-bottom: 15px;
+  }
+  .icon {
+    // padding: 10px;
+    color: black;
+    min-width: 50px;
+    text-align: center;
+    img {
+        width: 30px;
+        filter: grayscale(1);
+    }
+  }
+  
+  .input-field {
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    height: 30px;
+    box-shadow: 0px 2px 7px 0px #8C84FA;
+    font-family: avenir-lite;
+  }
+  
+  .input-field:focus {
+    border: 2px solid #8015E8;
+  }
+  .navigation {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    padding-inline-start: 0;
+    list-style: none;
+    margin: 0;
+  }
+  .navigation li, a {
+    text-decoration: none;
+    padding: 1em;
+  }
+   .login-hdr {
+    font-family: 'avenir-bold';
+    font-weight: bold; 
+   }
+   .login-hdr-text {
+    color: #757575 !important;
+   }
+   .login-sign-up {
+    font-family: 'avenir-bold'; 
+    color:#8015E8;
+   }
+  .proxima {
+    font-family: Proxima Nova;
+  }
+  .avenir-lte {
+      font-family: 'avenir-lite';
+  }
+  .login-rem-pwd {
+      display: flex;
+      justify-content: space-around;
+  }
+  .login-submit{
+      padding: 10%;
+      button {
+          border-radius: 30px;
+          background: #8015E8;
+          height: 40px;
+          border: none;
+          cursor: pointer;
+      }
+      button:hover{
+        color: #000000 !important;
+        cursor: pointer;
+    }
+  }
+  
+  .no-padding {
+    padding: 0 !important;
+  }
+  
+  @media all and (max-width: 800px) {
+    .navigation {
+      justify-content: space-around;
+    }
+  }
+  
+  @media all and (max-width: 600px) {
+    .navigation {
+      flex-flow: column wrap;
+      padding: 0;
+    }
+    .navigation a { 
+      text-align: center; 
+      padding: 10px;
+      border-top: 1px solid rgba(255, 255, 255,0.3); 
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1); 
+    }
+    .navigation li:last-of-type a {
+      border-bottom: none;
+    }
+  }
+  @media all and (min-width: 600px) {
+    .lg-img { flex: 1 0 0; }
+  }
+  
+  @media all and (min-width: 800px) {
+    .main    { flex: 1 0px; }
+    .lg-img { order: 1; } 
+    .lg-form    { order: 2; }
+  }
+  .rem-content {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+  .modal{z-index:3;display:block;top:18%}
+  .modal-dialog {max-width: 850px};
+  .btn {
+    position: absolute;
+    top: 10%;
+    right: 0;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: #a278e6;
+    color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  .pwd-icon {
+    float: right;
+    margin-right: 5px;
+    margin-top: -25px;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .container .btn:hover {
+    background-color: black;
+  }
+  
+  
+  // New Styles
+  body {
+    background-color: #f9f9fa;
+  }
+  
+  
+  .flex {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto
+  }
+  
+  @media (max-width:991.98px) {
+    .padding {
+        padding: 1.5rem
+    }
+  }
+  
+  @media (max-width:767.98px) {
+    .padding {
+        padding: 1rem
+    }
+  }
+  
+  .padding {
+    padding: 2.8rem
+  }
+  
+  
+  .card {
+    background: #fff;
+    border-width: 0;
+    border-radius: .25rem;
+    box-shadow: 0px 2px 7px 0px #8C84FA !important;
+    margin-bottom: 1.5rem
+  }
+  
+  
+  .card-header {
+    background-color: transparent;
+    border-color: rgba(160, 175, 185, .15);
+    background-clip: padding-box
+  }
+  
+  .card-body p:last-child {
+    margin-bottom: 0
+  }
+  
+  .card-hide-body .card-body {
+    display: none
+  }
+  
+  .form-check-input.is-invalid~.form-check-label,
+  .was-validated .form-check-input:invalid~.form-check-label {
+    color: #f54394
+  }
+  @media all and (min-width: 600px) {
+    .lg-img { flex: 1 0 0; }
+  }
+  
+  @media all and (min-width: 800px) {
+    .main    { flex: 1 0px; }
+    .lg-img { order: 1; } 
+    .lg-form    { order: 2; }
+  }
+  
+  
+  
+  .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-bottom: 3em;
+  }
+  
+  .container * {
+    box-sizing: border-box;
+  }
+  
+  .flex-outer {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .flex-outer {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .flex-outer li{
+    display: flex;
+    height: 39px;
+    align-items: center;
+  }
+  
+  .flex-outer > li:last-child {
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+  
+  .flex-outer li label,
+  .flex-outer li p {
+    padding: 5px;
+    // font-weight: 300;
+    // letter-spacing: .09em;
+    // text-transform: uppercase;
+  }
+  
+  .flex-outer > li > label,
+  .flex-outer li p {
+    flex: 1 0 120px;
+  }
+  
+  .flex-outer > li > label + * {
+    flex: 1 0 220px;
+  }
+  
+  .flex-outer li p {
+    margin: 0;
+  }
+  
+  .flex-outer li input:not([type='checkbox']),
+  .flex-outer li textarea {
+    padding: 10px;
+    border: none;
+  }
+  
+  .flex-outer li button {
+    margin-left: auto;
+    padding: 8px 16px;
+    border: none;
+    background: #8015E8;
+    color: #f2f2f2;
+    // text-transform: uppercase;
+    letter-spacing: .09em;
+    border-radius: 15px;
+    cursor: pointer;
+  }
+  .flex-outer li input {
+    width: 100%;
+  }
+  .e-icon img {
+    height: 18px;
+  }
+  .icon img {
+    height: 30px;
+  }
+  .input-field {
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    height: 30px;
+    box-shadow: 0px 2px 7px 0px #8C84FA;
+  }
+  
+  .input-field:focus {
+    border: 2px solid #8015E8;
+  }
+  .signup-hdr {
+    padding: 2em 0 0 2em;
+  }
+  .font-hdr {
+      list-style: none;
+  }
+  .common-font {
+    font-family: 'avenir-lite';
+    color: #757575;
+    font-size: 15px;
+  }
+  
+  .invalid-feedback {
+    margin-left: 3em;
+  }
+  
+  .w-reg-btn {
+    width: 95px;
+  }

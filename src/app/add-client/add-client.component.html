@@ -9,7 +9,7 @@
         <form [formGroup]="addClientForm">
             <div class="form-group mb-3">
                 <label for="clientName">Client Name</label>
-                <input type="text" id="clientName" placeholder="Client name" class="form-control" formControlName="clientName" [ngClass]="{ 'is-invalid': f.clientName.touched && f.clientName.errors }">
+                <input type="text" id="clientName " placeholder="Client name" class="form-control input-field" formControlName="clientName" [ngClass]="{ 'is-invalid': f.clientName.touched && f.clientName.errors }">
                 <small *ngIf="f.clientName.touched && f.clientName.errors" class="form-text text-muted">
                     <div *ngIf="f.clientName.errors.required">Client name is required</div>
                     <div *ngIf="f.clientName.errors.email">Invalid client name</div>
@@ -17,7 +17,7 @@
             </div>
             <div class="form-group mb-3">
                 <label for="mobile">Mobile Number</label>
-                <input type="text" id="mobile" placeholder="Client number" class="form-control"
+                <input type="text" id="mobile" placeholder="Client number" class="form-control input-field"
                     formControlName="mobile" [ngClass]="{ 'is-invalid': f.mobile.touched && f.mobile.errors }">
                 <small *ngIf="f.mobile.touched && f.mobile.errors" class="form-text text-muted">
                     <div *ngIf="f.mobile.errors.required">Mobile number is required</div>
@@ -26,7 +26,7 @@
             </div>
             <div class="form-group mb-3">
                 <label for="email">Email Address</label>
-                <input type="text" id="email" placeholder="Client email" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': f.email.touched && f.email.errors }">
+                <input type="text" id="email" placeholder="Client email" class="form-control input-field" formControlName="email" [ngClass]="{ 'is-invalid': f.email.touched && f.email.errors }">
                 <small *ngIf="f.email.touched && f.email.errors" class="form-text text-muted">
                     <div *ngIf="f.email.errors.required">Client email is required</div>
                     <div *ngIf="f.email.errors.pattern">Invalid email</div>
@@ -36,7 +36,7 @@
                 <label for="subscriptionStartDate">Subscription Start Date</label>
                 <div class="input-group">
                         <!-- (keydown)="$event.preventDefault()" -->
-                <input id="subscriptionStartDate" placeholder="yyyy-mm-dd" class="form-control"
+                <input id="subscriptionStartDate" placeholder="yyyy-mm-dd" class="form-control input-field"
                     
                     formControlName="subscriptionStartDate" ngbDatepicker #d1="ngbDatepicker"
                     [ngClass]="{ 'is-invalid': f.subscriptionStartDate.touched && f.subscriptionStartDate.errors }">
@@ -52,14 +52,14 @@
             <div class="form-group mb-3">
                 <label for="subscriptionEndDate">Subscription End Date</label>
                 <div class="input-group">
-                    <input id="subscriptionEndDate" placeholder="yyyy-mm-dd" class="form-control"
+                    <input id="subscriptionEndDate" placeholder="yyyy-mm-dd" class="form-control input-field"
                         formControlName="subscriptionEndDate" ngbDatepicker #d2="ngbDatepicker"
                         [ngClass]="{ 'is-invalid': f.subscriptionEndDate.touched && f.subscriptionEndDate.errors }">
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary calendar" (click)="d2.toggle()" type="button"></button>
                     </div>
                 </div>
-                <!-- <input type="date" id="subscriptionEndDate" placeholder="Subscription end date" class="form-control"
+                <!-- <input type="date" id="subscriptionEndDate" placeholder="Subscription end date" class="form-control input-field"
                     formControlName="subscriptionEndDate"
                     [ngClass]="{ 'is-invalid': f.subscriptionEndDate.touched && f.subscriptionEndDate.errors }"> -->
                 <small *ngIf="f.subscriptionEndDate.touched && f.subscriptionEndDate.errors" class="form-text text-muted">
@@ -76,7 +76,7 @@
                     [ngClass]="{ 'is-invalid': f.status.touched && f.status.errors }">
                 </div>
                 <!-- <label for="status">Status</label>
-                <select id="status" placeholder="Status" class="form-control" formControlName="status" [ngClass]="{ 'is-invalid': f.status.touched && f.status.errors }">
+                <select id="status" placeholder="Status" class="form-control input-field" formControlName="status" [ngClass]="{ 'is-invalid': f.status.touched && f.status.errors }">
                     <option>Active</option>
                     <option>Inactive</option>
                 </select> -->

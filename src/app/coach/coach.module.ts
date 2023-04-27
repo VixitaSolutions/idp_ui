@@ -7,13 +7,15 @@ import { HomeComponent } from './home/home.component';
 import { SharedModule } from '../shared/shared.module';
 import { CoursesAssignedComponent } from './courses-assigned/courses-assigned.component';
 import { CourseAssignmentComponent } from './course-assignment/course-assignment.component';
+import { GoogleSearchComponent } from './google-search/google-search.component';
 
 @NgModule({
   declarations: [
     CoachComponent,
     HomeComponent,
     CoursesAssignedComponent,
-    CourseAssignmentComponent
+    CourseAssignmentComponent,
+    GoogleSearchComponent
   ],
   imports: [
     CoachRoutingModule,

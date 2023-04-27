@@ -8,7 +8,7 @@
         <form [formGroup]="addEmployeeForm" (ngSubmit)="save()">
             <div class="form-group mb-3">
                 <label for="employeeName">Employee Name</label>
-                <input type="text" id="employeeName" placeholder="Employee Name" class="form-control" formControlName="employeeName" 
+                <input type="text" id="employeeName" placeholder="Employee Name" class="form-control input-field" formControlName="employeeName" 
                     [ngClass]="{ 'is-invalid': f.employeeName.touched && f.employeeName.errors }">
                 <small *ngIf="f.employeeName.touched && f.clientName.errors" class="form-text text-muted">
                     <div *ngIf="f.employeeName.errors.required">Employee Name is required</div>
@@ -17,7 +17,7 @@
             </div>
             <div class="form-group mb-3">
                 <label for="clientName">Client Name</label>
-                <input type="text" id="clientName" placeholder="Client Name" class="form-control" formControlName="clientName" [ngClass]="{ 'is-invalid': f.clientName.touched && f.clientName.errors }">
+                <input type="text" id="clientName" placeholder="Client Name" class="form-control input-field" formControlName="clientName" [ngClass]="{ 'is-invalid': f.clientName.touched && f.clientName.errors }">
                 <small *ngIf="f.clientName.touched && f.clientName.errors" class="form-text text-muted">
                     <div *ngIf="f.clientName.errors.required">Client Name is required</div>
                     <div *ngIf="f.clientName.errors.email">Invalid Client Name</div>
@@ -25,7 +25,7 @@
             </div>
             <div class="form-group mb-3">
                 <label for="email">Email Address</label>
-                <input type="text" id="email" placeholder="Client Email" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': f.email.touched && f.mobile.errors }">
+                <input type="text" id="email" placeholder="Client Email" class="form-control input-field" formControlName="email" [ngClass]="{ 'is-invalid': f.email.touched && f.mobile.errors }">
                 <small *ngIf="f.email.touched && f.email.errors" class="form-text text-muted">
                     <div *ngIf="f.email.errors.required">Client Email is required</div>
                     <div *ngIf="f.email.errors.email">Invalid Client Name</div>
@@ -33,7 +33,7 @@
             </div>
             <div class="form-group mb-3">
                 <label for="mobile">Mobile Number</label>
-                <input type="text" id="mobile" placeholder="Client Number" class="form-control" formControlName="mobile" [ngClass]="{ 'is-invalid': f.mobile.touched && f.mobile.errors }">
+                <input type="text" id="mobile" placeholder="Client Number" class="form-control input-field" formControlName="mobile" [ngClass]="{ 'is-invalid': f.mobile.touched && f.mobile.errors }">
                 <small *ngIf="f.mobile.touched && f.mobile.errors" class="form-text text-muted">
                     <div *ngIf="f.mobile.errors.required">Mobile is required</div>
                 </small>

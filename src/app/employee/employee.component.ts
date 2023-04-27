@@ -48,6 +48,7 @@ export class EmployeeComponent implements OnInit {
                     {
                     name: 'My Courses', url: '',
                     children: [
+                      { name: 'My IDP', url: 'idp' },
                       { name: 'Courses', url: 'courses' },
                       { name: 'Achievements', url: 'achievements' }
                     ]

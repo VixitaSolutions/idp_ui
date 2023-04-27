@@ -5,8 +5,16 @@ import { environment } from '../../environments/environment';
 import { User } from '../_models/user';
 import { Observable } from '../../../node_modules/rxjs';
 import { catchError, map, tap } from '../../../node_modules/rxjs/operators';
-import { Role } from '../_models/role';
-import { env } from 'process';
+
+const GAPIKEY = 'AIzaSyC1OqVGZsC_-VWNpGPyoa7ClyavF4n8FqE';
+const GAPIURL = 'https://www.googleapis.com/customsearch/v1';
+
+let headers = new HttpHeaders()
+.set('X-RapidAPI-Key', 'b7100fe224msha035ded6b2457ebp14416ejsn2d36f23b4136')
+.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE')
+.set('X-RapidAPI-Host', 'contextualwebsearch-websearch-v1.p.rapidapi.com')
+.set('Content-Type', 'application/json')
+
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -16,6 +24,9 @@ export class UserService {
         return this.http.get<User[]>(`${environment.apiUrl}/users`);
     }
 
+    getGSearchResults(keyword: string): Observable<any>{
+        return this.http.get<any>(`https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/WebSearchAPI?q=${keyword}&pageNumber=1&pageSize=10&autoCorrect=true`, {headers});
+    }
     getById(): Observable<User> {
         return this.http.get<User>(`${environment.apiUrl}/api/v1/user/profile`)
         .pipe(map((data: any) => {
@@ -37,6 +48,15 @@ export class UserService {
         const formData: FormData = new FormData();
         formData.append('fileToUpload', file);
         const req = new HttpRequest('POST', `${environment.apiUrl}/api/v1/userUpload/upload/${tenantId}`, formData, {
+        reportProgress: true,
+        responseType: 'json'
+        });
+        return this.http.request(req);
+    }
+    uploadCompetency(tenantId: string, file: File): Observable<HttpEvent<any>> {
+        const formData: FormData = new FormData();
+        formData.append('file', file);
+        const req = new HttpRequest('POST', `${environment.apiUrl}/api/excel/upload/${tenantId}`, formData, {
         reportProgress: true,
         responseType: 'json'
         });

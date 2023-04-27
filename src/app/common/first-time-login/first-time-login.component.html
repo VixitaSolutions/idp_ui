@@ -1,0 +1,96 @@
+<div class="idp-body flexy">
+    <div class="card" style="width: 75em; height: 40em;">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="mx-auto d-block">
+                    <img class="img-fluid p-4 m-4 pb-0 mb-0" src="assets/images/company-logo.jpeg" /> <br>
+                    <img class="mx-auto d-block p-0 m-0" src="./assets/images/registration.jpg" width="480" height="480" />
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div id="content" class="flex">
+                    <div class="">
+                        <div class="page-content page-container" id="page-content">
+                            <div class="padding">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="card shadow shadow-primary p-3 mb-5 bg-white rounded shadow-intensity-lg"
+                                            style="width: 34em;height: 34em;">
+                                            <div class="card-header">
+                                                <div class="row">
+                                                    <div class="col-md-8 pt-1 mt-2">
+                                                        <h3 class="float-left font-weight-bold"><strong>First Time Login?</strong> </h3>
+                                                    </div>
+                                                    <div class="col-md-4 p-0 m-0">
+                                                        <a routerLink="/security/login" class="float-right text-decoration-underline font-weight-bold" style="text-align: end;"><h6>Login</h6></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card-body">
+                                                <form>
+                                                    <label for="form-label"><strong>Enter the Email ID on which the OTP will be sent</strong></label>
+                                                    <div class="form-group row mt-4">
+                                                        <!-- <label class="col-md-1 control-label p-1">
+                                                            <i class="icon">
+                                                                <img src="assets/icons/email_black.jpg" />
+                                                            </i>
+                                                        </label> -->
+                                                        <div class="col-md-12 m-0 p-0">
+                                                            <input class="form-control input-field p-3 mb   -2" type="text"
+                                                                placeholder="Emai ID" name="userName"
+                                                                formControlName="userName" style="height: 2.4em;">
+                                                            <!-- <div class="invalid-feedback d-block">
+                                                                <div>User Name is required</div>
+                                                            </div> -->
+                                                        </div>
+                                                        <div class="login-submit text-end p-0 mt-3 mb-4">
+                                                            <button class="avenir-lte w-25 font-18 white" type="submit"
+                                                                click="login()">Submit</button>
+                                                            <!-- <div *ngIf="showError" style="color: red; margin-top: 15px" class="font-18">
+                                                  <span> {{showError}}</span>
+                                               </div> -->
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </form>
+                                                <form>
+                                                    <label for="form-label">Enter the OTP that has been sent to your Email ID</label>
+                                                    <div class="form-group row mt-4">
+                                                        <!-- <label class="col-md-6 control-label p-2">
+                                                            <span class="text-danger">*</span> <label for="form-label">Enter Temporary Password</label>
+                                                        </label> -->
+                                                        <div class="col-md-12 m-0 p-0">
+                                                        
+                                                            <input class="form-control input-field p-3 mb-2" type="text"
+                                                                placeholder="Enter OTP" name="userName"
+                                                                formControlName="userName" style="height: 2.4em;">
+                                                            <!-- <div class="invalid-feedback d-block">
+                                                                <div>User Name is required</div>
+                                                            </div> -->
+                                                        </div>
+                                                        <div class="login-submit text-end p-0 mt-3">
+                                                            <button class="avenir-lte w-25 font-18 white" type="submit"
+                                                                click="login()">Validate</button>
+                                                            <!-- <div *ngIf="showError" style="color: red; margin-top: 15px" class="font-18">
+                                                  <span> {{showError}}</span>
+                                               </div> -->
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </form>
+                                            </div>
+                                            <!-- <div class="card-footer bg-white text-center">
+                                     <span class="m-t-1 mb-1">App Version 1.0</span> <br>
+                                     <a href="" (click)="$event.preventDefault();isViewPrivacyDoc = !isViewPrivacyDoc" color="Grey">Privacy Policy</a>
+                                  </div> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

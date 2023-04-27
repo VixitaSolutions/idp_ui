@@ -1,7 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDate, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, of } from 'rxjs';
 import { Client, Competency } from 'src/app/_models/admin';
@@ -10,6 +11,7 @@ import { TaskStatus } from 'src/app/_models/taskStatus';
 import { User } from 'src/app/_models/user';
 import { ClientService } from 'src/app/_services/client.service';
 import { UserService } from 'src/app/_services/user.service';
+import { GoogleSearchComponent } from '../google-search/google-search.component';
 
 @Component({
   selector: 'app-course-assignment',
@@ -38,32 +40,47 @@ export class CourseAssignmentComponent implements OnInit {
   keywords: string;
   competencyLevels: Competency[];
   Object = Object;
-
+  gdata: any[];
+  competencyDropdown: Array<any> = [];
+  selectedcomptny:any;
   constructor(
     private clientService: ClientService,
     private toastrService: ToastrService,
     private userService: UserService,
-    private router: Router) { }
+    private modalService: NgbModal,
+    private router: Router) { 
+    }
 
   ngOnInit(): void {
     const obj = JSON.parse(sessionStorage.getItem('currentUser'));
     this.loggedInUserId = obj?.userId;
     this.getReportingEmployees();
     this.clientService.getCompetencies().subscribe(data => {
-      this.competencyList = data.data.reduce((group, a) => { group[a.name] = [...group[a.name] || [], a]; return group; }, {});
+      // this.competencyList = data.data.reduce((group, a) => { group[a.name] = [...group[a.name] || [], a]; return group; }, {});
+      // console.log(this.competencyList);
+      this.competencyList = data;
       console.log(this.competencyList);
+      this.competencyList.forEach(resp => {
+        this.competencyDropdown.push(resp.cName);
+      })
+
+      this.competencyDropdown = this.removeDuplicates(this.competencyDropdown);
     });
+    
     this.taskForm = new FormGroup({
       taskId: new FormControl(null),
       employeeId: new FormControl('', [Validators.required]),
       competencyId: new FormControl('', [Validators.required]),
       taskName: new FormControl('', [Validators.required]),
       taskDescription: new FormControl('', [Validators.required]),
+      referanceUrl: new FormControl('', [Validators.required]),
       duration: new FormControl('', [Validators.required, Validators.pattern('^[0-9]+$')]),
       taskStatus: new FormControl(TaskStatus.OPEN, [Validators.required])
     });
   }
-
+  removeDuplicates(array: any[]): any[] {
+    return array = array.filter((element, i) => i === array.indexOf(element));
+  }
   get f(): { [key: string]: AbstractControl } { return this.taskForm.controls; }
 
   get isDisable(): boolean { return this.disableName; }
@@ -78,6 +95,7 @@ export class CourseAssignmentComponent implements OnInit {
     if (this.taskForm.valid) {
       this.isBusy = true;
       const payload = this.taskForm.getRawValue();
+      // payload.competencyId = parseInt(payload.competencyId.replace('L',''))
       this.userService.saveTask(payload).subscribe((data) => {
         if (data.status === 'SUCCESS') {
           this.toastrService.success('Task created successfully', 'Success');
@@ -110,24 +128,53 @@ export class CourseAssignmentComponent implements OnInit {
     });
   }
   gotoGoogle(): void {
-   window.open(`https://www.google.com/search?q=${this.keywords}`, '_blank');
-  }
+    this.userService.getGSearchResults(this.keywords).subscribe(data=>{
+      const modalRef = this.modalService.open(GoogleSearchComponent, { size: 'lg' });
+       modalRef.componentInstance.gInfo = data;
+       modalRef.result.then((result) => {
+        console.log(result);
+        // this.taskForm.setValue()
+        this.taskForm.controls.referanceUrl.setValue(result['url']);
+      }, (reason) => {
+      });
+  //  window.open(`https://www.google.com/search?q=${this.keywords}`, '_blank');
+  });
+}
   setLevels(competency): void {
+    this.competencyLevels = [];
+    console.log(competency);
     this.keywords = undefined;
-    if (competency) {
-      this.competencyLevels = this.competencyList[competency];
-    }
-    console.log(Object.keys(this.competencyList).filter(c => c === competency));
+    this.competencyLevels = this.competencyList.filter(event =>{
+      if(event.cName.includes(competency)){
+        return event;
+      }
+    })
+    this.competencyLevels = this.removeDuplicates(this.competencyLevels);
+    // if (competency) {
+    //   this.competencyLevels = this.competencyList[competency];
+    // }
+    // console.log(Object.keys(this.competencyList).filter(c => c === competency));
   }
   setKeywords(data): void {
-    if (data) {
-      const gCompetency = this.competencyLevels.filter(competency => competency.id === +data).map(c => c.globalCompetency);
-      if (gCompetency.length > 0 && gCompetency[0]?.keywords) {
-        const keywords = gCompetency[0]?.keywords;
-        let keysList = keywords && keywords.split(',') || null;
-        keysList = keysList.map(m => m.trim());
-        this.keywords = keysList.join('+');
-      }
+    console.log(data);
+    console.log(JSON.stringify(data));
+    if(data)
+    {
+      const cLevel = this.competencyLevels.filter((event: any) => {
+        if(event.cLevel == data){
+          return event.keywords;
+        }
+      })
+      this.keywords = cLevel[0].keywords;
     }
+    // if (data) {
+    //   const gCompetency = this.competencyLevels.filter(competency => competency.id === +data).map(c => c.globalCompetency);
+    //   if (gCompetency.length > 0 && gCompetency[0]?.keywords) {
+    //     const keywords = gCompetency[0]?.keywords;
+    //     let keysList = keywords && keywords.split(',') || null;
+    //     keysList = keysList.map(m => m.trim());
+    //     this.keywords = keysList.join('+');
+    //   }
+    // }
   }
 }

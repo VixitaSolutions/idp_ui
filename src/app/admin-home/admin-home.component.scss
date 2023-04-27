@@ -6,16 +6,25 @@
 .menu-icon {
     width: 20%;
 }
-.card {
-    cursor: pointer;
-    width: 40%;
-}
+// .card {
+//     cursor: pointer;
+//     width: 40%;
+// }
 
 .card-spl {
-    width: 35% !important;
+    width: 25% !important;
     .hdr {
         background: lightgrey;
         width: 100%;
         text-align: center
     }
 }
+.card {
+    cursor: pointer;
+    width: 30%;
+    background: #fff;
+    border-width: 0;
+    border-radius: .25rem;
+    box-shadow: 0px 2px 7px 0px #8C84FA !important;
+    margin-bottom: 1.5rem
+  }

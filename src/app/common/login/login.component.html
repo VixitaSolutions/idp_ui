@@ -1,96 +1,123 @@
 <div class="idp-body flexy">
-    <div class="flex-container flex-wrap-wrap mx-1 login-container">
-        <aside class="flex-item lg-img main sm-w-100">
-            <img class="w-100 h-100" src="./assets/images/idp.jpg" />
-        </aside>
-        <article class="flex-item main lg-form sm-w-100">
-            <ul class="navigation">
-                <li class="login-hdr font-18">Login</li>
-                <li class="login-hdr-text font-12 proxima">Don't have an account?
-                    <a class="login-sign-up no-padding font-14" routerLinkActive="active-link" routerLink="/security/register">Sign Up</a>
-                </li>
-            </ul>
-            <article class="login-form">
-                <div class="container">
-                    <div class="row">
-                        <form id="login-form" [formGroup]="loginForm">
-                            <div class="form-group row mb-2" [ngClass]="{ 'mb-0': f.userName.touched && f.userName.errors }">
-                                <label class="col-md-2 control-label">
-                                    <i class="icon">
-                                        <img src="./assets/icons/email_black.jpg" />
-                                    </i>
-                                </label>
-                                <div class="col-md-10">
-                                    <input class="form-control input-field" type="text" [ngClass]="{ 'is-invalid': f.userName.touched && f.userName.errors }"
-                                        placeholder="Emai ID" name="userName" formControlName="userName">
-                                    <div *ngIf="f.userName.touched && f.userName.errors" class="invalid-feedback d-block">
-                                        <div *ngIf="f.userName.errors.required">User Name is required</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row mb-2" [ngClass]="{ 'mb-0': f.password.touched && f.password.errors }">
-                                <label class="col-md-2 control-label">
-                                    <i class="icon">
-                                        <img src="./assets/icons/Password.png" />
-                                    </i>
-                                </label>
-                                <div class="col-md-10">
-                                    <input #pwd class="form-control input-field" type="password" [ngClass]="{ 'is-invalid': f.password.touched && f.password.errors }"
-                                        placeholder="Password" name="password" formControlName="password">
-                                    <svg *ngIf="pwd.type==='password'" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill pwd-icon"
-                                        viewBox="0 0 16 16" (click)="showPwd(pwd)">
-                                        <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
-                                        <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
-                                    </svg>
-                                    <svg *ngIf="pwd.type==='text'" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-slash-fill pwd-icon"
-                                        viewBox="0 0 16 16" (click)="showPwd(pwd)">
-                                        <path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7.029 7.029 0 0 0 2.79-.588zM5.21 3.088A7.028 7.028 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474L5.21 3.089z"
-                                        />
-                                        <path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829l-2.83-2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12-.708.708z"
-                                        />
-                                    </svg>
-                                </div>
-                                <div *ngIf="f.password.touched && f.password.errors" class="invalid-feedback d-block">
-                                    <div *ngIf="f.password.errors.required">Password is required</div>
-                                </div>
-                            </div>
-                            <div class="row"> <!-- class="login-rem-pwd" -->
-                                <div class="col-md-2"></div>
-                                <div class="col-md-4">
-                                    <span class="rem-content proxima">
-                                    <input type="checkbox" class="login-hdr-text m-1">Remember Me</span>
-                                </div>
-                                <div class="col-md-6">
-                                    <a class="login-sign-up no-padding" routerLinkActive="active-link" routerLink="/security/forgot">Forgot Password?</a>
-                                </div>
-                            </div>
-                            <div class="login-submit">
-                                <button class="avenir-lte w-50 font-18 white" type="submit" (click)="login()">Login</button>
-                                <div *ngIf="showError" style="color: red; margin-top: 15px" class="font-18">
-                                    <span> {{showError}}</span>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-            </article>
-            <footer class="footer proxima login-hdr-text">
-                <span class="m-t-1">App Version 1.0</span>
-                <a href="" (click)="$event.preventDefault();isViewPrivacyDoc = !isViewPrivacyDoc" color="Grey">Privacy Policy</a>
-            </footer>
-        </article>
-    </div>
-</div>
-<div *ngIf="isViewPrivacyDoc" class="modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                <button type="button" class="btn close" aria-label="Close" (click)="isViewPrivacyDoc = false">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <img class="w-100" src="./assets/images/privacy_policy.png" />
+   <div class="card" style="width: 75em; height: 51em;">
+      <div class="row">
+         <div class="col-md-5">
+            <div class="mx-auto d-block">
+               <img class="img-fluid p-4 m-4 pb-0 mb-0" src="assets/images/company-logo.jpeg" /> <br>
+               <img class="mx-auto d-block p-0 m-0" src="./assets/images/idp.jpg" width="480" height="480" />
             </div>
-        </div>
-    </div>
+         </div>
+         <div class="col-md-7">
+            <div id="content" class="flex">
+               <div class="">
+                  <div class="page-content page-container" id="page-content">
+                     <div class="padding">
+                        <div class="row">
+                           <div class="col-md-6">
+                              <div class="card shadow shadow-primary p-3 mb-5 bg-white rounded shadow-intensity-lg"
+                                 style="width: 34em;height: 38em;">
+                                 <div class="card-header">
+                                    <div class="row">
+                                       <div class="col-md-6 pt-1 mt-2">
+                                          <h3 class="float-left font-weight-bold"><strong>Login</strong> </h3>
+                                       </div>
+                                       <div class="col-md-6 p-0 m-0">
+                                          <a routerLink="/security/firstLogin" class="float-right text-decoration-underline font-weight-bold" style="text-align: end;"><h6>First time Login</h6></a>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="card-body">
+                                    <form id="login-form" [formGroup]="loginForm">
+                                       <div class="form-group row mb-4"
+                                          [ngClass]="{ 'mb-0': f.userName.touched && f.userName.errors }">
+                                          <label class="col-md-2 control-label p-1">
+                                             <i class="icon">
+                                                <img src="assets/icons/email_black.jpg" />
+                                             </i>
+                                          </label>
+                                          <div class="col-md-10 m-0 p-0">
+                                             <input class="form-control input-field p-3 mb-2" type="text"
+                                                [ngClass]="{ 'is-invalid': f.userName.touched && f.userName.errors }"
+                                                placeholder="Emai ID" name="userName" formControlName="userName"
+                                                style="height: 2.4em;">
+                                             <div *ngIf="f.userName.touched && f.userName.errors"
+                                                class="invalid-feedback d-block">
+                                                <div *ngIf="f.userName.errors.required">User Name is required</div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="form-group row mb-2 mt-4"
+                                          [ngClass]="{ 'mb-0': f.password.touched && f.password.errors }">
+                                          <label class="col-md-2 control-label p-1">
+                                             <i class="icon">
+                                                <img src="assets/icons/Password.png" />
+                                             </i>
+                                          </label>
+                                          <div class="col-md-10 p-0 m-0">
+                                             <input #pwd class="form-control input-field p-3" type="password"
+                                                [ngClass]="{ 'is-invalid': f.password.touched && f.password.errors }"
+                                                placeholder="Password" name="password" formControlName="password"
+                                                style="height: 2.4em;">
+                                             <svg *ngIf="pwd.type==='password'" xmlns="http://www.w3.org/2000/svg"
+                                                width="16" height="16" fill="currentColor"
+                                                class="bi bi-eye-fill pwd-icon" viewBox="0 0 16 16"
+                                                (click)="showPwd(pwd)">
+                                                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+                                                <path
+                                                   d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
+                                             </svg>
+                                             <svg *ngIf="pwd.type==='text'" xmlns="http://www.w3.org/2000/svg"
+                                                width="16" height="16" fill="currentColor"
+                                                class="bi bi-eye-slash-fill pwd-icon" viewBox="0 0 16 16"
+                                                (click)="showPwd(pwd)">
+                                                <path
+                                                   d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7.029 7.029 0 0 0 2.79-.588zM5.21 3.088A7.028 7.028 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474L5.21 3.089z" />
+                                                <path
+                                                   d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829l-2.83-2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12-.708.708z" />
+                                             </svg>
+                                             <div *ngIf="f.password.touched && f.password.errors"
+                                             class="invalid-feedback d-block">
+                                             <div *ngIf="f.password.errors.required">Password is required</div>
+                                          </div>
+                                          </div>
+                                          
+                                       </div>
+                                       <div class="row mt-4">
+                                          <!-- class="login-rem-pwd" -->
+                                          <div class="col-md-6">
+                                             <label class="checkbox-inline">
+                                                <input type="checkbox" class="login-hdr-text m-1"
+                                                   style="width:1.25rem; height: 1.25em;">Remember Me
+                                             </label>
+                                          </div>
+                                          <div class="col-md-6" style="text-align: end;">
+                                             <span class="text-right">
+                                                <a class="login-sign-up no-padding" routerLinkActive="active-link"
+                                                   routerLink="/security/forgot">Forgot Password?</a>
+                                             </span>
+                                          </div>
+                                       </div>
+                                       <div class="login-submit text-center">
+                                          <button class="avenir-lte w-50 font-18 white" type="submit"
+                                             (click)="login()">Login</button>
+                                          <div *ngIf="showError" style="color: red; margin-top: 15px" class="font-18">
+                                             <span> {{showError}}</span>
+                                          </div>
+                                       </div>
+                                    </form>
+                                 </div>
+                                 <div class="card-footer bg-white text-center">
+                                    <span class="m-t-1 mb-1">App Version 1.0</span> <br>
+                                    <a href="" (click)="$event.preventDefault();isViewPrivacyDoc = !isViewPrivacyDoc" color="Grey">Privacy Policy</a>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
 </div>

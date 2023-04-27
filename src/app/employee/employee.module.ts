@@ -7,6 +7,7 @@ import { EmployeeHomeComponent } from './employee-home/employee-home.component';
 import { AchievementsComponent } from './achievements/achievements.component';
 import { CoursesComponent } from './courses/courses.component';
 import { CourseViewComponent } from './course-view/course-view.component';
+import { MyidpComponent } from './myidp/myidp.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { CourseViewComponent } from './course-view/course-view.component';
     EmployeeHomeComponent,
     AchievementsComponent,
     CoursesComponent,
-    CourseViewComponent
+    CourseViewComponent,
+    MyidpComponent
   ],
   imports: [
     SharedModule,

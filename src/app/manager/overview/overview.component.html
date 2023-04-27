@@ -2,7 +2,7 @@
     <h2>Overview</h2>
     <div class="card-deck">
         <ng-container *ngFor="let menu of menus">
-            <div class="card m-4 align-items-center flex-sm-row justify-content-center" 
+            <div class="card m-4 align-items-center flex-sm-row justify-content-center w-100" 
                 *ngIf="menu?.children?.length > 0; else elseBlock">
                 {{menu.name}}
                 <ng-container *ngFor="let m of menu.children">

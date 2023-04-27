@@ -16,4 +16,5 @@ export interface Task {
     empComments: string;
     coachComments: string;
     progress: number;
+    referanceUrl: string;
 }

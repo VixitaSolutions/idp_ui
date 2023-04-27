@@ -56,7 +56,7 @@ export class ClientService {
 
   constructor(private httpClient: HttpClient) { }
   clients: Client[] = [];
-
+  clientInfo: any[] = [];
   getMenus(): Observable<Menu[]> {
     return of(this.menus);
   }
@@ -106,7 +106,21 @@ export class ClientService {
   // getUsersByRoleId(roleId): Observable<any> {
   //   return this.httpClient.post(`${environment.apiUrl}/api/v1/user/userList`, {roleId});
   // }
+  // getCompetencies(): Observable<any> {
+  //   return this.httpClient.get(`${environment.apiUrl}/api/v1/competency/all`);
+  // }
   getCompetencies(): Observable<any> {
-    return this.httpClient.get(`${environment.apiUrl}/api/v1/competency/all`);
+    return this.httpClient.get(`${environment.apiUrl}/api/excel/competency`).pipe(
+      map((comp:any[])=>{
+        if(comp){
+          for(let i = 0; i<comp.length; i++){
+            if(sessionStorage.getItem('tenant-id') == comp[i].tenantId){
+              this.clientInfo.push(comp[i]);
+            }
+          }
+        }
+        return this.clientInfo;
+      })
+    );
   }
 }

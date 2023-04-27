@@ -8,10 +8,11 @@ import { RegistrationComponent } from './registration/registration.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { OtpVerificationComponent } from './otp-verification/otp-verification.component';
 import { SharedModule } from '../shared/shared.module';
+import { FirstTimeLoginComponent } from './first-time-login/first-time-login.component';
 
 
 @NgModule({
-  declarations: [LoginComponent, RegistrationComponent, ForgotPasswordComponent, OtpVerificationComponent],
+  declarations: [LoginComponent, RegistrationComponent, ForgotPasswordComponent, OtpVerificationComponent, FirstTimeLoginComponent],
   imports: [
     CommonModule,
     FormsModule,

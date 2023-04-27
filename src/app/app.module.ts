@@ -21,7 +21,7 @@ import { AddEmployeeComponent } from './add-employee/add-employee.component';
 import { UploadDataComponent } from './upload-data/upload-data.component';
 import { SharedModule } from './shared/shared.module';
 import { ErrorComponent } from './error/error.component';
-
+import { UploadCompetancyComponent } from './upload-competancy/upload-competancy.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +32,8 @@ import { ErrorComponent } from './error/error.component';
     ManageEmployeesComponent,
     AddEmployeeComponent,
     UploadDataComponent,
-    ErrorComponent
+    ErrorComponent,
+    UploadCompetancyComponent
   ],
   imports: [
     BrowserModule,
