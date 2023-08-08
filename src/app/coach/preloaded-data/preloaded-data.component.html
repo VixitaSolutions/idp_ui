@@ -1,0 +1,58 @@
+<div class="modal-header">
+  <h4 class="modal-title">Search Details</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <!-- <h6 class="text-muted">List Group with Images</h6>  -->
+        <div>
+          <div >
+            <div >
+              <span class="font-weight-bold text-uppercase" style="font-weight: 600;"> Books </span><br>
+              <ul class="list-group list-group-flush" *ngFor="let car of gInfo">
+                <li class="list-group-item border-bottom" data-toggle="tooltip" data-placement="top" [title]="car.b_author" >{{car.b_title}}&nbsp;<a [href]="car.b_url" target="_blank">Click</a>
+                  <input type="checkbox" class="col-2" (change)="getCheckBocInfo($event,car, 'books')" style="float: right;">
+                </li>
+              </ul>
+            </div>
+            <div >
+              <span class="font-weight-bold text-uppercase" style="font-weight: 600;"> Courses </span><br>
+              <ul class="list-group list-group-flush" *ngFor="let car of gInfo">
+                <li class="list-group-item border-bottom" data-toggle="tooltip" data-placement="top" [title]="car.oc_description" >{{car.oc_course}}&nbsp;<a [href]="car.oc_url" target="_blank">Click</a>
+                  <input type="checkbox" class="col-2" (change)="getCheckBocInfo($event,car,'course')" style="float: right;">
+                </li>
+              </ul>
+            </div>
+            <div >
+              <span class="font-weight-bold text-uppercase" style="font-weight: 600;"> Youtube</span><br>
+              <ul class="list-group list-group-flush" *ngFor="let car of gInfo">
+                <li class="list-group-item border-bottom" data-toggle="tooltip" data-placement="top" [title]="car.y_description" >{{car.y_name}}&nbsp;<a [href]="car.y_url" target="_blank">Click</a>
+                  <input type="checkbox" class="col-2" (change)="getCheckBocInfo($event,info)" style="float: right;">
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- <div *ngFor="let info of Object.keys(gInfo)">
+            <h3>Books</h3>
+            <div >
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">{{info['Books']}}</li>
+              </ul>
+            </div>
+        </div> -->
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="closeModal('dismiss')">Close</button>
+</div>
+<script>
+  $('[data-toggle="popover"]').popover();
+</script>
+

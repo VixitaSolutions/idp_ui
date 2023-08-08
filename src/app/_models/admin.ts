@@ -17,6 +17,29 @@ export interface SortEvent {
     direction: SortDirection;
 }
 
+export interface PreloadedData {
+  id: string;
+  cName: string;
+  bAuthor: string;
+  bPublisher: string;
+  bPublishingYear: string;
+  bTitle: string;
+  bUrl: string;
+  ocCourse: string;
+  ocDescription: string;
+  ocUrl: string;
+  ocPlatform: string;
+  ocImgUrl: string;
+  yName: string;
+  yDescription: string;
+  yUrl: string;
+}
+
+export interface SortEvent {
+  column: SortColumn;
+  direction: SortDirection;
+}
+
 export interface GlobalCompetency {
     id: number;
     name: string;

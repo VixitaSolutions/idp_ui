@@ -8,6 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 import { CoursesAssignedComponent } from './courses-assigned/courses-assigned.component';
 import { CourseAssignmentComponent } from './course-assignment/course-assignment.component';
 import { GoogleSearchComponent } from './google-search/google-search.component';
+import { PreloadedDataComponent } from './preloaded-data/preloaded-data.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { GoogleSearchComponent } from './google-search/google-search.component';
     HomeComponent,
     CoursesAssignedComponent,
     CourseAssignmentComponent,
-    GoogleSearchComponent
+    GoogleSearchComponent,
+    PreloadedDataComponent
   ],
   imports: [
     CoachRoutingModule,

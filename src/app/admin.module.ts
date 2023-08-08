@@ -11,6 +11,7 @@ import { AddAdminComponent } from './add-admin/add-admin.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { SharedModule } from './shared/shared.module';
+import { PreloadedDataComponent } from './preloaded-data/preloaded-data.component';
 
 @NgModule({
     declarations: [

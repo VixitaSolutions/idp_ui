@@ -2,7 +2,7 @@
     <h4>Overview</h4>
     <div *appBusyIndicator="isBusy"></div>
     <div class="card">
-  
+
         <div class="card-content">
           <h3>Manage Admins</h3>
           <p style="width: 482px;">We believe in creating long-term relationship with our valued global customers.</p>
@@ -44,28 +44,28 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col" class="text-center">Admin Name</th>
-                    <th scope="col" class="text-center">Admin Mobile</th>
-                    <th scope="col" class="text-center">Email Address</th>
-                    <th scope="col" class="text-center">Company Name</th>
-                    <th scope="col" class="text-center">Actions</th>
+                    <th scope="col">Admin Name</th>
+                    <th scope="col">Admin Mobile</th>
+                    <th scope="col">Email Address</th>
+                    <th scope="col">Company Name</th>
+                    <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let row of rows | async">
-                    <td class="text-center">
+                    <td>
                         <ngb-highlight [result]="row.firstName +' '+ row.lastName" [ngbTooltip]="row.firstName +' '+ row.lastName"></ngb-highlight>
                     </td>
-                    <td class="text-center">
+                    <td>
                         <ngb-highlight [result]="row.mobile" [ngbTooltip]="row.mobile"></ngb-highlight>
                     </td>
-                    <td class="text-center">
+                    <td>
                         <ngb-highlight [result]="row.email" [ngbTooltip]="row.email"></ngb-highlight>
                     </td>
-                    <td class="text-center">
+                    <td>
                         <ngb-highlight [result]="row.tenantName" [ngbTooltip]="row.tenantName"></ngb-highlight>
                     </td>
-                    <td class="text-center">
+                    <td>
                         <button type="button" class="btn btn-outline-custom" (click)="edit(row.id)">Edit</button>
                         <!-- <button type="button" class="btn btn-outline-custom" (click)="delete(row.id)">Delete</button> -->
                     </td>

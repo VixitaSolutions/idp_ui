@@ -4,6 +4,7 @@
     justify-content: center;
     padding: 1%;
 }
+
 .col {
     width: 80%;
     margin: 1%;
@@ -23,7 +24,7 @@
 }
 $b-r: 5px;
 .wrap {
-    height: 100%; 
+    height: 100%;
   }
   .card {
     display: flex;
@@ -60,7 +61,7 @@ $b-r: 5px;
     margin: 0 0 1em;
     color: #550E9B;
   }
-  
+
   @media (max-width: 790px) {
     body {
       overflow-x: hidden;
@@ -84,5 +85,5 @@ $b-r: 5px;
     }
     .card-content {
       padding: 2em 2em 1em;
-    } 
+    }
   }

@@ -22,6 +22,8 @@ import { UploadDataComponent } from './upload-data/upload-data.component';
 import { SharedModule } from './shared/shared.module';
 import { ErrorComponent } from './error/error.component';
 import { UploadCompetancyComponent } from './upload-competancy/upload-competancy.component';
+import { PreloadedDataComponent } from './preloaded-data/preloaded-data.component';
+import { ManagePreloadeddataComponent } from './manage-preloadeddata/manage-preloadeddata.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,8 +34,10 @@ import { UploadCompetancyComponent } from './upload-competancy/upload-competancy
     ManageEmployeesComponent,
     AddEmployeeComponent,
     UploadDataComponent,
+    PreloadedDataComponent,
     ErrorComponent,
-    UploadCompetancyComponent
+    UploadCompetancyComponent,
+    ManagePreloadeddataComponent
   ],
   imports: [
     BrowserModule,

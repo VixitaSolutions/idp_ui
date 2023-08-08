@@ -5,7 +5,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <a class="navbar-brand text-dark" href="#">Learning Management System</a>
+            <a class="navbar-brand text-dark" href="#">Coaching System</a>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <!-- <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#">Home</a>
@@ -25,7 +25,7 @@
                 <li class="nav-item text-nowrap" ngbDropdown display="dynamic" placement="bottom-end">
                     <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown3" role="button"
                         (click)="getUserInfo();">
-                        <img src="assets/icons/profile.jpeg" alt="profile" style="width: 30px" class="rounded-circle" />
+                        <img src="assets/icons/profile.jpeg" alt="profile" style="width: 22px" class="rounded-circle" />
                     </a>
 
                     <div ngbDropdownMenu aria-labelledby="navbarDropdown3" class="dropdown-menu custom-drp">
@@ -55,15 +55,15 @@
                     <span ngbDropdownItem class="border-bottom">{{role}}</span> -->
                         <a ngbDropdownItem href="#" (click)="$event.preventDefault();setPage('profile');"
                             class="border-bottom">
-                            <img src="assets/icons/profile.jpeg" alt="profile" style="width: 30px"
+                            <img src="assets/icons/profile.jpeg" alt="profile" style="width: 22px"
                                 class="rounded-circle" /> Profile
                         </a>
                         <a ngbDropdownItem href="#" (click)="$event.preventDefault();setPage('resetPwd');"
                             class="border-bottom">
-                            <img src="assets/icons/Password.png" alt="profile" style="width: 30px"
+                            <img src="assets/icons/Password.png" alt="profile" style="width: 22px"
                                 class="rounded-circle" /> Change Password</a>
                         <a ngbDropdownItem href="#" (click)="$event.preventDefault();logout()">
-                            <img src="assets/icons/Logout.png" alt="profile" style="width: 30px"
+                            <img src="assets/icons/Logout.png" alt="profile" style="width: 22px"
                                 class="rounded-circle" /> Logout
                         </a>
                     </div>
@@ -108,7 +108,9 @@
                                 </ng-template>
                                 <ng-template ngbPanelContent>
                                     <ng-container *ngFor="let m of menu.children">
-                                        <button ngbDropdownItem (click)="goTo(menu, m)">{{m.name}}</button>
+                                        <button ngbDropdownItem (click)="goTo(menu, m)" style="
+                                        margin-left: 2em;
+                                    ">{{m.name}}</button>
                                     </ng-container>
                                 </ng-template>
                             </ngb-panel>

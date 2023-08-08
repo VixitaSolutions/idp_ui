@@ -12,6 +12,7 @@ import { User } from 'src/app/_models/user';
 import { ClientService } from 'src/app/_services/client.service';
 import { UserService } from 'src/app/_services/user.service';
 import { GoogleSearchComponent } from '../google-search/google-search.component';
+import { PreloadedDataComponent } from '../preloaded-data/preloaded-data.component';
 
 @Component({
   selector: 'app-course-assignment',
@@ -43,15 +44,20 @@ export class CourseAssignmentComponent implements OnInit {
   gdata: any[];
   competencyDropdown: Array<any> = [];
   selectedcomptny:any;
+  loading: boolean;
+  preloadedData:any;
   constructor(
     private clientService: ClientService,
     private toastrService: ToastrService,
     private userService: UserService,
     private modalService: NgbModal,
-    private router: Router) { 
+    private router: Router) {
     }
 
   ngOnInit(): void {
+    //  this.userService.getPreloadedData().subscribe(resp => {
+    //   this.preloadedData = resp;
+    //  });
     const obj = JSON.parse(sessionStorage.getItem('currentUser'));
     this.loggedInUserId = obj?.userId;
     this.getReportingEmployees();
@@ -66,7 +72,7 @@ export class CourseAssignmentComponent implements OnInit {
 
       this.competencyDropdown = this.removeDuplicates(this.competencyDropdown);
     });
-    
+
     this.taskForm = new FormGroup({
       taskId: new FormControl(null),
       employeeId: new FormControl('', [Validators.required]),
@@ -127,18 +133,59 @@ export class CourseAssignmentComponent implements OnInit {
       this.isBusy = false;
     });
   }
-  gotoGoogle(): void {
-    this.userService.getGSearchResults(this.keywords).subscribe(data=>{
-      const modalRef = this.modalService.open(GoogleSearchComponent, { size: 'lg' });
-       modalRef.componentInstance.gInfo = data;
-       modalRef.result.then((result) => {
-        console.log(result);
-        // this.taskForm.setValue()
-        this.taskForm.controls.referanceUrl.setValue(result['url']);
-      }, (reason) => {
+
+  /**
+   *
+   * @param competency
+   * COMMENTED USING THE CHATGTP
+   */
+//   gotoGoogle(): void {
+//     this.userService.getGSearchResults(this.keywords).subscribe(data=>{
+//       const modalRef = this.modalService.open(GoogleSearchComponent, { size: 'lg' });
+//        modalRef.componentInstance.gInfo = data;
+//        modalRef.result.then((result) => {
+//         console.log(result);
+//         // this.taskForm.setValue()
+//         this.taskForm.controls.referanceUrl.setValue(result['url']);
+//       }, (reason) => {
+//       });
+//   //  window.open(`https://www.google.com/search?q=${this.keywords}`, '_blank');
+//   });
+// }
+
+gotoGoogle(): void {
+  this.loading = true;
+  this.userService.getChatGtpList(this.keywords).subscribe(data=>{
+          let resp = data.message;
+          //resp = JSON.stringify(resp);
+          resp = JSON.parse(resp);
+          this.loading = false;
+          const modalRef = this.modalService.open(GoogleSearchComponent, { size: 'lg' });
+           modalRef.componentInstance.gInfo = resp;
+           modalRef.result.then((result) => {
+            console.log(result);
+            // this.taskForm.setValue()
+            this.taskForm.controls.referanceUrl.setValue(result.toString());
+          }, (reason) => {
+          });
+      //  window.open(`https://www.google.com/search?q=${this.keywords}`, '_blank');
       });
-  //  window.open(`https://www.google.com/search?q=${this.keywords}`, '_blank');
-  });
+}
+
+fetchDataFromdb(){
+  const key = this.keywords.split(' ');
+  this.userService.getPreloadedData(this.keywords).subscribe(resp =>{
+    const modalRef = this.modalService.open(PreloadedDataComponent, { size: 'lg' });
+    modalRef.componentInstance.gInfo = resp.preloadedData;
+    modalRef.result.then((result) => {
+     console.log(result);
+     // this.taskForm.setValue()
+     this.taskForm.controls.referanceUrl.setValue(result.toString());
+   }, (reason) => {
+   });
+  })
+  // const result = this.preloadedData.filter(item => item.cName.toLowerCase() === key[0].toLowerCase());
+
 }
   setLevels(competency): void {
     this.competencyLevels = [];

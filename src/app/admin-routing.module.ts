@@ -8,6 +8,8 @@ import { ManageClientsComponent } from './manage-clients/manage-clients.componen
 import { ManageEmployeesComponent } from './manage-employees/manage-employees.component';
 import { UploadCompetancyComponent } from './upload-competancy/upload-competancy.component';
 import { UploadDataComponent } from './upload-data/upload-data.component';
+import { PreloadedDataComponent } from './preloaded-data/preloaded-data.component';
+import { ManagePreloadeddataComponent } from './manage-preloadeddata/manage-preloadeddata.component';
 
 const routes: Routes = [
 // { path: 'manage-clients', component: ManageClientsComponent },
@@ -23,8 +25,10 @@ const routes: Routes = [
   },
   {path: 'manage-admins', component: ManageAdminsComponent},
   {path: 'manage-employees', component: ManageEmployeesComponent},
+  {path: 'manage-preloadedData', component: ManagePreloadeddataComponent},
   {path: 'competency-mapping', component: CompetencyMappingComponent},
   {path: 'upload-employees', component: UploadDataComponent},
+  {path: 'preloaded-data', component: PreloadedDataComponent},
   {path: 'upload-competency', component: UploadCompetancyComponent}]
 },
 // { path: '', redirectTo: 'admin', pathMatch: 'full' }

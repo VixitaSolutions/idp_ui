@@ -18,7 +18,9 @@
                                             style="width: 34em;height: 34em;">
                                             <div class="card-header">
                                                 <div class="row">
-                                                    <div class="col-md-8 pt-1 mt-2">
+                                                    <div class="col-md-8 pt-1 mt-2" style="
+                                                    padding-left: 0px;
+                                                ">
                                                         <h3 class="float-left font-weight-bold"><strong>First Time Login?</strong> </h3>
                                                     </div>
                                                     <div class="col-md-4 p-0 m-0">
@@ -26,17 +28,17 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="card-body">
+                                            <div class="card-body" style="padding: 1rem 1rem 1rem 7px;">
                                                 <form>
                                                     <label for="form-label"><strong>Enter the Email ID on which the OTP will be sent</strong></label>
-                                                    <div class="form-group row mt-4">
+                                                    <div class="form-group row mt-3" style="margin-left: 3px;">
                                                         <!-- <label class="col-md-1 control-label p-1">
                                                             <i class="icon">
                                                                 <img src="assets/icons/email_black.jpg" />
                                                             </i>
                                                         </label> -->
                                                         <div class="col-md-12 m-0 p-0">
-                                                            <input class="form-control input-field p-3 mb   -2" type="text"
+                                                            <input class="form-control input-field p-3 mb-2" type="text"
                                                                 placeholder="Emai ID" name="userName"
                                                                 formControlName="userName" style="height: 2.4em;">
                                                             <!-- <div class="invalid-feedback d-block">
@@ -51,16 +53,16 @@
                                                </div> -->
                                                         </div>
                                                     </div>
-                                                    
+
                                                 </form>
                                                 <form>
-                                                    <label for="form-label">Enter the OTP that has been sent to your Email ID</label>
-                                                    <div class="form-group row mt-4">
+                                                    <label for="form-label"><strong>Enter the OTP that has been sent to your Email ID</strong></label>
+                                                    <div class="form-group row mt-3" style="margin-left: 3px;">
                                                         <!-- <label class="col-md-6 control-label p-2">
                                                             <span class="text-danger">*</span> <label for="form-label">Enter Temporary Password</label>
                                                         </label> -->
                                                         <div class="col-md-12 m-0 p-0">
-                                                        
+
                                                             <input class="form-control input-field p-3 mb-2" type="text"
                                                                 placeholder="Enter OTP" name="userName"
                                                                 formControlName="userName" style="height: 2.4em;">
@@ -68,7 +70,7 @@
                                                                 <div>User Name is required</div>
                                                             </div> -->
                                                         </div>
-                                                        <div class="login-submit text-end p-0 mt-3">
+                                                        <div class="login-submit text-end p-0 mt-3 mb-4">
                                                             <button class="avenir-lte w-25 font-18 white" type="submit"
                                                                 click="login()">Validate</button>
                                                             <!-- <div *ngIf="showError" style="color: red; margin-top: 15px" class="font-18">
@@ -76,7 +78,7 @@
                                                </div> -->
                                                         </div>
                                                     </div>
-                                                    
+
                                                 </form>
                                             </div>
                                             <!-- <div class="card-footer bg-white text-center">

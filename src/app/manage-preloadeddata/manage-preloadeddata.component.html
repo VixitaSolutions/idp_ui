@@ -1,0 +1,181 @@
+<div *ngIf="manage">
+  <h2>Overview</h2>
+  <div *appBusyIndicator="isBusy"></div>
+
+  <!-- <div class="column">
+      <div class="col overlap">
+          <div class="overlap-txt">
+              <h2>Employee Data</h2>
+              We believe in creating long-term relationship with our valued global customers.
+          </div>
+          <i class="">
+              <img class="overlay-img" src="./assets/images/employee.jpeg" />
+          </i>
+      </div>
+  </div> -->
+  <!-- <button class="btn btn-outline-custom" (click)="addClient()">Add</button> -->
+  <div class="table-responsive">
+    <h3>Books</h3>
+      <nav class="navbar navbar-light bg-light  mt-4">
+          <div class="container-fluid">
+              <form class="d-flex">
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" [formControl]="filter">
+                  <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
+              </form>
+          </div>
+      </nav>
+      <table class="table table-striped">
+          <thead>
+              <tr>
+                  <th scope="col" sortable="cName" (sort)="onSort($event)">Competency</th>
+                  <th scope="col" sortable="bTitle" (sort)="onSort($event)">Title</th>
+                  <th scope="col" sortable="bAuthor" (sort)="onSort($event)">Author</th>
+                  <th scope="col" sortable="bPublisher" (sort)="onSort($event)">Publisher</th>
+                  <th scope="col" sortable="bPublishingYear" (sort)="onSort($event)">Publishing Year</th>
+                  <th scope="col" sortable="bUrl" (sort)="onSort($event)">URL</th>
+                  <!-- <th scope="col">Actions</th> -->
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let row of rows | async">
+                <td>
+                  <ngb-highlight [result]="row.cName" [ngbTooltip]="row.cName"></ngb-highlight>
+              </td>
+                  <td>
+                      <ngb-highlight [result]="row.bTitle" [ngbTooltip]="row.bTitle"></ngb-highlight>
+                  </td>
+                  <td>
+                      <ngb-highlight [result]="row.bAuthor" [ngbTooltip]="row.bAuthor"></ngb-highlight>
+                  </td>
+                  <td>
+                      <ngb-highlight [result]="row.bPublisher" [ngbTooltip]="row.bPublisher"></ngb-highlight>
+                  </td>
+                  <td>
+                      <ngb-highlight [result]="row.bPublishingYear" [ngbTooltip]="row.bPublishingYear"></ngb-highlight>
+                  </td>
+                  <td>
+                    <a [href]="row.bUrl" target="_blank">Click</a>
+                    <!-- <ngb-highlight [result]="row.bUrl" [ngbTooltip]="row.bUrl"></ngb-highlight> -->
+                </td>
+                  <!-- <td>
+                          <button type="button" class="btn btn-outline-custom" (click)="edit(row.id)">Edit</button>
+                          <button type="button" class="btn btn-outline-custom" (click)="delete(row.id)">Delete</button>
+                      </td> -->
+              </tr>
+          </tbody>
+      </table>
+      <div class="d-flex justify-content-center p-2">
+          <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refresh()">
+          </ngb-pagination>
+      </div>
+  </div>
+  <div class="table-responsive">
+    <h3>Courses</h3>
+      <nav class="navbar navbar-light bg-light  mt-4">
+          <div class="container-fluid">
+              <form class="d-flex">
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" [formControl]="filter1">
+                  <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
+              </form>
+          </div>
+      </nav>
+      <table class="table table-striped">
+          <thead>
+              <tr>
+                <th scope="col" sortable="cName" (sort)="onSort($event)">Competency</th>
+                <th scope="col" sortable="ocImgUrl" (sort)="onSort($event)">Image</th>
+                  <th scope="col" sortable="ocCourse" (sort)="onSort($event)">Course</th>
+                  <th scope="col" sortable="ocDescription" (sort)="onSort($event)">Description</th>
+                  <th scope="col" sortable="ocPlatform" (sort)="onSort($event)">Platform</th>
+                  <th scope="col" sortable="ocUrl" (sort)="onSort($event)">Url</th>
+
+                  <!-- <th scope="col">Actions</th> -->
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let row of rows | async">
+                <td>
+                  <ngb-highlight [result]="row.cName" [ngbTooltip]="row.cName"></ngb-highlight>
+              </td>
+                <td>
+                  <img src="assets/images/No_Image_Available.jpg" [alt]="row.ocImgUrl" width="50" height="50">
+                  <!-- <ngb-highlight [result]="row.ocImgUrl" [ngbTooltip]="row.ocImgUrl"></ngb-highlight> -->
+              </td>
+                  <td>
+                      <ngb-highlight [result]="row.ocCourse" [ngbTooltip]="row.ocCourse"></ngb-highlight>
+                  </td>
+                  <td>
+                      <ngb-highlight [result]="row.ocDescription" [ngbTooltip]="row.ocDescription"></ngb-highlight>
+                  </td>
+                  <td>
+                      <ngb-highlight [result]="row.ocPlatform" [ngbTooltip]="row.ocPlatform"></ngb-highlight>
+                  </td>
+
+                  <td>
+                    <a [href]="row.ocUrl" target="_blank">Click</a>
+                    <!-- <ngb-highlight [result]="row.ocUrl" [ngbTooltip]="row.ocUrl"></ngb-highlight> -->
+                </td>
+                  <!-- <td>
+                          <button type="button" class="btn btn-outline-custom" (click)="edit(row.id)">Edit</button>
+                          <button type="button" class="btn btn-outline-custom" (click)="delete(row.id)">Delete</button>
+                      </td> -->
+              </tr>
+          </tbody>
+      </table>
+      <div class="d-flex justify-content-center p-2">
+          <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refresh()">
+          </ngb-pagination>
+      </div>
+  </div>
+  <div class="table-responsive">
+    <h3>Youtube</h3>
+      <nav class="navbar navbar-light bg-light  mt-4">
+          <div class="container-fluid">
+              <form class="d-flex">
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" [formControl]="filter2">
+                  <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
+              </form>
+          </div>
+      </nav>
+      <table class="table table-striped">
+          <thead>
+              <tr>
+                <th scope="col" sortable="cName" (sort)="onSort($event)">Competency</th>
+                  <th scope="col" sortable="yName" (sort)="onSort($event)">Name</th>
+                  <th scope="col" sortable="yDescription" (sort)="onSort($event)">Description</th>
+                  <th scope="col" sortable="yUrl" (sort)="onSort($event)">Url</th>
+                  <!-- <th scope="col">Actions</th> -->
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let row of rows | async">
+                <td>
+                  <ngb-highlight [result]="row.cName" [ngbTooltip]="row.cName"></ngb-highlight>
+              </td>
+                  <td>
+                      <ngb-highlight [result]="row.yName" [ngbTooltip]="row.yName"></ngb-highlight>
+                  </td>
+                  <td>
+                      <ngb-highlight [result]="row.yDescription" [ngbTooltip]="row.yDescription"></ngb-highlight>
+                  </td>
+                  <td>
+                      <!-- <ngb-highlight [result]="row.yUrl" [ngbTooltip]="row.yUrl"></ngb-highlight> -->
+                      <a [href]="row.yUrl" target="_blank">Click</a>
+                  </td>
+
+                  <!-- <td>
+                          <button type="button" class="btn btn-outline-custom" (click)="edit(row.id)">Edit</button>
+                          <button type="button" class="btn btn-outline-custom" (click)="delete(row.id)">Delete</button>
+                      </td> -->
+              </tr>
+          </tbody>
+      </table>
+      <div class="d-flex justify-content-center p-2">
+          <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refresh()">
+          </ngb-pagination>
+      </div>
+  </div>
+</div>
+<div *ngIf="!manage">
+  <app-add-employee [employeeDetails]="employeeDetails"></app-add-employee>
+</div>

@@ -96,6 +96,10 @@ export class ClientService {
     return this.httpClient.get(`${environment.apiUrl}/api/v1/tenant/getClients`);
   }
 
+  getPreloadedData(): Observable<any> {
+    return this.httpClient.get(`${environment.apiUrl}/api/excel/preloadedData`);
+  }
+
   getUsers(tenantId, roleId): Observable<any> {
     return this.httpClient.post(`${environment.apiUrl}/api/v1/user/userList`, { tenantId, roleId });
   }

@@ -30,7 +30,7 @@
                                     <form id="login-form" [formGroup]="loginForm">
                                        <div class="form-group row mb-4"
                                           [ngClass]="{ 'mb-0': f.userName.touched && f.userName.errors }">
-                                          <label class="col-md-2 control-label p-1">
+                                          <label class="col-md-2 control-label p-1" style="margin-left: 10px;">
                                              <i class="icon">
                                                 <img src="assets/icons/email_black.jpg" />
                                              </i>
@@ -39,7 +39,7 @@
                                              <input class="form-control input-field p-3 mb-2" type="text"
                                                 [ngClass]="{ 'is-invalid': f.userName.touched && f.userName.errors }"
                                                 placeholder="Emai ID" name="userName" formControlName="userName"
-                                                style="height: 2.4em;">
+                                                style="height: 2.4em;;width:24em">
                                              <div *ngIf="f.userName.touched && f.userName.errors"
                                                 class="invalid-feedback d-block">
                                                 <div *ngIf="f.userName.errors.required">User Name is required</div>
@@ -48,7 +48,7 @@
                                        </div>
                                        <div class="form-group row mb-2 mt-4"
                                           [ngClass]="{ 'mb-0': f.password.touched && f.password.errors }">
-                                          <label class="col-md-2 control-label p-1">
+                                          <label class="col-md-2 control-label p-1" style="margin-left: 10px;">
                                              <i class="icon">
                                                 <img src="assets/icons/Password.png" />
                                              </i>
@@ -57,7 +57,7 @@
                                              <input #pwd class="form-control input-field p-3" type="password"
                                                 [ngClass]="{ 'is-invalid': f.password.touched && f.password.errors }"
                                                 placeholder="Password" name="password" formControlName="password"
-                                                style="height: 2.4em;">
+                                                style="height: 2.4em;width:24em">
                                              <svg *ngIf="pwd.type==='password'" xmlns="http://www.w3.org/2000/svg"
                                                 width="16" height="16" fill="currentColor"
                                                 class="bi bi-eye-fill pwd-icon" viewBox="0 0 16 16"
@@ -80,17 +80,17 @@
                                              <div *ngIf="f.password.errors.required">Password is required</div>
                                           </div>
                                           </div>
-                                          
+
                                        </div>
                                        <div class="row mt-4">
                                           <!-- class="login-rem-pwd" -->
                                           <div class="col-md-6">
                                              <label class="checkbox-inline">
                                                 <input type="checkbox" class="login-hdr-text m-1"
-                                                   style="width:1.25rem; height: 1.25em;">Remember Me
+                                                   style="width:1.25rem; height: 1.25em;"> <span>Remember Me</span>
                                              </label>
                                           </div>
-                                          <div class="col-md-6" style="text-align: end;">
+                                          <div class="col-md-6 pr-0" style="text-align: end;padding-right: 0px;">
                                              <span class="text-right">
                                                 <a class="login-sign-up no-padding" routerLinkActive="active-link"
                                                    routerLink="/security/forgot">Forgot Password?</a>
@@ -106,7 +106,7 @@
                                        </div>
                                     </form>
                                  </div>
-                                 <div class="card-footer bg-white text-center">
+                                 <div class="card-footer bg-white text-center pb-0">
                                     <span class="m-t-1 mb-1">App Version 1.0</span> <br>
                                     <a href="" (click)="$event.preventDefault();isViewPrivacyDoc = !isViewPrivacyDoc" color="Grey">Privacy Policy</a>
                                  </div>

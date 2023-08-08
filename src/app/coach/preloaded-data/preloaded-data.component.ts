@@ -1,13 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { SearchInfo } from 'src/app/_models/googleInfo';
 
 @Component({
-  selector: 'app-google-search',
-  templateUrl: './google-search.component.html',
-  styleUrls: ['./google-search.component.scss']
+  selector: 'app-preloaded-data',
+  templateUrl: './preloaded-data.component.html',
+  styleUrls: ['./preloaded-data.component.scss']
 })
-export class GoogleSearchComponent implements OnInit {
+export class PreloadedDataComponent implements OnInit {
   @Input() gInfo: any[] = [];
   newdata: any;
   infoItem: any;
@@ -27,17 +26,6 @@ export class GoogleSearchComponent implements OnInit {
     else {
       this.gInfo = this.gInfo;
     }
-  //   this.gInfo.value.forEach((element:any, index) => {
-  //   if(element.pagemap){
-  //     if(element.pagemap?.cse_thumbnail){
-  //       this.gInfo.value[index]['img'] = element.pagemap.cse_thumbnail[0].src;
-  //     }
-  //     else {
-  //       this.gInfo.value[index]['img'] = null;
-  //     }
-  //   }
-
-  //  });
   }
   addItem(info: any){
     this.isButtonDisable = true;
@@ -48,9 +36,18 @@ export class GoogleSearchComponent implements OnInit {
     this.activeModal.close(this.passData);
   }
 
-  getCheckBocInfo($event: any, dataResp){
+  getCheckBocInfo($event: any, dataResp: any, resp: string){
     if($event.currentTarget.checked){
-      this.passData.push(dataResp.URL);
+      if(resp == 'books'){
+        this.passData.push(dataResp.b_url);
+      }
+      if(resp == 'course'){
+        this.passData.push(dataResp.oc_url);
+      }
+      if(resp == 'youtube'){
+        this.passData.push(dataResp.y_url);
+      }
+
     }
     console.log(`${$event}${dataResp}`)
   }

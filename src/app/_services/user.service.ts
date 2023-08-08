@@ -8,7 +8,8 @@ import { catchError, map, tap } from '../../../node_modules/rxjs/operators';
 
 const GAPIKEY = 'AIzaSyC1OqVGZsC_-VWNpGPyoa7ClyavF4n8FqE';
 const GAPIURL = 'https://www.googleapis.com/customsearch/v1';
-
+const CHATGPT = 'http://35.154.15.64:4000/api/';
+const localData = 'http://35.154.15.64:4000/api/';
 let headers = new HttpHeaders()
 .set('X-RapidAPI-Key', 'b7100fe224msha035ded6b2457ebp14416ejsn2d36f23b4136')
 .set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE')
@@ -27,6 +28,22 @@ export class UserService {
     getGSearchResults(keyword: string): Observable<any>{
         return this.http.get<any>(`https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/WebSearchAPI?q=${keyword}&pageNumber=1&pageSize=10&autoCorrect=true`, {headers});
     }
+
+    getChatGtpList(keywords: any): Observable<any>{
+        const data = {
+            "question":`learning resources of ${keywords} in JSON {"Books":[{"Author": "","Publisher":"","PublishingYear":"","Title":"","URL":""}],"OnlineCourses":[{"Course":"","Description":"","URL":"","platform":"", imgUrl:""}],"Youtube":[{"Name":"","Description":"","URL":""}]}]}`
+          }
+        return this.http.post<any>(CHATGPT + 'find-competencies', data);
+    }
+    getPreloadedData(keywords: any): Observable<any>{
+      return this.http.post<any>(localData + `search/${keywords}`, 'empty');
+    }
+    getKeywordFromDb(keywords: any): Observable<any>{
+      // const data = {
+      //     "question":`learning resources of ${keywords} in JSON {"Books":[{"Author": "","Publisher":"","PublishingYear":"","Title":"","URL":""}],"OnlineCourses":[{"Course":"","Description":"","URL":"","platform":"", imgUrl:""}],"Youtube":[{"Name":"","Description":"","URL":""}]}]}`
+      //   }
+      return this.http.post<any>(CHATGPT + 'find-competencies', keywords);
+  }
     getById(): Observable<User> {
         return this.http.get<User>(`${environment.apiUrl}/api/v1/user/profile`)
         .pipe(map((data: any) => {
@@ -62,6 +79,16 @@ export class UserService {
         });
         return this.http.request(req);
     }
+
+    uploadPreloadedData(file: File): Observable<HttpEvent<any>> {
+      const formData: FormData = new FormData();
+      formData.append('file', file);
+      const req = new HttpRequest('POST', `${environment.apiUrl}/api/excel/uploadPreloadedData`, formData, {
+      reportProgress: true,
+      responseType: 'json'
+      });
+      return this.http.request(req);
+  }
     createUser(payload: User): Observable<any> {
         return this.http.post<User>(`${environment.apiUrl}/api/v1/user/create`, payload);
     }
