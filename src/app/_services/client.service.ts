@@ -127,4 +127,7 @@ export class ClientService {
       })
     );
   }
+  getCompetenciesDetails(): Observable<any> {
+    return this.httpClient.get(`${environment.apiUrl}/api/excel/competency`);
+  }
 }

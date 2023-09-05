@@ -7,6 +7,7 @@ import { SessionUser, User } from '../_models/user';
 import { AuthenticationService } from '../_services/authentication.service';
 import { ClientService } from '../_services/client.service';
 import { UserService } from '../_services/user.service';
+import { RoutingNavService } from '../_services/routing-nav.service';
 
 @Component({
   selector: 'app-employee',
@@ -37,11 +38,13 @@ export class EmployeeComponent implements OnInit {
       private authenticationService: AuthenticationService,
       private router: Router,
       private clientService: ClientService,
+      private navService: RoutingNavService
   ) {
       this.currentUser = this.authenticationService.currentUserValue;
   }
 
   ngOnInit(): void {
+    this.navService.navToLoginPage();
       this.loading = true;
       // this.loggedInUser = JSON.parse(sessionStorage.getItem('currentUser'));
       this.menus = [{ name: 'Home', url: 'home' },

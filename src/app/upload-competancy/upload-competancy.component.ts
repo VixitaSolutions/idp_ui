@@ -192,6 +192,9 @@ export class UploadCompetancyComponent implements OnInit {
   }
 
   reset(): void {
+    this.files = [];
+          this.uploadFile = undefined;
+          this.isBusy = false;
   }
 
 }

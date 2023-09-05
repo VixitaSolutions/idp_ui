@@ -10,6 +10,8 @@ import { UploadCompetancyComponent } from './upload-competancy/upload-competancy
 import { UploadDataComponent } from './upload-data/upload-data.component';
 import { PreloadedDataComponent } from './preloaded-data/preloaded-data.component';
 import { ManagePreloadeddataComponent } from './manage-preloadeddata/manage-preloadeddata.component';
+import { AuthGuard } from './_helpers';
+import { Role } from './_models/role';
 
 const routes: Routes = [
 // { path: 'manage-clients', component: ManageClientsComponent },
@@ -21,7 +23,7 @@ const routes: Routes = [
     component: AdminHomeComponent},
   {
    path : 'manage-clients',
-   component: ManageClientsComponent,
+   component: ManageClientsComponent
   },
   {path: 'manage-admins', component: ManageAdminsComponent},
   {path: 'manage-employees', component: ManageEmployeesComponent},

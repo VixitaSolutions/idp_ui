@@ -1,55 +1,75 @@
 <h2>Competency Mapping</h2>
 <div class="forms-grp pt-2">
-        <div class="form-group row mb-3">
-            <label for="clientName" class="col-sm-2 col-form-label">Client Name</label>
-            <div class="col-sm-5">
+  <div class="form-group row mb-3">
+    <!-- <label for="clientName" class="col-sm-2 col-form-label">Client Name</label> -->
+    <!-- <div class="col-sm-5">
                 <select type="text" id="clientName" placeholder="Client Name" class="form-control">
                     <option>ABC</option>
                     <option>XYZ</option>
                 </select>
-            </div>
-        </div>
-    <button class="btn btn-outline-custom" (click)="addMapping()">Add</button>
-    <div class="table-responsive">
-        <form>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Client Competency Name</th>
-                        <th scope="col">Global Competency Name</th>
-                        <th scope="col">Keywords</th>
-                        <th scope="col">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let row of rows">
-                        <th scope="row">{{ row.id }}</th>
-                        <td>
-                            <ngb-highlight [result]="row.clientCompetency"></ngb-highlight>
-                        </td>
-                        <td>
-                            <ngb-highlight [result]="row.globalCompetency"></ngb-highlight>
-                        </td>
-                        <td>
-                            <ngb-highlight [result]="row.keywords"></ngb-highlight>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-outline-custom" (click)="edit(row.id)">Edit</button>
-                            <button type="button" class="btn btn-outline-custom" (click)="delete(row.id)">Delete</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="d-flex justify-content-center p-2">
-                <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refresh()">
-                </ngb-pagination>
-                <!-- <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refresh()" [ngModelOptions]="{standalone: true}">
+            </div> -->
+  </div>
+  <!-- <button class="btn btn-outline-custom" (click)="addMapping()">Add</button> -->
+  <div class="table-responsive">
+    <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
+      Filter:
+      <button class="btn btn-outline-primary mr-2" id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()">Client
+        Name</button>
+      <div ngbDropdownMenu aria-labelledby="dropdownManual">
+        <button ngbDropdownItem (click)="applyFilter(undefined, undefined)">Clear</button>
+        <button ngbDropdownItem *ngFor="let client of clients"
+          (click)="applyFilter(client.id, client.clientName)">{{client.clientName}}</button>
+      </div>
+      <span [ngClass]="selectedFilter ? 'badge-primary' : ''">{{selectedFilter}}</span>
+    </div>
+    <form>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Client Competency Name</th>
+            <th scope="col">Global Competency Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Client Competency Level</th>
+            <th scope="col">Global Competency Level</th>
+            <th scope="col">Keywords</th>
+            <!-- <th scope="col">Actions</th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of rows | async">
+            <td>
+              <ngb-highlight [ngbTooltip]="row.cName" [result]="row.cName"></ngb-highlight>
+            </td>
+            <td>
+              <ngb-highlight [ngbTooltip]="row.cLevel" [result]="row.cLevel"></ngb-highlight>
+            </td>
+            <td>
+              <ngb-highlight [ngbTooltip]="row.gName" [result]="row.gName"></ngb-highlight>
+            </td>
+            <td>
+              <ngb-highlight [ngbTooltip]="row.gLevel" [result]="row.gLevel"></ngb-highlight>
+            </td>
+            <td>
+              <ngb-highlight [ngbTooltip]="row.description" [result]="row.description"></ngb-highlight>
+            </td>
+
+
+            <td>
+              <ngb-highlight [ngbTooltip]="row.keywords" [result]="row.keywords"></ngb-highlight>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="d-flex justify-content-center p-2">
+        <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
+          (pageChange)="refresh()">
+        </ngb-pagination>
+        <!-- <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refresh()" [ngModelOptions]="{standalone: true}">
                     <option [ngValue]="2">2 items per page</option>
                     <option [ngValue]="4">4 items per page</option>
                     <option [ngValue]="6">6 items per page</option>
                 </select> -->
-            </div>
-        </form>
-    </div>
+      </div>
+    </form>
+  </div>
 </div>

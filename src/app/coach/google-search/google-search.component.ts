@@ -8,7 +8,7 @@ import { SearchInfo } from 'src/app/_models/googleInfo';
   styleUrls: ['./google-search.component.scss']
 })
 export class GoogleSearchComponent implements OnInit {
-  @Input() gInfo: any[] = [];
+  @Input() gInfo: any;
   newdata: any;
   infoItem: any;
   data: any[] = [];
@@ -21,8 +21,8 @@ export class GoogleSearchComponent implements OnInit {
 
     this.data.push(this.gInfo);
     console.log(this.data);
-    if(this.gInfo){
-      // this.gInfo = this.gInfo.OnlineCourses;
+    if(this.gInfo?.Resources){
+      this.gInfo = this.gInfo?.Resources;
     }
     else {
       this.gInfo = this.gInfo;

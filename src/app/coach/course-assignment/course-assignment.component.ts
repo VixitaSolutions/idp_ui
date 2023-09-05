@@ -157,17 +157,24 @@ gotoGoogle(): void {
   this.loading = true;
   this.userService.getChatGtpList(this.keywords).subscribe(data=>{
           let resp = data.message;
+          console.log(resp);
+          console.log(typeof resp);
           //resp = JSON.stringify(resp);
+         if(resp !== ''){
           resp = JSON.parse(resp);
           this.loading = false;
           const modalRef = this.modalService.open(GoogleSearchComponent, { size: 'lg' });
-           modalRef.componentInstance.gInfo = resp;
-           modalRef.result.then((result) => {
+          modalRef.componentInstance.gInfo = resp;
+          modalRef.result.then((result) => {
             console.log(result);
             // this.taskForm.setValue()
             this.taskForm.controls.referanceUrl.setValue(result.toString());
           }, (reason) => {
           });
+         }
+         else {
+          this.toastrService.error('Returns Empty Response');
+         }
       //  window.open(`https://www.google.com/search?q=${this.keywords}`, '_blank');
       });
 }
@@ -176,7 +183,7 @@ fetchDataFromdb(){
   const key = this.keywords.split(' ');
   this.userService.getPreloadedData(this.keywords).subscribe(resp =>{
     const modalRef = this.modalService.open(PreloadedDataComponent, { size: 'lg' });
-    modalRef.componentInstance.gInfo = resp.preloadedData;
+    modalRef.componentInstance.gInfo = resp;
     modalRef.result.then((result) => {
      console.log(result);
      // this.taskForm.setValue()

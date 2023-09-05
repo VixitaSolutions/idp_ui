@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationStart, Router, RouterEvent } from '@angular/router';
+import { ActivatedRoute, NavigationStart, Router, RouterEvent, RoutesRecognized } from '@angular/router';
 import { Constants } from './_helpers/Constants';
 import { Client } from './_models/admin';
 import { ClientService } from './_services/client.service';
+import { RoutingNavService } from './_services/routing-nav.service';
+import { filter, pairwise } from 'rxjs/operators';
+import { AuthenticationService } from './_services/authentication.service';
 
 const addPath = (urlAndQuery: string[]) => urlAndQuery[0] ? '/' + urlAndQuery[0] : '';
 const addQuery = (urlAndQuery: string[]) => urlAndQuery[1] ? '?' + urlAndQuery[1] : '';
@@ -18,13 +21,31 @@ export class AppComponent implements OnInit {
   // store current tenant
   private activeTenant: string;
   private tenants: Client[] = [];
+  previousRoute: any;
 
   constructor(
+    private routerNav: RoutingNavService,
     private activatedRoute: ActivatedRoute,
-    private router: Router, private clientService: ClientService) {
+    private router: Router, private clientService: ClientService,
+    private authService: AuthenticationService
+    ) {
+      router.events
+      .pipe(
+        filter(event => event instanceof RoutesRecognized),
+        pairwise()
+      )
+      .subscribe((e: any) => {
+        this.previousRoute = e[0].urlAfterRedirects;
+        console.log(this.previousRoute);
+      });
   }
 
   ngOnInit(): void {
+    console.log(this.previousRoute);
+    if(this.previousRoute == undefined){
+      this.authService.logout();
+      //this.router.navigate(['/VIXITA/security/login']);
+    }
     this.router.events.subscribe((event: RouterEvent) => {
       if (event instanceof NavigationStart) {
         if (event.url.includes('/error')) {

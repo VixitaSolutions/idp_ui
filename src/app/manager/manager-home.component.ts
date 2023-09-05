@@ -8,6 +8,7 @@ import { SessionUser, User } from '../_models/user';
 import { AuthenticationService } from '../_services/authentication.service';
 import { ClientService } from '../_services/client.service';
 import { UserService } from '../_services/user.service';
+import { RoutingNavService } from '../_services/routing-nav.service';
 
 @Component({
   selector: 'app-manager-home',
@@ -42,12 +43,14 @@ export class ManagerHomeComponent implements OnInit {
       private authenticationService: AuthenticationService,
       private router: Router,
       private clientService: ClientService,
+      private navService: RoutingNavService
   ) {
       this.currentUser = this.authenticationService.currentUserValue;
   }
 
   get getCurrent(): boolean { return true; }
   ngOnInit(): void {
+    this.navService.navToLoginPage();
       // this.loggedInUser = JSON.parse(sessionStorage.getItem('currentUser'));
       this.active = this.router?.url?.substring(this.router?.url?.lastIndexOf('/') + 1);
       this.setHeader();

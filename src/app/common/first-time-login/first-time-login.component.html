@@ -29,7 +29,7 @@
                                                 </div>
                                             </div>
                                             <div class="card-body" style="padding: 1rem 1rem 1rem 7px;">
-                                                <form>
+                                                <form [formGroup]="registrationForm" (ngSubmit)="register()">
                                                     <label for="form-label"><strong>Enter the Email ID on which the OTP will be sent</strong></label>
                                                     <div class="form-group row mt-3" style="margin-left: 3px;">
                                                         <!-- <label class="col-md-1 control-label p-1">
@@ -40,14 +40,15 @@
                                                         <div class="col-md-12 m-0 p-0">
                                                             <input class="form-control input-field p-3 mb-2" type="text"
                                                                 placeholder="Emai ID" name="userName"
-                                                                formControlName="userName" style="height: 2.4em;">
-                                                            <!-- <div class="invalid-feedback d-block">
-                                                                <div>User Name is required</div>
-                                                            </div> -->
+                                                                formControlName="email" [ngClass]="{ 'is-invalid': f.email.touched && f.email.errors }" style="height: 2.4em;">
+                                                                <div *ngIf="f.email.touched && f.email.errors" class="invalid-feedback d-block" >
+                                                                  <div *ngIf="f.email.errors.required">Email is required</div>
+                                                                  <div *ngIf="f.email.errors.email">Invalid Email</div>
+                                                              </div>
                                                         </div>
                                                         <div class="login-submit text-end p-0 mt-3 mb-4">
                                                             <button class="avenir-lte w-25 font-18 white" type="submit"
-                                                                click="login()">Submit</button>
+                                                                >Submit</button>
                                                             <!-- <div *ngIf="showError" style="color: red; margin-top: 15px" class="font-18">
                                                   <span> {{showError}}</span>
                                                </div> -->
@@ -55,7 +56,7 @@
                                                     </div>
 
                                                 </form>
-                                                <form>
+                                                <form [formGroup]="temporaryForm" (ngSubmit)="validate()">
                                                     <label for="form-label"><strong>Enter the OTP that has been sent to your Email ID</strong></label>
                                                     <div class="form-group row mt-3" style="margin-left: 3px;">
                                                         <!-- <label class="col-md-6 control-label p-2">
@@ -65,14 +66,14 @@
 
                                                             <input class="form-control input-field p-3 mb-2" type="text"
                                                                 placeholder="Enter OTP" name="userName"
-                                                                formControlName="userName" style="height: 2.4em;">
+                                                                formControlName="tempPwd"  required [ngClass]="{ 'is-invalid': fr.tempPwd.touched && fr.tempPwd.errors }" style="height: 2.4em;">
                                                             <!-- <div class="invalid-feedback d-block">
                                                                 <div>User Name is required</div>
                                                             </div> -->
                                                         </div>
                                                         <div class="login-submit text-end p-0 mt-3 mb-4">
                                                             <button class="avenir-lte w-25 font-18 white" type="submit"
-                                                                click="login()">Validate</button>
+                                                                >Validate</button>
                                                             <!-- <div *ngIf="showError" style="color: red; margin-top: 15px" class="font-18">
                                                   <span> {{showError}}</span>
                                                </div> -->

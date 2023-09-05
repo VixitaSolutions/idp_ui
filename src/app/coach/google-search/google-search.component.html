@@ -32,7 +32,7 @@
 
                   </ul> -->
                 </div>
-                <div *ngIf="car.key === 'Youtube'">
+                <div *ngIf="car.key === 'Youtube' || car.key === 'YoutubeVideo'">
                   <ul class="list-group list-group-flush">
                       <li class="list-group-item border-bottom" data-toggle="tooltip" data-placement="top" [title]="info.Description">{{info.Name}}&nbsp;<a [href]="info.URL" target="_blank">click</a>
                         <input type="checkbox" class="col-2" (change)="getCheckBocInfo($event,info)" style="float: right;">
