@@ -85,7 +85,7 @@ export class CourseAssignmentComponent implements OnInit {
     });
   }
   removeDuplicates(array: any[]): any[] {
-    return array = array.filter((element, i) => i === array.indexOf(element));
+    return array = [...new Set(array)];
   }
   get f(): { [key: string]: AbstractControl } { return this.taskForm.controls; }
 

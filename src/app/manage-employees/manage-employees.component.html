@@ -3,7 +3,7 @@
     <div *appBusyIndicator="isBusy"></div>
 
     <div class="card">
-  
+
         <div class="card-content">
           <h3>Employee Data</h3>
           <p style="width: 482px;">We believe in creating long-term relationship with our valued global customers.</p>
@@ -30,7 +30,7 @@
                 <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
                     Filter:
                     <button class="btn btn-outline-primary mr-2" id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()">Client Name</button>
-                    <div ngbDropdownMenu aria-labelledby="dropdownManual">
+                    <div ngbDropdownMenu aria-labelledby="dropdownManual" style="height: 20em;overflow-y:auto">
                         <button ngbDropdownItem (click)="applyFilter(undefined, undefined)">Clear</button>
                         <button ngbDropdownItem *ngFor="let client of clients" (click)="applyFilter(client.id, client.clientName)">{{client.clientName}}</button>
                     </div>

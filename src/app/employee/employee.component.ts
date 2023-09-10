@@ -44,7 +44,6 @@ export class EmployeeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.navService.navToLoginPage();
       this.loading = true;
       // this.loggedInUser = JSON.parse(sessionStorage.getItem('currentUser'));
       this.menus = [{ name: 'Home', url: 'home' },

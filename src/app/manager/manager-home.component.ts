@@ -50,7 +50,6 @@ export class ManagerHomeComponent implements OnInit {
 
   get getCurrent(): boolean { return true; }
   ngOnInit(): void {
-    this.navService.navToLoginPage();
       // this.loggedInUser = JSON.parse(sessionStorage.getItem('currentUser'));
       this.active = this.router?.url?.substring(this.router?.url?.lastIndexOf('/') + 1);
       this.setHeader();

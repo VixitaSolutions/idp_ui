@@ -70,7 +70,7 @@ export class LoginComponent implements OnInit {
               this.router.navigateByUrl('/coach/home');
             } else {
                 this.router.navigateByUrl('/employee/home');
-            }
+            } 
           });
         }
       }, error => {
