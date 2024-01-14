@@ -10,9 +10,11 @@ import { Task } from 'src/app/_models/task';
 export class CourseViewComponent implements OnInit {
 
   @Input() task: Task;
+  newRefUrls: any[] = [];
   constructor(private activeModal: NgbActiveModal) { }
 
   ngOnInit(): void {
+    this.newRefUrls = this.task.referanceUrl.split(',');
   }
 
   closeModal(): void {

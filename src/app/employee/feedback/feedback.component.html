@@ -1,0 +1,26 @@
+<div class="modal-header">
+  <h4 class="modal-title">Feedback Helps</h4>
+  <button type="button" class="close" aria-label="Close" (click)="dismiss()">
+      <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="form-group">
+    <div class="form-text small">
+      <label for="feedback">Feedback: </label>
+      <textarea name="" id="" cols="70" rows="10" class="form-control" [formControl]="feedback"></textarea>
+    </div>
+    <label for="feedback">Rating: </label> <br>
+    <ngb-rating [formControl]="ctrl"></ngb-rating>
+    <div class="form-text small">
+      <div *ngIf="ctrl.valid && feedback.valid" class="text-success">Thanks!</div>
+      <div *ngIf="ctrl.invalid && feedback.invalid" class="text-danger">Please rate us</div>
+    </div>
+  </div>
+
+  <hr>
+  <pre>Rating: <b>{{ ctrl.value }}</b></pre>
+</div>
+<div class="modal-footer custom">
+  <button type="button" class="btn" (click)="submitFeedback()">Submit</button>
+</div>

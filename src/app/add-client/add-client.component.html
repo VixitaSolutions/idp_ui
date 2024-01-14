@@ -37,7 +37,7 @@
                 <div class="input-group">
                         <!-- (keydown)="$event.preventDefault()" -->
                 <input id="subscriptionStartDate" placeholder="yyyy-mm-dd" class="form-control input-field"
-                    
+
                     formControlName="subscriptionStartDate" ngbDatepicker #d1="ngbDatepicker"
                     [ngClass]="{ 'is-invalid': f.subscriptionStartDate.touched && f.subscriptionStartDate.errors }">
                 <div class="input-group-append">
@@ -85,9 +85,9 @@
                 </small>
             </div>
             <div class="button button-flex">
-                <button type="button" class="btn" (click)="cancel()">Cancel</button>
-                <button type="button" class="btn" (click)="reset()">Clear</button>
-                <button type="submit" class="btn" (click)="save()">Save</button>
+                <button type="button" class="btn btn-sm" (click)="cancel()">Cancel</button>
+                <button type="button" class="btn btn-sm" (click)="reset()">Clear</button>
+                <button type="submit" class="btn btn-sm" (click)="save()">Save</button>
             </div>
         </form>
     </div>

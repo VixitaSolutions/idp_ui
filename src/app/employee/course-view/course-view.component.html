@@ -3,7 +3,7 @@
     <p class="text-left"><span class="text-info txt-color">Task Name:</span> {{task.taskName}}</p>
     <p class="text-left text-wrap" style="word-break: break-word">
         <span class="text-info txt-color">Description:</span>  {{task.taskDescription}}</p>
-    <p class="text-left"><span class="text-info txt-color">Referance:</span> <a [href]="task.referanceUrl" target="_blank">{{task.referanceUrl}}</a></p>
+    <p class="text-left"><span class="text-info txt-color">Referance:</span> <a *ngFor="let url of newRefUrls" [href]="url" target="_blank">{{url}}</a></p>
     <p class="text-left"><span class="text-info txt-color">Status:</span> {{task.taskStatus}}</p>
     <p class="text-left"><span class="text-info txt-color">Duration:</span> {{task.duration}} (days)</p>
     <p class="text-left"><span class="text-info txt-color">Progress:</span> {{task.progress}} (%)</p>

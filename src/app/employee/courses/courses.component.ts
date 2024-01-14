@@ -9,6 +9,7 @@ import { Task } from 'src/app/_models/task';
 import { TaskStatus } from 'src/app/_models/taskStatus';
 import { UserService } from 'src/app/_services/user.service';
 import { CourseViewComponent } from '../course-view/course-view.component';
+import { FeedbackComponent } from '../feedback/feedback.component';
 
 @Component({
   selector: 'app-courses',
@@ -115,12 +116,15 @@ export class CoursesComponent implements OnInit {
     if (row !== undefined) {
       row.taskStatus = TaskStatus.COMPLETED;
       row.progress = 100;
+
       this.updateTaskStatus(row, TaskStatus.COMPLETED);
     }
   }
   submitCourse(row: Task): void {
     if (row !== undefined) {
       row.taskStatus = TaskStatus.SUBMITTED;
+      const modalRef = this.modalService.open(FeedbackComponent, { size: 'lg' });
+      modalRef.componentInstance.task = "test";
       this.updateTaskStatus(row, TaskStatus.SUBMITTED);
     }
   }
@@ -129,6 +133,7 @@ export class CoursesComponent implements OnInit {
     this.userService.saveTask(row).subscribe(data => {
       if (data.status === 'SUCCESS') {
         console.log(data);
+
         this.courseList.forEach(c => {
           if (c.id === row.id) {
             c.taskStatus = status;

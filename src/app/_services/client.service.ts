@@ -50,7 +50,7 @@ export class ClientService {
                       // { name: 'Courses Completed', url: 'courses-completed' },
                       // { name: 'Courses Terminated', url: 'courses-terminated' },
                       { name: 'Courses', url: 'courses' },
-                      { name: 'Achievements', url: 'achievements' }
+                      //{ name: 'Achievements', url: 'achievements' }
                     ]
                   }];
 

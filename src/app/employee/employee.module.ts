@@ -8,6 +8,7 @@ import { AchievementsComponent } from './achievements/achievements.component';
 import { CoursesComponent } from './courses/courses.component';
 import { CourseViewComponent } from './course-view/course-view.component';
 import { MyidpComponent } from './myidp/myidp.component';
+import { FeedbackComponent } from './feedback/feedback.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { MyidpComponent } from './myidp/myidp.component';
     AchievementsComponent,
     CoursesComponent,
     CourseViewComponent,
-    MyidpComponent
+    MyidpComponent,
+    FeedbackComponent
   ],
   imports: [
     SharedModule,

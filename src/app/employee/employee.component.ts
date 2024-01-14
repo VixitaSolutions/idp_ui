@@ -52,7 +52,7 @@ export class EmployeeComponent implements OnInit {
                     children: [
                       { name: 'My IDP', url: 'idp' },
                       { name: 'Courses', url: 'courses' },
-                      { name: 'Achievements', url: 'achievements' }
+                      //{ name: 'Achievements', url: 'achievements' }
                     ]
                   }];
       this.userService.getById().pipe(first()).subscribe(user => {

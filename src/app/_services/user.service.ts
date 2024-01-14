@@ -36,14 +36,14 @@ export class UserService {
         return this.http.post<any>(CHATGPT + 'find-competencies', data);
     }
     getPreloadedData(keywords: any): Observable<any>{
-      let newKeyword: any;
-      if(keywords.length > 2){
-        newKeyword = keywords.split(' ')[0]+ ' '+ keywords.split(' ')[1]
-      }
-      else {
-        newKeyword = keywords.split(' ')[0]
-      }
-      return this.http.get<any>(CHATGPT + `search/${newKeyword}`);
+      // let newKeyword: any;
+      // if(keywords.length > 2){
+      //   newKeyword = keywords.split(' ')[0]+ ' '+ keywords.split(' ')[1]
+      // }
+      // else {
+      //   newKeyword = keywords.split(' ')[0]
+      // }
+      return this.http.get<any>(CHATGPT + `search/${keywords}`);
     }
     getKeywordFromDb(keywords: any): Observable<any>{
       // const data = {
@@ -152,4 +152,9 @@ export class UserService {
          }
      }
      */
+
+     saveFeedback(feedback): Observable<any> {
+          return this.http.post(`${environment.apiUrl}/api/v1/feedback/createFeedback`, feedback);
+  }
+
 }

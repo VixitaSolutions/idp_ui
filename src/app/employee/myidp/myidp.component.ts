@@ -9,6 +9,7 @@ import { TaskStatus } from 'src/app/_models/taskStatus';
 import { UserService } from 'src/app/_services/user.service';
 import { CourseViewComponent } from '../course-view/course-view.component';
 import { DatePipe } from '@angular/common';
+import { FeedbackComponent } from '../feedback/feedback.component';
 @Component({
   selector: 'app-myidp',
   templateUrl: './myidp.component.html',
@@ -120,6 +121,8 @@ export class MyidpComponent implements OnInit {
   submitCourse(row: Task): void {
     if (row !== undefined) {
       row.taskStatus = TaskStatus.SUBMITTED;
+      const modalRef = this.modalService.open(FeedbackComponent, { size: 'lg' });
+      modalRef.componentInstance.task = "test";
       this.updateTaskStatus(row, TaskStatus.SUBMITTED);
     }
   }

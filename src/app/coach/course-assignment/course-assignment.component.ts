@@ -161,7 +161,13 @@ gotoGoogle(): void {
           console.log(typeof resp);
           //resp = JSON.stringify(resp);
          if(resp !== ''){
-          resp = JSON.parse(resp);
+          try {
+            resp = JSON.parse(resp);
+          } catch (e) {
+            // Oh well, but whatever...
+            this.toastrService.error('Have some issue with the chat GPT Response: Try again');
+          }
+
           this.loading = false;
           const modalRef = this.modalService.open(GoogleSearchComponent, { size: 'lg' });
           modalRef.componentInstance.gInfo = resp;
@@ -181,6 +187,11 @@ gotoGoogle(): void {
 
 fetchDataFromdb(){
   const key = this.keywords.split(' ');
+   this.competencyList.forEach(element => {
+    if(element.keywords.trim().toLowerCase() == this.keywords.trim().toLowerCase()){
+      this.keywords = element.cName
+    }
+  });
   this.userService.getPreloadedData(this.keywords).subscribe(resp =>{
     const modalRef = this.modalService.open(PreloadedDataComponent, { size: 'lg' });
     modalRef.componentInstance.gInfo = resp;

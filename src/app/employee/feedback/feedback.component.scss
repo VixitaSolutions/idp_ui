@@ -1,0 +1,30 @@
+.modal-content{
+  width: 70% !important;
+}
+.star {
+    position: relative;
+    display: inline-block;
+    font-size: 1.3rem;
+  }
+  .full {}
+  .half {
+    position: absolute;
+    display: inline-block;
+    overflow: hidden;
+  }
+  .text-warning {
+    color: #ff902b !important;
+  }
+  .custom {
+    justify-content: space-evenly;
+    button {
+        border-radius: 20px;
+        width: 15%;
+        border-color: #8015e8;
+        background-color: #8015e8;
+        color: white;
+    }
+}
+.text-muted {
+    color: #dc3545 !important;
+}
